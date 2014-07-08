@@ -1,0 +1,42 @@
+/**
+ * Default Look and Feel
+ */
+.alertify {
+	background: #1abc9c;
+	font-weight:200;
+}
+p.alertify-message{
+	color:#ecf0f1;
+	padding-bottom: 20px;
+	font-size: 18px;
+}
+.alertify-text {
+	padding: 10px;
+}
+.alertify-button {
+	color: #fff;
+	padding: 6px 15px;
+}
+.alertify-button-cancel{
+	background-color: #e74c3c;
+}
+.alertify-button-cancel:hover{
+	background-color: #c0392b;
+}
+.alertify-button-ok{
+	background-color: #2ecc71;
+}
+.alertify-button-ok:hover{
+	background-color: #27ae60;
+}
+.alertify-log {
+	background-color: rgba(0,0,0,.5);
+	padding: 15px;
+	color: #fff;
+}
+.alertify-log-error {
+	background-color: #e74c3c;
+}
+.alertify-log-success {
+	background-color: #2ecc71;
+}

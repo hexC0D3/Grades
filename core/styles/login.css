@@ -1,0 +1,122 @@
+*{
+	padding:0;
+	margin:0;
+	font-size:16px;
+	text-decoration:none;
+	color:#ecf0f1;
+	font-family:"Lato", sans-serif;
+}
+html{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+::-webkit-input-placeholder{
+    color:#ecf0f1;
+}
+:-moz-placeholder{
+    color:#ecf0f1;
+    opacity:1;
+}
+::-moz-placeholder{
+    color:#ecf0f1;
+    opacity:1;
+}
+:-ms-input-placeholder{
+    color:#ecf0f1;
+}
+input[type="submit"]{
+	background-color: #2ecc71;
+	padding: 10px 15px 10px 10px;
+	cursor:pointer;
+	margin-top:20px;
+	margin-bottom:20px;
+	margin-left:auto;
+	margin-right:auto;
+}
+input{
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	outline: none;
+	border:none;
+    background: transparent;
+}
+.iconBeforeInput:before{
+	position:absolute;
+	margin-top:-16px;
+	margin-left:-35px;
+	font-size:25px;
+}
+.iconBeforeInput.fa-paper-plane:before{
+	margin-left:-38px;
+	font-size: 22px;
+}
+.iconBeforeInput.fa-user:before{
+	margin-left:-32px;
+	font-size: 22px;
+}
+body{
+	width:100%;
+	height:100%;
+}
+.error{
+	background-color:#e74c3c;
+	padding: 10px 15px 10px 10px;
+	border-radius: 3px;
+}
+#container{
+	margin-top:100px;
+	min-width:450px;
+	width:30%;
+	background-color:#3498db;
+	margin-left:auto;
+	margin-right:auto;
+	border-radius:3px;
+}
+#topBar{
+	background-color:#2980b9;
+	height:30%;
+	z-index:10;
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+}
+#lock:before{
+	font-size:60px;
+}
+#lock{
+	padding:3px 5px 5px 8px;
+	position:absolute;
+}
+#title{
+	font-size:40px;
+	padding-left:60px;
+	padding-top:10px;
+	margin-bottom: 5px;
+}
+.inputField{
+	margin-top:5%;
+	background-color:#2980b9;
+	padding:8px 10px 8px 10px;
+	width:45%;
+	transition: width 1s ease-in-out;
+}
+.inputField:focus{
+	width:65%;
+}
+#loginList{
+	width:100%;
+	text-align: right;
+}
+#loginList span{
+	padding-right:10px;
+}
+#login, #register, #resetPW{
+	display:none;
+}
+#login:target, #register:target, #resetPW:target{
+	display:block;
+}

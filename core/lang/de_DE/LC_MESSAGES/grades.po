@@ -1,0 +1,344 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Grades\n"
+"POT-Creation-Date: 2014-07-08 10:28+0100\n"
+"PO-Revision-Date: 2014-07-08 14:04+0100\n"
+"Last-Translator: Nico Hauser <me@tyratox.ch>\n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.6\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ../../../..\n"
+
+#: ../../../../login.php:43 ../../../../login.php:94
+msgid "Login"
+msgstr "Login"
+
+#: ../../../../login.php:58 ../../../../login.php:70
+msgid "Username"
+msgstr "Benutzername"
+
+#: ../../../../login.php:61 ../../../../login.php:73
+msgid "Password"
+msgstr "Passwort"
+
+#: ../../../../login.php:64
+msgid "Sign In"
+msgstr "Einloggen"
+
+#: ../../../../login.php:76
+msgid "Verify Password"
+msgstr "Passwort bestätigen"
+
+#: ../../../../login.php:79
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: ../../../../login.php:82 ../../../../login.php:94
+msgid "Register"
+msgstr "Registrieren"
+
+#: ../../../../login.php:87
+msgid "Username or E-Mail"
+msgstr "Benutzername oder E-Mail"
+
+#: ../../../../login.php:90
+msgid "Send me a mail"
+msgstr "Sende mir eine E-Mail"
+
+#: ../../../../login.php:94
+msgid "Reset password"
+msgstr "Setze mein Passwort zurück"
+
+#: ../../../../ui/body.php:31
+msgid "Average Mark"
+msgstr "Durchschnitt"
+
+#: ../../../../ui/class.php:13 ../../../../ui/class.php:42
+msgid "You don't have the permission to do this!"
+msgstr "Du bist nicht dazu berechtigt, dies zu tun!"
+
+#: ../../../../ui/class.php:20
+msgid "You aren't able to join this class!"
+msgstr "Du bist nicht in der Lage dieser Klasse beizutreten!"
+
+#: ../../../../ui/class.php:23
+msgid "You have already joined a class!"
+msgstr "Du bist bereits einer Klasse beigetreten!"
+
+#: ../../../../ui/class.php:30
+msgid "You are not able to leave this class, because you're the admin of it!"
+msgstr ""
+"Du kannst diese Klasse nicht verlassen, da du der Klassenchef von ihr bist!"
+
+#: ../../../../ui/class.php:33
+msgid "You aren't a member of this class!"
+msgstr "Du bist kein Mitglied dieser Klasse!"
+
+#: ../../../../ui/class.php:45
+msgid "This class doesn't exist!"
+msgstr "Diese Klasse existiert nicht!"
+
+#: ../../../../ui/class.php:49
+msgid "You are already admin of a class!"
+msgstr "Du bist bereits ein Mitglied einer Klasse!"
+
+#: ../../../../ui/class.php:61
+msgid "This class already exists!"
+msgstr "Diese Klasse existiert bereits!"
+
+#: ../../../../ui/class.php:70 ../../../../ui/school.php:35
+#: ../../../../ui/subjects.php:34 ../../../../ui/subjects.php:84
+msgid "First you have to join a school!"
+msgstr "Zuerst musst du einer Schule beitreten!"
+
+#: ../../../../ui/class.php:78
+msgid "First you have to join a class!"
+msgstr "Zuerst musst du einer Klasse beitreten!"
+
+#: ../../../../ui/class.php:86 ../../../../ui/class.php:131
+#: ../../../../ui/class.php:146
+msgid "Class Name"
+msgstr "Klassenname"
+
+#: ../../../../ui/class.php:86
+msgid "Class Admin"
+msgstr "Klassenchef"
+
+#: ../../../../ui/class.php:86 ../../../../ui/school.php:43
+#: ../../../../ui/subjects.php:78
+msgid "Actions"
+msgstr "Aktionen"
+
+#: ../../../../ui/class.php:115 ../../../../ui/school.php:73
+#: ../../../../ui/subjects.php:109
+msgid "Join"
+msgstr "Beitreten"
+
+#: ../../../../ui/class.php:117
+msgid ""
+"If you leave this class all test and the related grades will be lost for "
+"you! Do you want to continue?"
+msgstr ""
+"Falls du diese Klasse verlässt, werden alle deine Tests und die "
+"dazugehörigen Noten verloren gehen! Willst du fortfahren?"
+
+#: ../../../../ui/class.php:119 ../../../../ui/school.php:77
+#: ../../../../ui/subjects.php:113
+msgid "Leave"
+msgstr "Verlassen"
+
+#: ../../../../ui/class.php:121 ../../../../ui/school.php:79
+#: ../../../../ui/subjects.php:116
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: ../../../../ui/class.php:122
+msgid ""
+"Are you sure, that you want to delete your class? This will delete all tests "
+"of this class and also the corresponding grades!"
+msgstr ""
+"Bist du dir sicher, dass du diese Klasse löschen willst? Es würden alle "
+"Prüfungen und die dazugehörigen Noten gelöscht werden!"
+
+#: ../../../../ui/class.php:124 ../../../../ui/school.php:82
+#: ../../../../ui/subjects.php:120
+msgid "Delete"
+msgstr "Löschen"
+
+#: ../../../../ui/class.php:130 ../../../../ui/class.php:133
+#: ../../../../ui/class.php:145
+msgid "Create a new class"
+msgstr "Klasse erstellen"
+
+#: ../../../../ui/class.php:141 ../../../../ui/school.php:101
+msgid "You aren't allowed to see this page!"
+msgstr "Du bist nicht dazu berechtigt diese Seite zu sehen!"
+
+#: ../../../../ui/class.php:149
+msgid "Update class"
+msgstr "Klasse aktualisieren"
+
+#: ../../../../ui/footer.php:7
+msgid "Data succesfully saved!"
+msgstr "Daten wurden erfolgreich gespeichert!"
+
+#: ../../../../ui/footer.php:9 ../../../../ui/subjects.php:89
+msgid "Yes"
+msgstr "Ja"
+
+#: ../../../../ui/footer.php:10
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ../../../../ui/header.php:14
+msgid "Subjects"
+msgstr "Fächer"
+
+#: ../../../../ui/header.php:15
+msgid "My Subjects"
+msgstr "Meine Fächer"
+
+#: ../../../../ui/header.php:16
+msgid "Subject List"
+msgstr "Fächer Liste"
+
+#: ../../../../ui/header.php:17
+msgid "Create Subject"
+msgstr "Fach erstellen"
+
+#: ../../../../ui/header.php:19
+msgid "My Class"
+msgstr "Meine Klasse"
+
+#: ../../../../ui/header.php:20
+msgid "Go to classroom"
+msgstr "Gehe zum Klassenzimmer"
+
+#: ../../../../ui/header.php:21
+msgid "Class List"
+msgstr "Klassenliste"
+
+#: ../../../../ui/header.php:22
+msgid "Create a class"
+msgstr "Erstelle eine Klasse"
+
+#: ../../../../ui/header.php:24
+msgid "Schools"
+msgstr "Schulen"
+
+#: ../../../../ui/header.php:25
+msgid "My School"
+msgstr "Meine Schule"
+
+#: ../../../../ui/header.php:26
+msgid "School List"
+msgstr "Schulliste"
+
+#: ../../../../ui/header.php:27 ../../../../ui/school.php:88
+#: ../../../../ui/school.php:93 ../../../../ui/school.php:105
+msgid "Create a school"
+msgstr "Schule erstellen"
+
+#: ../../../../ui/header.php:29
+msgid "Profile"
+msgstr "Profil"
+
+#: ../../../../ui/header.php:30
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: ../../../../ui/school.php:12
+msgid "This school doesn't exist!"
+msgstr "Diese Schule existiert nicht!"
+
+#: ../../../../ui/school.php:16
+msgid "Your school already exists!"
+msgstr "Deine Schule existiert bereits!"
+
+#: ../../../../ui/school.php:27
+msgid "You have already joined a school!"
+msgstr "Du bist bereits ein Mitglied einer Schule!"
+
+#: ../../../../ui/school.php:43 ../../../../ui/school.php:89
+#: ../../../../ui/school.php:106
+msgid "School Name"
+msgstr "Schulname"
+
+#: ../../../../ui/school.php:91 ../../../../ui/school.php:108
+msgid "School Website URL (without http://)"
+msgstr "Website der Schule (ohne http://)"
+
+#: ../../../../ui/school.php:111
+msgid "Update school"
+msgstr "Schule aktualisieren"
+
+#: ../../../../ui/subjects.php:19
+msgid "You have already joined this subject!"
+msgstr "Du hast dieses Fach bereits ausgewählt!"
+
+#: ../../../../ui/subjects.php:24
+msgid "You aren't able to join this subject!"
+msgstr "Du bist nicht in der Lage dieses Fach zu wählen!"
+
+#: ../../../../ui/subjects.php:28
+msgid "Yet you haven't joined this subject!"
+msgstr "Du hast dieses Fach bisher noch nicht gewählt!"
+
+#: ../../../../ui/subjects.php:37 ../../../../ui/subjects.php:78
+#: ../../../../ui/subjects.php:127 ../../../../ui/subjects.php:148
+msgid "Subject Name"
+msgstr "Fachname"
+
+#: ../../../../ui/subjects.php:37 ../../../../ui/subjects.php:39
+msgid "shouldn't be empty!"
+msgstr "sollte nicht leer sein!"
+
+#: ../../../../ui/subjects.php:39 ../../../../ui/subjects.php:130
+#: ../../../../ui/subjects.php:151
+msgid "Is subject relevant?"
+msgstr "Promotionswirksam?"
+
+#: ../../../../ui/subjects.php:46
+msgid "You aren't allowed to update this subject!"
+msgstr "Du bist nicht dazu berechtigt dieses Fach zu aktualisieren!"
+
+#: ../../../../ui/subjects.php:63
+msgid "This subject already exists!"
+msgstr "Dieses Fach existiert bereits!"
+
+#: ../../../../ui/subjects.php:78
+msgid "Relevant ?"
+msgstr "Promotionswirksam ?"
+
+#: ../../../../ui/subjects.php:89
+msgid "No"
+msgstr "Nein"
+
+#: ../../../../ui/subjects.php:118
+msgid ""
+"Are you sure, that you want to delete this subject? This will delete all of "
+"the test and grades related to this subject!"
+msgstr ""
+"Bist du dir sicher, dass du dieses Fach löschen willst? Es werden alle "
+"Prüfungen (und die dazugehörigen Noten) von diesem Fach gelöscht!"
+
+#: ../../../../ui/subjects.php:126 ../../../../ui/subjects.php:135
+msgid "Create a new subject"
+msgstr "Fach erstellen"
+
+#: ../../../../ui/subjects.php:143
+msgid "You aren't allowed to edit this subject!"
+msgstr "Du bist nicht dazu berechtigt diese Fach zu bearbeiten!"
+
+#: ../../../../ui/subjects.php:147
+msgid "Edit the subject"
+msgstr "Fach bearbeiten"
+
+#: ../../../../ui/subjects.php:157
+msgid "Update subject"
+msgstr "Fach aktualisieren"
+
+#, fuzzy
+#~ msgid "You don't habe the permission to do this!"
+#~ msgstr "Du bist nicht dazu berechtigt, dies zu tun!"
+
+#~ msgid "is not an integer!"
+#~ msgstr "ist keine Ganzzahl!"
+
+#~ msgid "School Website"
+#~ msgstr "Website der Schule"
+
+#, fuzzy
+#~ msgid "Join Class"
+#~ msgstr "Meine Klasse"
+
+#~ msgid "already exists in database!"
+#~ msgstr "existiert bereits in der Datenbank!"
+
+#~ msgid "TEEEST"
+#~ msgstr "PLEASE :D"
