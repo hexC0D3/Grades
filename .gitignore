@@ -1,0 +1,9 @@
+#Temp Files or Backups
+*.tmp
+*.bak
+*.swp
+
+#Eclipse
+.buildpath
+.project
+.settings/*
