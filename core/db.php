@@ -21,7 +21,7 @@ class NTDB{
 	function getAllInformationFromTable($tableName){
 		if ($stmt = $this->mysqli->prepare("SELECT * FROM ".$tableName)) {
 			$stmt->execute();
-				
+
 			$meta = $stmt->result_metadata();
 			while ($field = $meta->fetch_field()) {
 				$parameters[] = &$row[$field->name];
@@ -32,8 +32,8 @@ class NTDB{
 					$x[$key] = $val;
 				}
 				$results[] = $x;
-			}	
-			$stmt->close();	
+			}
+			$stmt->close();
 			return $results;
 		}
 		return false;
@@ -51,7 +51,7 @@ class NTDB{
 			}
 			$stmt->bind_param($type, $value);
 			$stmt->execute();
-			
+
 			$meta = $stmt->result_metadata();
 			while ($field = $meta->fetch_field()) {
 				$parameters[] = &$row[$field->name];
@@ -64,9 +64,9 @@ class NTDB{
 				$results[] = $x;
 			}
 			#print_r($results);
-			
+
 			$stmt->close();
-			
+
 			return $results;
 		}
 		return false;
@@ -96,9 +96,9 @@ class NTDB{
 			for($i=1;$i<count($valuesToUpdate);$i++){
 				$set.=", ".$keysToUpdate[$i]." =?";
 			}
-			
+
 			$types = "";
-			
+
 			foreach($valuesToUpdate as $key => $val){
 				if(is_string($val)){
 					$types.="s";
@@ -114,7 +114,7 @@ class NTDB{
 					return false;
 				}
 			}
-			
+
 			if(is_string($valueToSearch)){
 				$types.="s";
 			}else if(is_int($valueToSearch)){
@@ -123,7 +123,7 @@ class NTDB{
 				$types.="i";
 				$valueToSearch = (int)$valueToSearch;
 			}
-				
+
 			$values = array();
 			for($i = 0;$i<count($valuesToUpdate);$i++){
 				$values[$i] = &$valuesToUpdate[$i];
@@ -203,9 +203,9 @@ class NTDB{
 			for($i = 1;$i<(count($arrayOfKeys));$i++){
 				$qMarks.=", ?";
 			}
-			
+
 			$types = "";
-			
+
 			foreach($arrayOfValues as $key => $val){
 				if(is_string($val)){
 					$types.="s";
@@ -221,7 +221,7 @@ class NTDB{
 					return false;
 				}
 			}
-			
+
 			$values = array();
 			for($i = 0;$i<count($arrayOfValues);$i++){
 				$values[$i] = &$arrayOfValues[$i];
@@ -249,14 +249,14 @@ class NTDB{
 	function generateToken($userName){
 		$this->removeFromDatabase('tokens', 'tokenUser', $userName);
 		$uuid = uniqid('', true);
-	
+
 		$expireTime = time() + 7200;
 		$eDate = date('Y-m-d H:i:s',$expireTime);
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$arrayOfKeys = array('tokenContent', 'tokenUser', 'tokenIP', 'tokenExpireTime');
 		$arrayOfValues = array($uuid, $userName, $ip, $eDate);
 		$this->addToDatabase('tokens', $arrayOfKeys, $arrayOfValues);
-		
+
 		return $uuid;
 	}
 	/** Checks if token is valid */
@@ -270,7 +270,7 @@ class NTDB{
 				return true;
 			}
 		}
-	
+
 		return false;
 	}
 	/** Gets user from token */
@@ -280,16 +280,16 @@ class NTDB{
 			$ip = $array['tokenIP'];
 			$tTime = strtotime($array['tokenExpireTime']);
 			$curtime = date('Y-m-d H:i:s',time());
-				
+
 			if($ip == $_SERVER['REMOTE_ADDR'] && $curtime < $tTime){
 				return $array['tokenUser'];
 			}
 		}
-	
+
 		return false;
 	}
 	function isUserLoggedIn(){
-		
+
 	}
 }
 function getCurrentUser(){
@@ -344,7 +344,7 @@ function setupTables(){
 	subjectIDs VARCHAR(1000) NOT NULL
 	)';
 	$mysqli->query($table);
-	
+
 	#classes
 	$table =
 	'CREATE TABLE IF NOT EXISTS classes(
@@ -354,7 +354,7 @@ function setupTables(){
 	adminID INT NOT NULL
 	)';
 	$mysqli->query($table);
-	
+
 	#schools
 	$table =
 	'CREATE TABLE IF NOT EXISTS schools(
@@ -363,7 +363,7 @@ function setupTables(){
 	website VARCHAR(200) NOT NULL
 	)';
 	$mysqli->query($table);
-	
+
 	#tests
 	$table =
 	'CREATE TABLE IF NOT EXISTS tests(
@@ -376,7 +376,7 @@ function setupTables(){
 	timestamp TIMESTAMP NOT NULL
 	)';
 	$mysqli->query($table);
-	
+
 	#subjects
 	$table =
 	'CREATE TABLE IF NOT EXISTS subjects(
@@ -386,7 +386,7 @@ function setupTables(){
     relevant TINYINT(1) NOT NULL
 	)';
 	$mysqli->query($table);
-	
+
 	#marks
 	$table =
 	'CREATE TABLE IF NOT EXISTS grades(
@@ -396,7 +396,7 @@ function setupTables(){
 	mark TINYINT NOT NULL
 	)';
 	$mysqli->query($table);
-	
+
 	#tokens
 	$table='
 	CREATE TABLE tokens (

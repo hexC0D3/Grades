@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /** Your database name */
 define('DB_NAME', 'notensys');
