@@ -14,7 +14,7 @@ function postCallbackClass($data){
 		}
 	}else if(!empty($data['joinClass'])){
 		if($user['classID']==-1){
-			if($user['schoolID']==$ntdb->getAllInformationFrom('classes', 'id', $data['joinClass'])[0]['id']){
+			if($user['schoolID']==$ntdb->getAllInformationFrom('classes', 'id', $data['joinClass'])[0]['schoolID']){//TODO: test
 				echo $ntdb->updateInDatabase('users', array('classID'), array($data['joinClass']), 'id', $user['id']);
 			}else{
 				echo _("You aren't able to join this class!");
@@ -99,17 +99,14 @@ function showClassList(){?>
 
 <?php }
 function getClassTableFunction($val){
+	$return = "";
 	$dis1 = $dis2 = $dis3 = $dis4 = "";
 	if(getCurrentUser()['classID']==$val['id']){
 		$dis1="disabled";
 	}else{
 		$dis2="disabled";
 	}
-	if($val['adminID']!=getCurrentUser()['id']){
-		$dis3="disabled";
-		$dis4="disabled";
-	}
-	return '
+	$return .= '
 	<form action="/ui/class.php" method="POST" callBackUrl="/ui/class.php?p=my">
 		<input type="hidden" name="joinClass" value='.$val['id'].' />
 		<input type="submit" class="join" value="'.htmlentities(_("Join")).'" '.$dis1.'/>
@@ -117,13 +114,21 @@ function getClassTableFunction($val){
 	<form action="/ui/class.php" method="POST" callBackUrl="/ui/class.php?p=list" warning="true" message="'.htmlentities(_("If you leave this class all test and the related grades will be lost for you! Do you want to continue?")).'">
 		<input type="hidden" name="leaveClass" value='.$val['id'].' />
 		<input type="submit" class="leave" value="'.htmlentities(_("Leave")).'" '.$dis2.'/>
-	</form>			
-	<a href="#page:/ui/class.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" '.$dis3.' /></a>
-	<form action="/ui/class.php" method="POST" callBackUrl="/ui/class.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to delete your class? This will delete all tests of this class and also the corresponding grades!")).'">
-		<input type="hidden" name="deleteClass" value='.$val['id'].' />
-		<input type="submit" class="delete" value="'.htmlentities(_("Delete")).'" '.$dis4.' />
 	</form>
 	';
+	if($val['adminID']!=getCurrentUser()['id']){
+		$dis3="disabled";
+		$dis4="disabled";
+	}else{
+		$return .= '
+		<a href="#page:/ui/class.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" '.$dis3.' /></a>
+		<form action="/ui/class.php" method="POST" callBackUrl="/ui/class.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to delete your class? This will delete all tests of this class and also the corresponding grades!")).'">
+			<input type="hidden" name="deleteClass" value='.$val['id'].' />
+			<input type="submit" class="delete" value="'.htmlentities(_("Delete")).'" '.$dis4.' />
+		</form>
+		';
+	}
+	return $return;
 }
 function showCreateClass(){?>
 <form id="createNewSubject_form" action="/ui/class.php" method="POST" callBackUrl="/ui/class.php?p=list">

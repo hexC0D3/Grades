@@ -7,11 +7,13 @@ function postCallbackSujects($data){
 	global $ntdb;
 	$user = getCurrentUser();
 	if(!empty($data['deleteSubject'])){//TODO: Permission check
+		
 		$subject = $ntdb->getAllInformationFrom('subjects', 'id', $data['deleteSubject'])[0];
-		if($user['schoolID']==$subject['schoolID']){
+		$school = $ntdb->getAllInformationFrom('schools', 'id', $subject['schoolID'])[0];
+		if($user['schoolID']==$subject['schoolID'] && $school['adminID']==$user['id']){
 			echo $ntdb->removeFromDatabase('subjects', 'id', $data['deleteSubject']);
 		}else{
-			echo "You are not allowed to delete a foreign subject!";
+			echo "You are not allowed to delete this subject!";
 		}
 	}else if(!empty($data['joinSubject'])){
 		if($ntdb->getAllInformationFrom('subjects', 'id', $data['joinSubject'])[0]['schoolID']==$user['schoolID']){
@@ -33,38 +35,43 @@ function postCallbackSujects($data){
 		if($user['schoolID']==-1){
 			echo _("First you have to join a school!");
 		}else{
-			if(empty($data['subjectName'])){
-				echo _("Subject Name"). " " . _("shouldn't be empty!");
-			}else if(empty($data['isSubjectRelevant'])){
-				echo _("Is subject relevant?"). " " . _("shouldn't be empty!");
-			}else{
-				$data['isSubjectRelevant'] = $data['isSubjectRelevant']=="false" ? 0 : 1;
-				if(!empty($data['updateSubject'])){//TODO: check permissions
-					if($ntdb->getAllInformationFrom('subjects', 'id', $data['updateSubject'])[0]['schoolID']==$user['schoolID']){
-						echo $ntdb->updateInDatabase('subjects', array('name', 'relevant'), array($data['subjectName'], (int)$data['isSubjectRelevant']), 'id', $data['updateSubject']);
-					}else{
-						echo _("You aren't allowed to update this subject!");
-					}
+			$school = $ntdb->getAllInformationFrom('schools', 'id', $user['schoolID'])[0];
+			if($user['id']==$school['adminID']){
+				if(empty($data['subjectName'])){
+					echo _("Subject Name"). " " . _("shouldn't be empty!");
+				}else if(empty($data['isSubjectRelevant'])){
+					echo _("Is subject relevant?"). " " . _("shouldn't be empty!");
 				}else{
-					//Check if already exists in the same school
-					$subjects = $ntdb->getAllInformationFrom('subjects', 'name', $data['subjectName']);
-					$exists = false;
-					if(!empty($subject)){
-						foreach($subjects as $subject){
-							if($subject['schoolID']==$user['schoolID']){
-								$exists=true;
-								break;
+					$data['isSubjectRelevant'] = $data['isSubjectRelevant']=="false" ? 0 : 1;
+					if(!empty($data['updateSubject'])){//TODO: check permissions
+						if($ntdb->getAllInformationFrom('subjects', 'id', $data['updateSubject'])[0]['schoolID']==$user['schoolID']){
+							echo $ntdb->updateInDatabase('subjects', array('name', 'relevant'), array($data['subjectName'], (int)$data['isSubjectRelevant']), 'id', $data['updateSubject']);
+						}else{
+							echo _("You aren't allowed to update this subject!");
+						}
+					}else{
+						//Check if already exists in the same school
+						$subjects = $ntdb->getAllInformationFrom('subjects', 'name', $data['subjectName']);
+						$exists = false;
+						if(!empty($subject)){
+							foreach($subjects as $subject){
+								if($subject['schoolID']==$user['schoolID']){
+									$exists=true;
+									break;
+								}
 							}
-						}	
-					}else{
-						$exists=false;
+						}else{
+							$exists=false;
+						}
+						if($exists==true){
+							echo _("This subject already exists!");
+						}else{
+							echo $ntdb->addToDatabase('subjects', array('schoolID', 'name', 'relevant'), array($user['schoolID'], $data['subjectName'], (int)$data['isSubjectRelevant']));
+						}
 					}
-					if($exists==true){
-						echo _("This subject already exists!");
-					}else{
-						echo $ntdb->addToDatabase('subjects', array('schoolID', 'name', 'relevant'), array($user['schoolID'], $data['subjectName'], (int)$data['isSubjectRelevant']));
-					}
-				}
+				}	
+			}else{
+				echo _("You aren't allowed to create a subject!");
 			}
 		}
 	}
@@ -121,7 +128,14 @@ function getSubjectTableFunction($val){
 	</form>
 	';
 }
-function showCreateSubject(){?>
+function showCreateSubject(){
+	global $ntdb;
+	$user = getCurrentUser();
+	$school = $ntdb->getAllInformationFrom('schools', 'id', $user['schoolID'])[0];
+	if($user['id']!=$school['adminID']){
+		nt_die(_("You aren't allowed to create a subject!"));
+	}
+?>
 <form id="createNewSubject_form" action="/ui/subjects.php" method="POST" callBackUrl="/ui/subjects.php?p=list">
 	<h1><?php echo htmlentities(_("Create a new subject")); ?></h1>
 	<input name="subjectName" id="subjectName" type="text" placeholder="<?php echo htmlentities(_("Subject Name")); ?>" />

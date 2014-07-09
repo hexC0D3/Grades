@@ -359,6 +359,7 @@ function setupTables(){
 	$table =
 	'CREATE TABLE IF NOT EXISTS schools(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	adminID INT NOT NULL, 
 	name VARCHAR(200) NOT NULL,
 	website VARCHAR(200) NOT NULL
 	)';

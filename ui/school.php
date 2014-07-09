@@ -1,6 +1,6 @@
 <?php
 require_once("head.php");
-checkHead('postCallbackSchool', 'showMySchool', 'showSchoolList', 'showCreateSchool', 'showEditSchool', 'showCreateSchool');
+checkHead('postCallbackSchool', 'showSchoolList', 'showSchoolList', 'showCreateSchool', 'showEditSchool', 'showSchoolList');
 
 function postCallbackSchool($data){
 	if(!empty($data['schoolName'])){
@@ -15,7 +15,7 @@ function postCallbackSchool($data){
 			if($ntdb->isInDatabase('schools', 'website', $data['schoolWebsite']) || $ntdb->isInDatabase('schools', 'name', $data['schoolName'])){
 				echo htmlentities(_("Your school already exists!"));
 			}else{
-				echo $ntdb->addToDatabase('schools', array('name', 'website'), array($data['schoolName'], $data['schoolWebsite']));
+				echo $ntdb->addToDatabase('schools', array('adminID, name', 'website'), array($user['id'], $data['schoolName'], $data['schoolWebsite']));
 			}	
 		}
 	}else if(!empty($data['joinSchool'])){
@@ -26,15 +26,6 @@ function postCallbackSchool($data){
 		}else{
 			echo _("You have already joined a school!");
 		}
-	}
-}
-function showMySchool(){
-	global $ntdb;
-	$schoolID = getCurrentUser()['schoolID'];
-	if($schoolID == -1){
-		redirectToHome(_("First you have to join a school!"));
-	}else{
-		die("My School");
 	}
 }
 function showSchoolList(){?>
@@ -55,35 +46,42 @@ function showSchoolList(){?>
 
 <?php }
 function getSchoolTableFunction($val){
+	$return = "";
+	
+	global $ntdb;
+	$user = getCurrentUser();
+	
 	$dis1=$dis2=$dis3=$dis4="";
-	if($val['id'] == getCurrentUser()['schoolID']){
+	if($val['id'] == $user['schoolID']){
 		$dis1="disabled";
 	}else{
 		$dis2="disabled";
 	}
-	if(false){/* TODO:Permission check:edit*/
+	$return .= '
+		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=my">
+			<input type="hidden" name="joinSchool" value='.$val['id'].' />
+			<input type="submit" class="join" value="'._("Join").'" '.$dis1.' />
+		</form>
+		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list" warning="true" message="lol">
+			<input type="hidden" name="leaveSchool" value='.$val['id'].' />
+			<input type="submit" class="leave" value="'._("Leave").'" '.$dis2.' />
+		</form>
+		';
+	if($user['id']!=$val['adminID']){
 		$dis3="disabled";
-	}
-	if(false){/* TODO:Permission check:delete*/
 		$dis4="disabled";
+	}else{
+		$return.='
+		<a href="#page:/ui/school.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" '.$dis3.' /></a>
+		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list">
+			<input type="hidden" name="deleteSchool" value='.$val['id'].' />
+			<input type="submit" class="delete" value="'._("Delete").'" '.$dis4.' />
+		</form>
+		';
 	}
-	return '
-	<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=my">
-		<input type="hidden" name="joinSchool" value='.$val['id'].' />
-		<input type="submit" class="join" value="'._("Join").'" '.$dis1.' />
-	</form>
-	<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list" warning="true" message="lol">
-		<input type="hidden" name="leaveSchool" value='.$val['id'].' />
-		<input type="submit" class="leave" value="'._("Leave").'" '.$dis2.' />
-	</form>
-	<a href="#page:/ui/school.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" '.$dis3.' /></a>
-	<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list">
-		<input type="hidden" name="deleteSchool" value='.$val['id'].' />
-		<input type="submit" class="delete" value="'._("Delete").'" '.$dis2.' />
-	</form>
-	';
+	return $return;
 }
-function showCreateSchool(){?>
+function showCreateSchool(){ ?>
 <form id="createNewSubject_form" action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list">
 	<h1><?php echo htmlentities(_("Create a school")); ?></h1>
 	<input name="schoolName" id="schoolName" type="text" placeholder="<?php echo htmlentities(_("School Name")); ?>" />
@@ -97,7 +95,7 @@ function showCreateSchool(){?>
 function showEditSchool($id){
 global $ntdb;
 $school = $ntdb->getAllInformationFrom('schools', 'id', $id)[0];
-if(false){/*TODO:Permission check:edit school */
+if(getCurrentUser()['id']!=$val['adminID']){
 	nt_die(_("You aren't allowed to see this page!"));
 }
 ?>

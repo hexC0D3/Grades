@@ -21,6 +21,14 @@ function loadPage(url){
 		$("#"+id+"_flexselect").attr("placeholder", $(this).attr("placeholder"));
 		$("#"+id+"_flexselect").val("");
 	});
+	$('.datepicker').datepicker({
+		dateFormat: 'dd. mm. yy',
+		beforeShowDay: $.datepicker.noWeekends,
+		constrainInput: true,
+		minDate: new Date(),
+		firstDay: 1
+	});
+	$('#ui-datepicker-div').css("display","none");
 	});
 }
 $(window).on('hashchange', function(){

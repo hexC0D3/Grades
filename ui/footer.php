@@ -4,6 +4,7 @@
 <?php require_once(UI_DIR . "js/flexselect/jquery.flexselect.min.js"); ?>
 </script>
 <script>
+<?php require_once(UI_DIR . "js/jquery-ui/jquery-ui.min.js"); ?>
 <?php require_once(UI_DIR . "js/alertify/alertify.min.js"); ?>
 <?php require_once(UI_DIR . "js/chart/Chart.min.js"); ?>
 <?php require_once(AJAX_DIR."nt-ajax.js"); ?>

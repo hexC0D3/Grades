@@ -201,7 +201,7 @@ input[type="submit"]:disabled, input[type="button"]:disabled, input[type="submit
 	cursor:default;
 }
 /** end:input[type="submit"] **/
-input[type="text"]:disabled, input[type="button"]:disabled{
+input[type="text"]:disabled{
 	border:#95a5a6 1px solid !important;
 	color:#95a5a6;
 }
@@ -368,6 +368,43 @@ td{
 }
 /** end:chart **/
 /** end:page **/
+/** start:datepicker **/
+#ui-datepicker-div{
+	border: 1px #1abc9c solid;
+	background-color:#fff;
+	margin-top:-1px;
+}
+#ui-datepicker-div, #ui-datepicker a, .ui-datepicker a{
+	color:#1abc9c;
+}
+#ui-datepicker a, .ui-datepicker a:hover{
+	border:none;
+}
+.ui-datepicker table {
+	width:100%;
+}
+.ui-datepicker-title {  
+    text-align: center;  
+}
+.ui-datepicker-next{
+	float:right;
+}
+#ui-datepicker-div td, #ui-datepicker-div th{
+	width:30px;
+}
+.ui-datepicker-next:after{
+	clear:both;
+}
+.ui-datepicker-prev, .ui-datepicker-next{
+	cursor:pointer;
+}
+.ui-state-disabled{
+	color:#95a5a6 !important;
+}
+.ui-state-active{
+	color:#16a085 !important;
+}
+/** end:datepicker **/
 .clear{
 	clear: both;
 }
