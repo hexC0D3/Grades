@@ -44,7 +44,7 @@ function showAddGrade($get){
 ?>
 	<form id="addNewMark_form" action="/ui/grade.php" method="POST" callBackUrl="/ui/test.php?p=list">
 	<h1><?php echo htmlentities(_("Add a mark")); ?></h1>
-	<input name="gradeMark" id="gradeMark" type="number" min="1" max="6" placeholder="<?php echo htmlentities(_("Your Mark (between 1 and 6)")); ?>" />
+	<input name="gradeMark" id="gradeMark" type="text" placeholder="<?php echo htmlentities(_("Your Mark (between 1 and 6)")); ?>" />
 	<br/><br/>
 	<select id="markTestID" name="markTestID" placeholder="<?php echo htmlentities(_("Corresponding Test")); ?>" <?php if(isset($test)){echo 'value="'.$test.'"';}?>>
 		<?php 
@@ -72,7 +72,7 @@ function showEditGrade($id){
 ?>
 	<form id="addNewMark_form" action="/ui/grade.php" method="POST" callBackUrl="/ui/test.php?p=list">
 		<h1><?php echo htmlentities(_("Add a mark")); ?></h1>
-		<input name="gradeMark" id="gradeMark" type="number" min="1" max="6" placeholder="<?php echo htmlentities(_("Your Mark (between 1 and 6)")); ?>" value="<?php echo $mark['mark']; ?>" />
+		<input name="gradeMark" id="gradeMark" type="text" placeholder="<?php echo htmlentities(_("Your Mark (between 1 and 6)")); ?>" value="<?php echo $mark['mark']; ?>" />
 		<br/><br/>
 		<select id="markTestID" name="markTestID" placeholder="<?php echo htmlentities(_("Corresponding Test")); ?>" value="<?php echo $id; ?>" >
 			<?php 

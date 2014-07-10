@@ -18,8 +18,8 @@
 				echo "<td class='mark'>-</td>";
 			}
 		}
+		$average = round($s/count($value), 2);
 		if($average>0){
-			$average = round($s/count($value), 2);
 			$average_a+=$average;
 			$secondClass = $average > 4 ? "" : " negativeMark";
 			$ver++;
