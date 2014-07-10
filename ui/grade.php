@@ -16,7 +16,12 @@ function gradeData($data){
 					echo _("This isn't your mark!");
 				}
 			}else{
-				echo $ntdb->addToDatabase('grades', array('mark', 'userID', 'testID'), array($data['gradeMark'], $user['id'], $data['markTestID']));
+				$a = $ntdb->getAllInformationFrom('grades', 'testID', $data['markTestID']);
+				if(empty(search($a, 'userID', $user['id']))){
+					echo $ntdb->addToDatabase('grades', array('mark', 'userID', 'testID'), array($data['gradeMark'], $user['id'], $data['markTestID']));
+				}else{
+					echo _("You have already entered your mark for this test!");
+				}
 			}
 		} else{
 			echo _("Invalid Test!");

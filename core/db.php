@@ -312,7 +312,7 @@ class NTDB{
 }
 function getCurrentUser(){
 	global $ntdb;
-	$uName = $ntdb->getTokenUser($_COOKIE['_loginToken']);
+	$uName = $ntdb->getTokenUser($_SESSION['_loginToken']);
 	$user = $ntdb->getAllInformationFrom('users', 'username', $uName);
 	return $user[0];
 }
@@ -321,7 +321,7 @@ function tryToLogIn($username, $password){
 	$password = hashPassword($password);
 	if($ntdb->tryToLogIn($username, $password)){
 		$token = $ntdb->generateToken($username);
-		setcookie('_loginToken', $token);
+		$_SESSION['_loginToken'] = $token;
 		return true;
 	}else{
 		return false;
@@ -329,8 +329,8 @@ function tryToLogIn($username, $password){
 }
 function isUserLoggedIn(){
 	global $ntdb;
-	if(!empty($_COOKIE['_loginToken'])){
-		if($ntdb->verifyToken($_COOKIE['_loginToken'])){
+	if(!empty($_SESSION['_loginToken'])){
+		if($ntdb->verifyToken($_SESSION['_loginToken'])){
 			return true;
 		}
 	}

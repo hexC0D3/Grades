@@ -2,10 +2,7 @@
 require_once("core/core.php");
 if(isset($_GET['logout'])){
 	if($_GET['logout'] == true || $_GET['logout'] == "true"){
-		if(isset($_COOKIE['_loginToken'])) {
-			unset($_COOKIE['_loginToken']);
-			setcookie('_loginToken', '', time() - 3600);
-		}
+		session_destroy();
 	}	
 }
 if(isUserLoggedIn()){

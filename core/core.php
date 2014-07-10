@@ -5,6 +5,8 @@ define("ADMIN_DIR", ROOT_DIR . 'admin/');
 define("AJAX_DIR", ROOT_DIR . 'ajax/');
 define("UI_DIR", ROOT_DIR . 'ui/');
 
+session_start();
+
 /** Custom die function **/
 function nt_die($arg){
 	die($arg);

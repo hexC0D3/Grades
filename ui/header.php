@@ -19,7 +19,7 @@
 			?>
 			<li class="drop-down-arrow" tabindex="0"><?php echo htmlentities(_("Grades")); ?><ul class="submenu">
 				<li><a href='#grades'><?php echo htmlentities(_("Grade List")); ?></a></li>
-				<li><a href='#page:/ui/grade.php?p=add'><?php echo htmlentities(_("Add Grade")); ?></a></li>
+				<li><a href='#page:/ui/grade.php?p=add'><?php echo htmlentities(_("Add Mark")); ?></a></li>
 				
 				<li class="seperator"></li>
 				
