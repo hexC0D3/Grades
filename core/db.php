@@ -66,8 +66,11 @@ class NTDB{
 			#print_r($results);
 
 			$stmt->close();
-
-			return $results;
+			if(isset($results)){
+				return $results;
+			}else{
+				return null;
+			}
 		}
 		return false;
 	}
@@ -288,8 +291,23 @@ class NTDB{
 
 		return false;
 	}
-	function isUserLoggedIn(){
-
+	function getLastGradesOfCurrentUser($numberOfGrades){
+		$user = getCurrentUser();
+		$array = $this->getAllInformationFrom('tests', 'classID', $user['classID']);
+		usort($array, 'comparyByTimestamp');
+		if(count($array)<$numberOfGrades){
+			$numberOfGrades=0;
+		}else{
+			$numberOfGrades = count($array)-$numberOfGrades;
+		}
+		$tests = array_slice($array, $numberOfGrades);
+		$newArray = array();
+		foreach($tests as $test){
+			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
+			$subject = $this->getAllInformationFrom('subjects', 'id', $test['subjectID'])[0];
+			$newArray[$subject['name']][] = $mark['mark'];
+		}
+		return $newArray;
 	}
 }
 function getCurrentUser(){
@@ -394,7 +412,7 @@ function setupTables(){
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     testID INT NOT NULL,
 	userID INT NOT NULL,
-	mark TINYINT NOT NULL
+	mark DOUBLE NOT NULL
 	)';
 	$mysqli->query($table);
 

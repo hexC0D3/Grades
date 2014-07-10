@@ -80,14 +80,19 @@ function showClassroom(){
 		die("Classroom");
 	}
 }
-function showClassList(){?>
+function showClassList(){
+$user = getCurrentUser();
+if($user['schoolID']==-1){
+	redirectToHome(_("First you have to join a school!"));
+}
+?>
 
 <table>
 	<thead><tr><th><?php echo htmlentities(_("Class Name")); ?></th><th><?php echo htmlentities(_("Class Admin")); ?></th><th class="actions"><?php echo htmlentities(_("Actions")); ?></th></tr></thead>
 	<tbody>
 		<?php 
 			global $ntdb;
-			$array = $ntdb->getAllInformationFromTable('classes');
+			$array = $ntdb->getAllInformationFrom('classes', 'schoolUD', $user['schoolID']);
 			usort($array, 'compareByName');
 			foreach($array as $val){
 				$cAdmin = $ntdb->getAllInformationFrom('users', 'id', $val['adminID'])[0];
@@ -130,7 +135,11 @@ function getClassTableFunction($val){
 	}
 	return $return;
 }
-function showCreateClass(){?>
+function showCreateClass($get){
+	if(getCurrentUser()['schoolID']!=-1){
+		nt_die(_("First you've to join a school!"));
+	}
+?>
 <form id="createNewSubject_form" action="/ui/class.php" method="POST" callBackUrl="/ui/class.php?p=list">
 	<h1><?php echo htmlentities(_("Create a new class")); ?></h1>
 	<input name="className" id="className" type="text" placeholder="<?php echo htmlentities(_("Class Name")); ?>" />

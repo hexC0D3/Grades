@@ -6,14 +6,14 @@ checkHead('postCallbackSujects', 'showMySubjects', 'showSubjectList', 'showCreat
 function postCallbackSujects($data){
 	global $ntdb;
 	$user = getCurrentUser();
-	if(!empty($data['deleteSubject'])){//TODO: Permission check
+	if(!empty($data['deleteSubject'])){//TODO: Remove subject of users and test and marks
 		
 		$subject = $ntdb->getAllInformationFrom('subjects', 'id', $data['deleteSubject'])[0];
 		$school = $ntdb->getAllInformationFrom('schools', 'id', $subject['schoolID'])[0];
 		if($user['schoolID']==$subject['schoolID'] && $school['adminID']==$user['id']){
 			echo $ntdb->removeFromDatabase('subjects', 'id', $data['deleteSubject']);
 		}else{
-			echo "You are not allowed to delete this subject!";
+			echo _("You don't have the permission to do this!");
 		}
 	}else if(!empty($data['joinSubject'])){
 		if($ntdb->getAllInformationFrom('subjects', 'id', $data['joinSubject'])[0]['schoolID']==$user['schoolID']){
@@ -47,7 +47,7 @@ function postCallbackSujects($data){
 						if($ntdb->getAllInformationFrom('subjects', 'id', $data['updateSubject'])[0]['schoolID']==$user['schoolID']){
 							echo $ntdb->updateInDatabase('subjects', array('name', 'relevant'), array($data['subjectName'], (int)$data['isSubjectRelevant']), 'id', $data['updateSubject']);
 						}else{
-							echo _("You aren't allowed to update this subject!");
+							echo _("You don't have the permission to do this!");
 						}
 					}else{
 						//Check if already exists in the same school
@@ -71,7 +71,7 @@ function postCallbackSujects($data){
 					}
 				}	
 			}else{
-				echo _("You aren't allowed to create a subject!");
+				echo _("You don't have the permission to do this!");
 			}
 		}
 	}
@@ -128,7 +128,7 @@ function getSubjectTableFunction($val){
 	</form>
 	';
 }
-function showCreateSubject(){
+function showCreateSubject($get){
 	global $ntdb;
 	$user = getCurrentUser();
 	$school = $ntdb->getAllInformationFrom('schools', 'id', $user['schoolID'])[0];

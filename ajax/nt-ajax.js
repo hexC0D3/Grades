@@ -19,7 +19,14 @@ function loadPage(url){
 		$(this).flexselect();
 		id = $(this).attr("id");
 		$("#"+id+"_flexselect").attr("placeholder", $(this).attr("placeholder"));
-		$("#"+id+"_flexselect").val("");
+//		console.log(hasAttr($(this), "value"));
+		if(hasAttr($(this), "value")){
+//			$(id+" option:selected" ).text();
+			$(this).val($(this).attr("value"));
+			$("#"+id+"_flexselect").val($("#"+id+" option:selected" ).text());
+		}else{
+			$("#"+id+"_flexselect").val("");
+		}
 	});
 	$('.datepicker').datepicker({
 		dateFormat: 'dd. mm. yy',
@@ -91,17 +98,31 @@ function postData(urlToPost, form, callBack){
     var br = false;
     form.find("input").each(function(index){
     	if($(this).attr("type")!="submit"){
-    		if($(this).val().indexOf(":")>-1){
-    			alertify.error($(this).attr("placeholder") + " must not contain the char ':'!");
-    			br = true;
-    		}else{
-    			if($(this).attr("type")=="checkbox"){
-    				stringData += $(this).attr("name") + ":" + $(this).is(':checked') +";";
-    			}else{
-    				stringData += $(this).attr("name") + ":" + $(this).val() +";";
-    			}
+    		var hasID = hasAttr($(this), 'id');
+    		if(hasID){
+    			hasID = $(this).attr('id').indexOf("flexselect")==-1 ? false : true;
+    		}
+    		if(!hasID){
+	    		if($(this).val().indexOf(":")>-1){
+	    			alertify.error($(this).attr("placeholder") + " must not contain the char ':'!");
+	    			br = true;
+	    		}else{
+	    			if($(this).attr("type")=="checkbox"){
+	    				stringData += $(this).attr("name") + ":" + $(this).is(':checked') +";";
+	    			}else{
+	    				stringData += $(this).attr("name") + ":" + $(this).val() +";";
+	    			}
+	    		}
     		}
     	} 
+    });
+    form.find("select").each(function(index){
+    	if($(this).val().indexOf(":")>-1){
+			alertify.error($(this).attr("placeholder") + " must not contain the char ':'!");
+			br = true;
+		}else{
+			stringData += $(this).attr("name") + ":" + $(this).val() +";";
+		}
     });
     if(br == true){
     	form.find("input").attr("disabled", false);
@@ -120,4 +141,11 @@ function postData(urlToPost, form, callBack){
         form.find(".checkboxContainer").removeClass("disabled");
         stopLoading();
     });
+}
+function hasAttr(element, attr){
+	var attr = element.attr(attr);
+	if (typeof attr !== typeof undefined && attr !== false) {
+		return true;
+	}
+	return false;
 }

@@ -26,6 +26,25 @@ function getPostAjaxDataArray($post){
 function compareByName($a, $b) {
 	return strcmp($a["name"], $b["name"]);
 }
+/** Sorts an array by Timestamp **/
+function comparyByTimestamp($a, $b) {
+	return (strtotime($a["timestamp"]) < strtotime($b["timestamp"]));
+}
+/** Searches an array by a key and a value **/
+function search($array, $key, $value){
+	$results = array();
+	if(is_array($array)){
+		if (isset($array[$key]) && $array[$key] == $value) {
+			$results[] = $array;
+		}
+		foreach ($array as $subarray) {
+			$results = array_merge($results, search($subarray, $key, $value));
+		}
+		return $results;
+	}else{
+		return array();
+	}
+}
 /** Redirects to home with an error message **/
 function redirectToHome($error){
 	echo '<script>

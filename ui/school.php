@@ -3,8 +3,10 @@ require_once("head.php");
 checkHead('postCallbackSchool', 'showSchoolList', 'showSchoolList', 'showCreateSchool', 'showEditSchool', 'showSchoolList');
 
 function postCallbackSchool($data){
+	global $ntdb;
+	$user = getCurrentUser();
+	
 	if(!empty($data['schoolName'])){
-		global $ntdb;
 		if(!empty($data['updateSchool'])){//TODO: permission check
 			if($ntdb->isInDatabase('schools', 'id', $data['updateSchool'])==true){
 				echo $ntdb->updateInDatabase('schools', array('name', 'website'), array($data['schoolName'], $data['schoolWebsite']), 'id', $data['updateSchool']);
@@ -19,12 +21,16 @@ function postCallbackSchool($data){
 			}	
 		}
 	}else if(!empty($data['joinSchool'])){
-		$user = getCurrentUser();
 		if($user['schoolID']==-1){
-			global $ntdb;
 			echo $ntdb->updateInDatabase('users', 'schoolID', $schoolID, 'id', $user['id']);
 		}else{
 			echo _("You have already joined a school!");
+		}
+	}else if(!empty($data['deleteSchool'])){
+		if($ntdb->getAllInformationFrom('schools', 'id', $data['deleteSchool'])[0]['adminID']==$user['id']){
+			echo $ntdb->removeFromDatabase('schools', 'id', $data['deleteSchool']);
+		}else{
+			echo _("You don't have the permission to do this!");
 		}
 	}
 }
@@ -81,7 +87,7 @@ function getSchoolTableFunction($val){
 	}
 	return $return;
 }
-function showCreateSchool(){ ?>
+function showCreateSchool($get){ ?>
 <form id="createNewSubject_form" action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list">
 	<h1><?php echo htmlentities(_("Create a school")); ?></h1>
 	<input name="schoolName" id="schoolName" type="text" placeholder="<?php echo htmlentities(_("School Name")); ?>" />

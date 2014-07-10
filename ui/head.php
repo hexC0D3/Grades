@@ -21,7 +21,7 @@ function checkHead($dataCallBack, $myCallBack, $listCallBack, $createCallBack, $
 		}else if($_GET['p']=="list"){
 			call_user_func($listCallBack);
 		}else if($_GET['p']=="create" || $_GET['p']=="add"){
-			call_user_func($createCallBack);
+			call_user_func($createCallBack, $_GET);
 		}else if($_GET['p']=="edit" && !empty($_GET['id'])){
 			call_user_func($editCallBack, $_GET['id']);
 		}else{
