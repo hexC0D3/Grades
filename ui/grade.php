@@ -74,7 +74,7 @@ function showEditGrade($id){
 		<h1><?php echo htmlentities(_("Add a mark")); ?></h1>
 		<input name="gradeMark" id="gradeMark" type="text" placeholder="<?php echo htmlentities(_("Your Mark (between 1 and 6)")); ?>" value="<?php echo $mark['mark']; ?>" />
 		<br/><br/>
-		<select id="markTestID" name="markTestID" placeholder="<?php echo htmlentities(_("Corresponding Test")); ?>" value="<?php echo $id; ?>" >
+		<select id="markTestID" name="markTestID" placeholder="<?php echo htmlentities(_("Corresponding Test")); ?>" value="<?php echo $mark['testID']; ?>" >
 			<?php 
 			global $ntdb;
 			$tests = $ntdb->getAllInformationFrom('tests', 'classID', getCurrentUser()['classID']);
