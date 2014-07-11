@@ -1,6 +1,6 @@
 <?php
 function getLang(){
-	$subDomain = str_replace(".grades.tyratox.ch", "", $_SERVER["HTTP_HOST"]);
+	$subDomain = str_replace(DOMAIN, "", $_SERVER["HTTP_HOST"]);
 	$locale = "";
 	switch ($subDomain) {
 		case "de":
@@ -17,7 +17,7 @@ function getLang(){
 			break;
 	
 		default:
-			$locale = "de_DE";
+			$locale = "en_US";
 			break;
 	}
 	return $locale.".utf8";

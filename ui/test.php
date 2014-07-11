@@ -118,7 +118,7 @@ function showCreateTest($get){
 		?>
 	</select>
 	<br/><br/>
-	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo htmlentities(_("Test Date and Time (dd. mm. yyyy)")); ?>" />
+	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo htmlentities(_("Test Date (dd. mm. yyyy)")); ?>" />
 	<br/><br/>
 	<input type="submit" value="<?php echo _("Create a test"); ?>" />
 </form>
@@ -156,7 +156,7 @@ function showEditTest($id){
 		?>
 	</select>
 	<br/><br/>
-	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo htmlentities(_("Test Date and Time (dd. mm. yyyy)")); ?>" value="<?php echo $test['timestamp']; ?>" />
+	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo htmlentities(_("Test Date (dd. mm. yyyy)")); ?>" value="<?php echo $test['timestamp']; ?>" />
 	<br/><br/>
 	<input type="hidden" name="updateTest" value="<?php echo $id; ?>" />
 	<input type="submit" value="<?php echo _("Update test"); ?>" />

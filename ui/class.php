@@ -62,7 +62,7 @@ function postCallbackClass($data){
 					}else{
 						echo $ntdb->addToDatabase('classes', array('schoolID', 'name', 'adminID'), array($user['schoolID'], $data['className'], $user['id']));
 						$classID = $ntdb->getAllInformationFrom('classes', 'name', $data['className'])[0]['id'];
-						$ntdb->updateInDatabase('users', 'classID', $classID, 'username', $user['username']);
+						$ntdb->updateInDatabase('users', array('classID'), array($classID), 'username', $user['username']);
 					}
 				}
 			}
@@ -92,7 +92,7 @@ if($user['schoolID']==-1){
 	<tbody>
 		<?php 
 			global $ntdb;
-			$array = $ntdb->getAllInformationFrom('classes', 'schoolUD', $user['schoolID']);
+			$array = $ntdb->getAllInformationFrom('classes', 'schoolID', $user['schoolID']);
 			usort($array, 'compareByName');
 			foreach($array as $val){
 				$cAdmin = $ntdb->getAllInformationFrom('users', 'id', $val['adminID'])[0];
@@ -136,7 +136,7 @@ function getClassTableFunction($val){
 	return $return;
 }
 function showCreateClass($get){
-	if(getCurrentUser()['schoolID']!=-1){
+	if(getCurrentUser()['schoolID']==-1){
 		nt_die(_("First you've to join a school!"));
 	}
 ?>

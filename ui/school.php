@@ -17,12 +17,12 @@ function postCallbackSchool($data){
 			if($ntdb->isInDatabase('schools', 'website', $data['schoolWebsite']) || $ntdb->isInDatabase('schools', 'name', $data['schoolName'])){
 				echo htmlentities(_("Your school already exists!"));
 			}else{
-				echo $ntdb->addToDatabase('schools', array('adminID, name', 'website'), array($user['id'], $data['schoolName'], $data['schoolWebsite']));
+				echo $ntdb->addToDatabase('schools', array('adminID', 'name', 'website'), array($user['id'], $data['schoolName'], $data['schoolWebsite']));
 			}	
 		}
 	}else if(!empty($data['joinSchool'])){
 		if($user['schoolID']==-1){
-			echo $ntdb->updateInDatabase('users', 'schoolID', $schoolID, 'id', $user['id']);
+			echo $ntdb->updateInDatabase('users', array('schoolID'), array($data['joinSchool']), 'id', $user['id']);
 		}else{
 			echo _("You have already joined a school!");
 		}
@@ -33,6 +33,7 @@ function postCallbackSchool($data){
 			echo _("You don't have the permission to do this!");
 		}
 	}
+	//TODO: leave school
 }
 function showSchoolList(){?>
 
@@ -62,7 +63,7 @@ function getSchoolTableFunction($val){
 		$dis1="disabled";
 	}else{
 		$dis2="disabled";
-	}
+	}//TODO: warning message
 	$return .= '
 		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=my">
 			<input type="hidden" name="joinSchool" value='.$val['id'].' />
@@ -101,7 +102,7 @@ function showCreateSchool($get){ ?>
 function showEditSchool($id){
 global $ntdb;
 $school = $ntdb->getAllInformationFrom('schools', 'id', $id)[0];
-if(getCurrentUser()['id']!=$val['adminID']){
+if(getCurrentUser()['id']!=$school['adminID']){
 	nt_die(_("You aren't allowed to see this page!"));
 }
 ?>
