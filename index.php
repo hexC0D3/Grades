@@ -9,6 +9,6 @@ if(isUserLoggedIn()){
 		require_once(UI_DIR . 'body.php');
 	}
 }else{
-	header("Location: /login.php#login");
+	require_once(ROOT_DIR.'welcome.php');
 }
 ?>

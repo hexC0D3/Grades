@@ -68,6 +68,10 @@ function stopLoading(){
 	$("html").css("cursor", "auto");
 }
 $(document).on('submit', 'form', function(e) {
+	var form = $(e['currentTarget']);
+	if(form.attr("ajax")=="false"){
+		return;
+	}
 	e.preventDefault();
     var form = $(e['currentTarget']);
     if(form.attr("warning")=="true"){
@@ -137,6 +141,9 @@ function postData(urlToPost, form, callBack){
     	}else{
     		alertify.error(data);
     	}
+    	if(form.attr("refreshCSS")=="true"){
+    		loadCSS("/ui/style.css.php");
+    	}
     	form.find("input").attr("disabled", false);
         form.find(".checkboxContainer").removeClass("disabled");
         stopLoading();
@@ -148,4 +155,13 @@ function hasAttr(element, attr){
 		return true;
 	}
 	return false;
+}
+function loadCSS(url) {
+	var head = document.getElementsByTagName('head')[0],
+	link = document.createElement('link');
+	link.type = 'text/css';
+	link.rel = 'stylesheet';
+	link.href = url;
+	head.appendChild(link);
+	return link;
 }

@@ -54,7 +54,6 @@ function redirectToHome($error){
 			window.location.hash = "#grades";
 		</script>';
 }
-
 require_once('db.php');
 
 require_once('lang.php');

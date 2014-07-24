@@ -241,23 +241,24 @@ class NTDB{
 		}
 	}
 	function tryToLogIn($username, $password){
-		$array = $this->getAllInformationFrom('users', 'username', $username)[0];
-		if($array['password'] == $password){
-			return true;
-		}else{
-			return false;
+		$array = $this->getAllInformationFrom('users', 'username', $username);
+		foreach($array as $user){
+			if($user['password'] == $password){
+				return $user['id'];
+			}
 		}
+		return false;
 	}
 	/** Generate token */
-	function generateToken($userName){
-		$this->removeFromDatabase('tokens', 'tokenUser', $userName);
+	function generateToken($id){
+		$this->removeFromDatabase('tokens', 'tokenUser', $id);
 		$uuid = uniqid('', true);
 
 		$expireTime = time() + 7200;
 		$eDate = date('Y-m-d H:i:s',$expireTime);
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$arrayOfKeys = array('tokenContent', 'tokenUser', 'tokenIP', 'tokenExpireTime');
-		$arrayOfValues = array($uuid, $userName, $ip, $eDate);
+		$arrayOfValues = array($uuid, $id, $ip, $eDate);
 		$this->addToDatabase('tokens', $arrayOfKeys, $arrayOfValues);
 
 		return $uuid;
@@ -312,15 +313,16 @@ class NTDB{
 }
 function getCurrentUser(){
 	global $ntdb;
-	$uName = $ntdb->getTokenUser($_SESSION['_loginToken']);
-	$user = $ntdb->getAllInformationFrom('users', 'username', $uName);
+	$id = $ntdb->getTokenUser($_SESSION['_loginToken']);
+	$user = $ntdb->getAllInformationFrom('users', 'id', $id);
 	return $user[0];
 }
 function tryToLogIn($username, $password){
 	global $ntdb;
 	$password = hashPassword($password);
-	if($ntdb->tryToLogIn($username, $password)){
-		$token = $ntdb->generateToken($username);
+	$id = $ntdb->tryToLogIn($username, $password);
+	if($id!=false){
+		$token = $ntdb->generateToken($id);
 		$_SESSION['_loginToken'] = $token;
 		return true;
 	}else{
@@ -339,6 +341,30 @@ function isUserLoggedIn(){
 function hashPassword($pw){
 	return md5($pw);
 }
+
+/** Gets random flat UI color **/
+function randFlatColor(){
+	global $ntdb;
+	$user = getCurrentUser();
+
+	$flatColors = array(array("#1abc9c", "#16a085"), array("#2ecc71", "#27ae60"), array("#3498db", "#2980b9"), array("#9b59b6", "#8e44ad"), array("#34495e", "#2c3e50"), array("#f1c40f", "#f39c12"), array("#e67e22", "#d35400"), array("#e74c3c", "#c0392b"));
+	$rKey = array_rand($flatColors, 1);
+	$rand = $flatColors[$rKey];
+	
+	$ntdb->updateInDatabase('users', array("color1", "color2"), array($rand[0], $rand[1]), 'id', $user['id']);
+
+	$_SESSION['firstColor'] = $rand[0];
+	$_SESSION['secondColor'] = $rand[1];
+	return $rand;
+}
+/** Check if color is set, otherwise use default ones **/
+if(!isset($_SESSION['firstColor'])){
+	randFlatColor();
+}
+$_SESSION['firstColor'] = (isset($_SESSION['firstColor'])&&!empty($_SESSION['firstColor'])) ? $_SESSION['firstColor'] : "#1abc9c";
+$_SESSION['secondColor'] = (isset($_SESSION['secondColor'])&&!empty($_SESSION['secondColor'])) ? $_SESSION['secondColor'] : "#16a085";
+
+
 function setupTables(){
 	#create needed tables
 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -359,7 +385,9 @@ function setupTables(){
 	mail VARCHAR(200) NOT NULL,
 	classID INT NOT NULL,
 	schoolID INT NOT NULL,
-	subjectIDs VARCHAR(1000) NOT NULL
+	subjectIDs VARCHAR(1000) NOT NULL,
+	color1 VARCHAR(7) NOT NULL,
+	color2 VARCHAR(7) NOT NULL,
 	)';
 	$mysqli->query($table);
 
@@ -421,7 +449,7 @@ function setupTables(){
 	CREATE TABLE tokens (
 	tokenID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	tokenContent varchar(30) NOT NULL,
-	tokenUser varchar(30) NOT NULL,
+	tokenUser INT NOT NULL,
 	tokenIP varchar(30) NOT NULL,
 	tokenExpireTime timestamp NOT NULL
 	)';

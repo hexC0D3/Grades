@@ -1,3 +1,10 @@
+<?php
+/** DYNAMIC CSS FILE **/
+header("Content-type: text/css");
+session_start();
+$prim = $_SESSION['firstColor'];
+$sec = $_SESSION['secondColor'];
+?>
 *{
 	padding:0;
 	margin:0;
@@ -9,23 +16,23 @@
 body, body a{
 	color:#fff;
 }
-:focus {
+:focus{
     outline: none;
 }
 /** start:placeholder **/
 ::-webkit-input-placeholder{
-    color:#1abc9c;
+    color:<?php echo $prim; ?>;
 }
 :-moz-placeholder{
-    color:#1abc9c;
+    color:<?php echo $prim; ?>;
     opacity:1;
 }
 ::-moz-placeholder{
-    color:#1abc9c;
+    color:<?php echo $prim; ?>;
     opacity:1;
 }
 :-ms-input-placeholder{
-    color:#1abc9c;
+    color:<?php echo $prim; ?>;
 }
 input:disabled::-webkit-input-placeholder{
     color:#95a5a6;
@@ -44,17 +51,26 @@ input:disabled:-ms-input-placeholder{
 /** end:placeholder **/
 /** start:title **/
 h1, h2, h3, h4, h5, h6{
-	color:#1abc9c;
+	color:<?php echo $prim; ?>;
 	font-weight:200;
-	margin-bottom:40px;
 	float:left;
+}
+h1{
+	margin-bottom:40px;
 }
 h1:after, h2:after, h3:after, h4:after, h5:after, h6:after{
 	clear:both;
 }
 h1{
 	font-size:250%;
-	border-bottom:#1abc9c 2px solid;
+	border-bottom:<?php echo $prim; ?> 2px solid;
+}
+h2{
+	font-size:150%;
+	margin-bottom:20px;
+}
+h1 a, h2 a{
+	font-size:100%;
 }
 /** end:title **/
 /** start:menubar **/
@@ -65,7 +81,7 @@ h1{
 	left:0;
 	right:0;
 	position: fixed;
-	background-color:#1abc9c;
+	background-color:<?php echo $prim; ?>;
 	z-index:100;
 }
 #menuBar > ul{
@@ -113,7 +129,7 @@ h1{
 }
 .drop-down-arrow > .submenu{
 	position: absolute;
-	background-color:#1abc9c;
+	background-color:<?php echo $prim; ?>;
 	padding:0px 5px 5px 5px;
 	transition: all .3s ease-in-out;
 	opacity:0;
@@ -139,36 +155,36 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 	z-index:10;
 }
 #page a{
-	color:#1abc9c;
+	color:<?php echo $prim; ?>;
 }
 #page a:hover{
-	border-color:#1abc9c;
+	border-color:<?php echo $prim; ?>;
 }
-/** start:input[type="text"] and input[type="number"] **/
-input[type="text"], input[type="number"]{
-	border: #1abc9c 1px solid;
-	color:#1abc9c;
+/** start:input[type="text"], input[type="password"] and input[type="number"] **/
+input[type="text"], input[type="number"],input[type="password"]{
+	border: <?php echo $prim; ?> 1px solid;
+	color:<?php echo $prim; ?>;
 	font-size:250%;
 	font-weight:200;
 	width:98%;
 	background-color:#FFF;
 }
-input[type="text"]:hover, input[type="text"]:active, input[type="text"]:focus, input[type="number"]:hover, input[type="number"]:active, input[type="number"]:focus{
-	border: #16a085 1px solid;
+input[type="text"]:hover, input[type="text"]:active, input[type="text"]:focus, input[type="password"]:hover, input[type="password"]:active, input[type="password"]:focus, input[type="number"]:hover, input[type="number"]:active, input[type="number"]:focus{
+	border: <?php echo $sec; ?> 1px solid;
 }
-/** end:input[type="text"] **/
+/** end:input[type="text"], input[type="password"] and input[type="number"] **/
 /** start:input[type="submit"] and input[type="button"] **/
 input[type="submit"], input[type="button"]{
 	height:40px;
 	width:98%;	
-	background-color:#1abc9c;
+	background-color:<?php echo $prim; ?>;
 	border:none;
 	color:#fff;
 	font-size:187.5%;
 	cursor:pointer;
 }
 input[type="submit"]:hover, input[type="button"]:hover{
-	background-color:#16a085;
+	background-color:<?php echo $sec; ?>;
 }
 table input[type="submit"], input[type="button"]{
 	width:calc(25% - 6px);
@@ -211,12 +227,12 @@ input[type="text"]:disabled{
 	position: absolute;
 	z-index: 999999;
 	margin-top: -1px;
-	border: 1px solid #1abc9c;
+	border: 1px solid <?php echo $prim; ?>;
 	max-height: 200px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	background-color: #fff;
-	color: #1abc9c;
+	color: <?php echo $prim; ?>;
 	text-align: left;
 }
 .flexselect_dropdown ul {
@@ -234,13 +250,13 @@ input[type="text"]:disabled{
 	overflow: hidden;
 }
 .flexselect_selected {
-	/*background-color: #1abc9c;*/
-	color: #16a085;
+	/*background-color: <?php echo $prim; ?>;*/
+	color: <?php echo $sec; ?>;
 }
 /** end:flatSelect **/
 /** start:flatCheckbox **/
 .checkboxContainer{
-	border: #1abc9c 1px solid;
+	border: <?php echo $prim; ?> 1px solid;
 	height:50px;
 	width:98%;
 }
@@ -254,7 +270,7 @@ input[type="text"]:disabled{
 	font-size:250%;
 	font-weight:200;
 	padding-right:40px;
-	color:#1abc9c;
+	color:<?php echo $prim; ?>;
 }
 input[type="checkbox"]{
 	display:none;
@@ -264,11 +280,11 @@ input[type="checkbox"] + label{
 	margin-top:5px;
 	width: 40px;
 	height: 40px;
-	background-color: #1abc9c;
+	background-color: <?php echo $prim; ?>;
 	display: inline-block;
 }
 input[type="checkbox"]:checked + label {
-	background-color: #16a085;
+	background-color: <?php echo $sec; ?>;
 }
 input[type="checkbox"]:checked + label:after {
 	top:4px;
@@ -290,7 +306,7 @@ table{
 	width:100%;
 }
 thead{
-	color:#1abc9c;
+	color:<?php echo $prim; ?>;
 }
 th{
 	text-align:left;
@@ -370,12 +386,12 @@ td{
 /** end:page **/
 /** start:datepicker **/
 #ui-datepicker-div{
-	border: 1px #1abc9c solid;
+	border: 1px <?php echo $prim; ?> solid;
 	background-color:#fff;
 	margin-top:-1px;
 }
 #ui-datepicker-div, #ui-datepicker a, .ui-datepicker a{
-	color:#1abc9c;
+	color:<?php echo $prim; ?>;
 }
 #ui-datepicker a, .ui-datepicker a:hover{
 	border:none;
@@ -402,7 +418,7 @@ td{
 	color:#95a5a6 !important;
 }
 .ui-state-active{
-	color:#16a085 !important;
+	color:<?php echo $sec; ?> !important;
 }
 /** end:datepicker **/
 .clear{
