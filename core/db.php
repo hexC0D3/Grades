@@ -406,7 +406,7 @@ function setupTables(){
 	schoolID INT NOT NULL,
 	subjectIDs VARCHAR(1000) NOT NULL,
 	color1 VARCHAR(7) NOT NULL,
-	color2 VARCHAR(7) NOT NULL,
+	color2 VARCHAR(7) NOT NULL
 	)';
 	$mysqli->query($table);
 
