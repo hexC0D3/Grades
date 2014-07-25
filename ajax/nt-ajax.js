@@ -157,11 +157,7 @@ function hasAttr(element, attr){
 	return false;
 }
 function loadCSS(url) {
-	var head = document.getElementsByTagName('head')[0],
-	link = document.createElement('link');
-	link.type = 'text/css';
-	link.rel = 'stylesheet';
-	link.href = url;
-	head.appendChild(link);
-	return link;
+	$.get(url, function( data ) {
+		$($("style").get(0)).html(data);
+	});
 }
