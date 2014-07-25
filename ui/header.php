@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>Grades</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<style type="text/css">
 	<?php require_once('style.css.php'); ?>
 	<?php require_once('js/alertify/alertify.core.css'); ?>
