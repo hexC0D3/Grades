@@ -47,11 +47,9 @@ $array = $ntdb->getLastGradesOfCurrentUserWithTimeStamp(7);
 $subjects = '"'.implode('", "',array_keys($array)).'"';
 $marks = array();
 $dates = array();
-foreach($array as $subject){
-	foreach($subject as $test){
-		$marks[] = $test[0];
-		$dates[] = date("d. M",$test[1]);
-	}
+foreach($array as $key => $timestamp){
+	$marks[] = $timestamp[0];
+	$dates[] = date("d. M",$key);
 }
 $marks = implode(",", $marks);
 $dates = '"'.implode('", "', $dates).'"';

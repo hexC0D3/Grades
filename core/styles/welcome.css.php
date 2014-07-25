@@ -1,5 +1,6 @@
 <?php
 /** DYNAMIC CSS FILE **/
+session_start();
 $prim = $_SESSION['firstColor'];
 $sec = $_SESSION['secondColor'];
 ?>
@@ -481,4 +482,28 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 }
 .clear{
 	clear:both;
+}
+/** start:media queries **/
+
+/**iPhone 3,4**/@media screen and (device-aspect-ratio: 2/3) {
+	
+}
+/**iPhone 5**/@media screen and (device-aspect-ratio: 40/71) {
+	
+}
+/**iPad+iPad Mini**/@media screen and (device-aspect-ratio: 3/4) {
+	.nav-menu li{
+		width: 230px;
+		height: 230px;
+		border: 10px solid #f6f6f6;
+		overflow: hidden;
+		position: relative;
+		float:left;
+		background: #fff;
+		margin-right: -35px;
+		border-radius: 125px;
+		-moz-transition: all 400ms ease-in-out;
+		-webkit-transition: all 400ms ease-in-out;
+		transition: all 400ms ease-in-out;
+	}
 }

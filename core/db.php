@@ -306,7 +306,7 @@ class NTDB{
 		foreach($tests as $test){
 			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
 			$subject = $this->getAllInformationFrom('subjects', 'id', $test['subjectID'])[0];
-			$newArray[$subject['name']][] = array($mark['mark'], strtotime($test['timestamp']));
+			$newArray[strtotime($test['timestamp'])][] = $mark['mark'];
 		}
 		return $newArray;
 	}
