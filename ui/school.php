@@ -18,6 +18,12 @@ function postCallbackSchool($data){
 				echo htmlentities(_("Your school already exists!"));
 			}else{
 				echo $ntdb->addToDatabase('schools', array('adminID', 'name', 'website'), array($user['id'], $data['schoolName'], $data['schoolWebsite']));
+				$schools = $ntdb->getAllInformationFrom('schools', 'name', $data['schoolName']);
+				foreach($schools as $school){
+					if($school['website']==$data['website']){
+						$ntdb->updateInDatabase('users', array('schoolUD'), array($school['id']), 'id', $user['id']);
+					}
+				}
 			}	
 		}
 	}else if(!empty($data['joinSchool'])){
