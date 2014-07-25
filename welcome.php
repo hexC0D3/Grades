@@ -15,7 +15,7 @@ if(!empty($_POST['resetPW'])){
 	if(!empty($_POST['password']) && !empty($_POST['username']) && !empty($_POST['mail'])){
 		if($_POST['passwordVerify']==$_POST['password']){
 			global $ntdb;
-			echo $ntdb->registerUser($_POST['username'], $_POST['password'], $_POST['mail'], -1, -1, "");
+			echo $ntdb->registerUser($_POST['username'], $_POST['password'], $_POST['mail'], -1, -1, "", $_SESSION['firstColor'], $_SESSION['secondColor']);
 		}else{
 			$error=_("The entered passwords aren't equal!");
 		}

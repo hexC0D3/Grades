@@ -141,18 +141,18 @@ class NTDB{
 		return false;
 	}
 	/** Adds a user to the databse **/
-	function addUser($username, $password, $mail, $classID, $schoolID, $subjectIDs){
+	function addUser($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2){
 		$check = $this->getAllInformationFrom('users', 'username', $username)[0];
 		if(!empty($check)){
 			return false;
 		}else{
-			return $this->addToDatabase('users', array('username', 'password', 'mail', 'classID', 'schoolID', 'subjectIDs'), array($username, $password, $mail, $classID, $schoolID, $subjectIDs));
+			return $this->addToDatabase('users', array('username', 'password', 'mail', 'classID', 'schoolID', 'subjectIDs', 'color1', 'color2'), array($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2));
 		}
 	}
 	/** Register a new user **/
-	function registerUser($username, $password, $mail, $classID, $schoolID, $subjectIDs){
+	function registerUser($username, $password, $mail, $classID, $schoolID, $subjectIDs,  $color1, $color2){
 		$password = hashPassword($password);
-		return $this->addUser($username, $password, $mail, $classID, $schoolID, $subjectIDs);//FIXME
+		return $this->addUser($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2);//FIXME
 	}
 	/** Adds a subject from user **/
 	function addSubjectToUser($userID, $subjectID){
@@ -292,10 +292,10 @@ class NTDB{
 
 		return false;
 	}
-	function getLastGradesOfCurrentUser($numberOfGrades){
+	function getLastGradesOfCurrentUserWithTimeStamp($numberOfGrades){
 		$user = getCurrentUser();
 		$array = $this->getAllInformationFrom('tests', 'classID', $user['classID']);
-		usort($array, 'comparyByTimestamp');
+		usort($array, 'compareByTimestamp');
 		if(count($array)<$numberOfGrades){
 			$numberOfGrades=0;
 		}else{
@@ -306,7 +306,26 @@ class NTDB{
 		foreach($tests as $test){
 			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
 			$subject = $this->getAllInformationFrom('subjects', 'id', $test['subjectID'])[0];
-			$newArray[$subject['name']][] = $mark['mark'];
+			$newArray[$subject['name']][] = array($mark['mark'], strtotime($test['timestamp']));
+		}
+		return $newArray;
+	}
+	function getLastGradesofSubjectsOfCurrentUser($numberOfGradesPerSubject){
+		$user = getCurrentUser();
+		$array = $this->getAllInformationFrom('tests', 'classID', $user['classID']);
+		usort($array, 'compareByTimestamp');
+		if(count($array)<$numberOfGradesPerSubject){
+			$numberOfGradesPerSubject=0;
+		}else{
+			$numberOfGradesPerSubject = count($array)-$numberOfGradesPerSubject;
+		}
+		$newArray = array();
+		foreach($array as $test){
+			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
+			$subject = $this->getAllInformationFrom('subjects', 'id', $test['subjectID'])[0];
+			if(count($newArray[$subject['name']])<=$numberOfGradesPerSubject){
+				$newArray[$subject['name']][] = $mark['mark'];
+			}
 		}
 		return $newArray;
 	}

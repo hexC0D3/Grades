@@ -29,8 +29,24 @@ function compareByName($a, $b) {
 	return strcmp($a["name"], $b["name"]);
 }
 /** Sorts an array by Timestamp **/
-function comparyByTimestamp($a, $b) {
+function compareByTimestamp($a, $b) {
 	return (strtotime($a["timestamp"]) < strtotime($b["timestamp"]));
+}
+/** Converts hex to rgb **/
+function hex2rgb($hex) {
+	$hex = str_replace("#", "", $hex);
+
+	if(strlen($hex) == 3) {
+		$r = hexdec(substr($hex,0,1).substr($hex,0,1));
+		$g = hexdec(substr($hex,1,1).substr($hex,1,1));
+		$b = hexdec(substr($hex,2,1).substr($hex,2,1));
+	} else {
+		$r = hexdec(substr($hex,0,2));
+		$g = hexdec(substr($hex,2,2));
+		$b = hexdec(substr($hex,4,2));
+	}
+	$rgb = array($r, $g, $b);
+	return implode(",", $rgb); // returns the rgb values separated by commas
 }
 /** Searches an array by a key and a value **/
 function search($array, $key, $value){
@@ -53,6 +69,12 @@ function redirectToHome($error){
 			alertify.error("'.$error.'");
 			window.location.hash = "#grades";
 		</script>';
+}
+/** Check hex color **/
+function checkHexColor($color){
+	if(preg_match('/^#[a-f0-9]{6}$/i', $color)){
+		return $color;
+	}
 }
 require_once('db.php');
 

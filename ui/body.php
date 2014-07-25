@@ -1,7 +1,7 @@
 <?php 
 global $ntdb;
 $num = 5;
-$array = $ntdb->getLastGradesOfCurrentUser($num);
+$array = $ntdb->getLastGradesofSubjectsOfCurrentUser($num);
 $average_a = 0;
 $ver = 0;
 echo "<table id='gradesTable' cellspacing='0'>";
@@ -31,7 +31,7 @@ foreach($array as $key => $value){
 }
 echo "</table>";
 ?>
-<canvas id="theChart" width="1000%" height="1000%"></canvas>
+<canvas id="theChart" width="500px" height="575px"></canvas>
 <div class="clear"></div>
 <?php
 if($ver != 0){
@@ -42,5 +42,54 @@ if($ver != 0){
 	$x="-";
 	$secondClass="";
 }
+
+$array = $ntdb->getLastGradesOfCurrentUserWithTimeStamp(7);
+$subjects = '"'.implode('", "',array_keys($array)).'"';
+$marks = array();
+$dates = array();
+foreach($array as $subject){
+	foreach($subject as $test){
+		$marks[] = $test[0];
+		$dates[] = date("d. M",$test[1]);
+	}
+}
+$marks = implode(",", $marks);
+$dates = '"'.implode('", "', $dates).'"';
+$user = getCurrentUser();
+$color1 = $user['color1'];
+$color2 = $user['color2'];
 ?>
 <div id="averageMark"> <?php echo _("Average Mark") ." : <span ".$secondClass.">". $x . "</span>"; ?></div>
+<script>
+var data =
+{
+	labels: [<?php echo $dates; ?>],
+	datasets: [{
+		label: "Grades",
+		fillColor: "<?php echo "rgba(".hex2rgb($color2).", 0.1)"; ?>",
+		strokeColor: "<?php echo $color1; ?>",
+		pointColor: "<?php echo $color1; ?>",
+		pointStrokeColor: "<?php echo $color2; ?>",
+		pointHighlightFill: "<?php echo $color2; ?>",
+		pointHighlightStroke: "<?php echo $color2; ?>",
+		data: [<?php echo $marks; ?>]
+	}]
+};
+var options =
+{
+	scaleShowGridLines : false,
+	scaleGridLineColor : "<?php echo $color1; ?>",
+	scaleGridLineWidth : 1,
+	bezierCurve : true,
+	bezierCurveTension : 0.4,
+	pointDot : true,
+	pointDotRadius : 4,
+	pointDotStrokeWidth : 1,
+	pointHitDetectionRadius : 10,
+	datasetStroke : true,
+	datasetStrokeWidth : 2,
+	datasetFill : true,
+};
+var ctx = document.getElementById("theChart").getContext("2d");
+var myLineChart = new Chart(ctx).Line(data, options);
+</script>

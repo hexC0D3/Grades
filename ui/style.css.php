@@ -370,7 +370,6 @@ td{
 	float:left;
 	margin-left:1%;
 	max-width:34%;
-	background:#000;
 }
 #averageMark{
 	margin-left: 60.8%;

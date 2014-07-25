@@ -5,9 +5,13 @@ global $ntdb;
 if(!empty($_POST)){
 	$data = getPostAjaxDataArray($_POST);
 	if(isset($data['username']) && isset($data['color1']) && isset($data['color2'])){
-		$_SESSION['firstColor'] = $data['color1'];
-		$_SESSION['secondColor'] = $data['color2'];
-		echo $ntdb->updateInDatabase('users', array('username', 'color1', 'color2'), array($data['username'], $data['color1'], $data['color2']), 'id', $user['id']);
+		if(checkHexColor($data['color1'])&&checkHexColor($data['color2'])){
+			$_SESSION['firstColor'] = $data['color1'];
+			$_SESSION['secondColor'] = $data['color2'];
+			echo $ntdb->updateInDatabase('users', array('username', 'color1', 'color2'), array($data['username'], $data['color1'], $data['color2']), 'id', $user['id']);
+		}else{
+			echo _("The hex color format isn't correct!");
+		}
 	}
 	exit;
 }
