@@ -1,7 +1,5 @@
 <?php
 /** DYNAMIC CSS FILE **/
-header("Content-type: text/css");
-session_start();
 $prim = $_SESSION['firstColor'];
 $sec = $_SESSION['secondColor'];
 ?>

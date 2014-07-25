@@ -90,6 +90,8 @@ var options =
 	datasetStrokeWidth : 2,
 	datasetFill : true,
 };
-var ctx = document.getElementById("theChart").getContext("2d");
-var myLineChart = new Chart(ctx).Line(data, options);
+$( document ).ready(function() {
+	var ctx = document.getElementById("theChart").getContext("2d");
+	var myLineChart = new Chart(ctx).Line(data, options);
+});
 </script>
