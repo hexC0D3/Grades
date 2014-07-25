@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>Grades</title>
+	<link href='https://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<style type="text/css">
 	<?php require_once('style.css.php'); ?>
