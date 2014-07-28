@@ -17,6 +17,7 @@ if(!empty($_POST)){
 }
 ?>
 <form id="updateProfile_form" action="/admin/profile.php" method="POST" callBackUrl="/admin/profile.php" refreshCSS="true">
+	<h1><?php echo _("Profile Settings"); ?></h1>
 	<input type="text" name="username" value="<?php echo $user['username']; ?>" placeholder="<?php echo _("Username");?>"/>
 	<br/><br/>
 	<h2><?php echo _("Some cool nice colors can be found"); ?> <a href="http://flatuicolors.com" target="_blank"><?php echo _("here"); ?></a></h2>

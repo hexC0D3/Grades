@@ -94,7 +94,7 @@ function showSubjectList(){?>
 				usort($array, 'compareByName');
 				foreach($array as $val){
 					$rel = $val['relevant']== 1 ? _("Yes") : _("No");
-					echo "<tr class='subjectTableRow'><td class='subjectTableName'>".$val['name']."</td><td class='subjectTableRelevance'>".$rel."</td><td>".getSubjectTableFunction($val)."</td></tr>";
+					echo "<tr class='subjectTableRow'><td class='subjectTableName'>".$val['name']."</td><td class='subjectTableRelevance'>".$rel."</td><td class='actions'>".getSubjectTableFunction($val)."</td></tr>";
 				}
 			}
 		?>

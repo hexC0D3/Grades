@@ -96,7 +96,7 @@ if($user['schoolID']==-1){
 			usort($array, 'compareByName');
 			foreach($array as $val){
 				$cAdmin = $ntdb->getAllInformationFrom('users', 'id', $val['adminID'])[0];
-				echo "<tr class='classTableRow'><td class='classTableName'>".$val['name']."</td><td class='classTableAdmin'>".$cAdmin['username']."</td><td class='classTableActions'>".getClassTableFunction($val)."</td></tr>";
+				echo "<tr class='classTableRow'><td class='classTableName'>".$val['name']."</td><td class='classTableAdmin'>".$cAdmin['username']."</td><td class='classTableActions actions'>".getClassTableFunction($val)."</td></tr>";
 			}
 		?>
 	</tbody>

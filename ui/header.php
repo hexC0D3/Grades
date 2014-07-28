@@ -7,11 +7,12 @@
 	<?php require_once('js/alertify/alertify.default.css'); ?>
 	</style>
 	<link href='https://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </head>
 <body>
 	<header>
-		<div id="menuBar"><a href="#grades" class="title">Grades</a>
+		<div id="menuBar"><div id="mobileMenuTrigger" class="fa fa-bars"></div><a href="#grades" class="title">Grades</a>
 			<ul>
 				<?php 
 				global $ntdb;

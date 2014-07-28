@@ -10,7 +10,7 @@ $sec = $_SESSION['secondColor'];
 	text-decoration:none;
 	font-family:"Lato", sans-serif;
 	list-style:none;
-	font-size:16px;
+	font-size:1.2vw;
 }
 h1, h2, h3, h4, h5, h6{
 	font-weight:200;
@@ -70,7 +70,7 @@ input[type="text"]:hover, input[type="text"]:active, input[type="text"]:focus, i
 /** end:input[type="text"], input[type="password"] and input[type="number"] **/
 /** start:input[type="submit"] and input[type="button"] **/
 input[type="submit"], input[type="button"]{
-	height:40px;
+	height:3.3vw;
 	width:98%;	
 	background-color:<?php echo $prim; ?>;
 	border:none;
@@ -80,13 +80,6 @@ input[type="submit"], input[type="button"]{
 }
 input[type="submit"]:hover, input[type="button"]:hover{
 	background-color:<?php echo $sec; ?>;
-}
-table input[type="submit"], input[type="button"]{
-	width:calc(25% - 6px);
-	float:left;
-	margin-right:2px;
-	font-size:125%;
-	font-weight:200;
 }
 input[type="submit"].join, input[type="button"].join{
 	background-color:#f1c40f;
@@ -116,89 +109,9 @@ input[type="text"]:disabled{
 	border:#95a5a6 1px solid !important;
 	color:#95a5a6;
 }
-/** start:flatSelect **/
-.flexselect_dropdown {
-	display: none;
-	position: absolute;
-	z-index: 999999;
-	margin-top: -1px;
-	border: 1px solid <?php echo $prim; ?>;
-	max-height: 200px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	background-color: #fff;
-	color: <?php echo $prim; ?>;
-	text-align: left;
-}
-.flexselect_dropdown ul {
-	width: 100%;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-.flexselect_dropdown li {
-	margin: 0px;
-	padding: 2px 5px;
-	cursor: pointer;
-	display: block;
-	width: 100%;
-	overflow: hidden;
-}
-.flexselect_selected {
-	/*background-color: <?php echo $prim; ?>;*/
-	color: <?php echo $sec; ?>;
-}
-/** end:flatSelect **/
-/** start:flatCheckbox **/
-.checkboxContainer{
-	border: <?php echo $prim; ?> 1px solid;
-	height:50px;
-	width:98%;
-}
-.checkboxContainer.disabled .checkbox_label{
-	color:#95a5a6;
-}
-.checkboxContainer.disabled{
-	border:#95a5a6 1px solid !important;
-}
-.checkbox_label{
-	font-size:250%;
-	font-weight:200;
-	padding-right:40px;
-	color:<?php echo $prim; ?>;
-}
-input[type="checkbox"]{
-	display:none;
-}
-input[type="checkbox"] + label{
-	position:absolute;
-	margin-top:5px;
-	width: 40px;
-	height: 40px;
-	background-color: <?php echo $prim; ?>;
-	display: inline-block;
-}
-input[type="checkbox"]:checked + label {
-	background-color: <?php echo $sec; ?>;
-}
-input[type="checkbox"]:checked + label:after {
-	top:4px;
-	position: absolute;
-	padding-left:10px;
-	color: #fff;
-	font-size: 156.25%;
-	content: '\2715';
-}
-input[type="checkbox"]:disabled + label{
-	background-color: #95a5a6;
-}
-input[type="checkbox"]:disabled + span{
-	color:#95a5a6;
-}
-/** end:flatCheckbox **/
 /** start:page **/
 #page{
-	position: fixed;
+	position: absolute;
 	top:50px;
 	color:#000;
 	font-weight:200;
@@ -219,20 +132,20 @@ input[type="checkbox"]:disabled + span{
 /** start:menu **/
 .nav-menu{
 	margin-top:50px;
-	width:1075px;
+	width:80vw;
 	margin-left:auto;
 	margin-right:auto;
 }
 .nav-menu li{
-	width: 230px;
-	height: 230px;
+	width: 16vw;
+	height: 16vw;
 	border: 10px solid #f6f6f6;
 	overflow: hidden;
 	position: relative;
 	float:left;
 	background: #fff;
-	margin-right: -35px;
-	border-radius: 125px;
+	margin-right: -3vw;
+	border-radius: 9999px;
 	-moz-transition: all 400ms ease-in-out;
 	-webkit-transition: all 400ms ease-in-out;
 	transition: all 400ms ease-in-out;
@@ -248,7 +161,7 @@ input[type="checkbox"]:disabled + span{
 	color:<?php echo $prim; ?>;
 }
 .nav-icon:before{
-	line-height: 150px;
+	line-height: 10vw;
     position: absolute;
     width: 100%;
     height: 50%;
@@ -256,7 +169,7 @@ input[type="checkbox"]:disabled + span{
     top: 0px;
     text-align: center;
     transition: all 400ms linear;
-    font-size:100px;
+    font-size:7vw;
     color:#f6f6f6;
 }
 .nav-content{
@@ -267,7 +180,7 @@ input[type="checkbox"]:disabled + span{
     top: 55%;
 }
 .nav-main{
-    font-size: 30px;
+    font-size: 2.2vw;
     color: <?php echo $prim; ?>;
     text-align: center;
     transition: all 400ms linear;
@@ -284,8 +197,8 @@ input[type="checkbox"]:disabled + span{
 	opacity:0;
 	position:fixed;
 	overflow:hidden;
-	top:300px;
-	left:-20px;
+	top:10vw;
+	left:-1vw;
 	z-index:101;
 	
 	-moz-transition: all 2s ease-in-out;
@@ -294,10 +207,10 @@ input[type="checkbox"]:disabled + span{
 }
 .title_in{
 	opacity:1 !important;
-	top:-90px !important;
+	top:-6vw !important;
 }
 .title_fix{
-	top:-10px !important;
+	top:-0.75vw !important;
 	left:0 !important;
 	font-size:4vw !important;
 	color:#fff;
@@ -338,7 +251,7 @@ input[type="checkbox"]:disabled + span{
 /** end:intro **/
 /** start:menubar **/
 #menuBar{
-	height:50px;
+	height:3.6vw;
 	width:100%;
 	top:0;
 	left:0;
@@ -411,7 +324,7 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 #error{
 	margin-top:20px;
 	text-align: center;
-	font-size: 30px;
+	font-size: 2.2vw;
 	color:#e74c3c;
 }
 /** end:error **/
@@ -432,8 +345,8 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 }
 .window{
 	position:absolute;
-	top:30px;left:30px;right:30px;
-	padding-bottom:30px;
+	top:3vw;left:3vw;right:3vw;
+	padding-bottom:3vw;
 	background-color:#fff;
 	z-index:-1;
 	opacity:0;
@@ -444,7 +357,7 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 }
 #close{
 	position: absolute;
-	top:30px;
+	top:3vw;
 	right:4%;
 	z-index:-1;
 	opacity:0;
@@ -455,14 +368,14 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 }
 #close a{
 	color:#e74c3c;
-	font-size:40px;
+	font-size:2.5vw;
 }
 .windowContent{
 	position:relative;
 	margin-left:2%;
 }
 .window h1{
-	font-size:50px;
+	font-size:3.5vw;
 	margin-left:-1%;
 }
 #overlay{
@@ -484,7 +397,68 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 	clear:both;
 }
 /** start:media queries **/
-
+@media screen and (max-device-width: 480px){
+	*{
+		font-size:2.5vw;
+		font-weight:normal !important;
+	}
+	.window h1{
+		font-size:10vw !important;
+	}
+	#close a{
+		font-size:6vw;
+	}
+	#menuBar{
+		height:10vw;
+	}
+	.title_fix{
+		font-size:9vw !important;
+	}
+	.nav-menu{
+		margin:0;
+		margin-top:5vw;
+		width:80vw;
+	}
+	.nav-menu li{
+		width: 100%;
+		height: 10vw;
+		border: 0px solid rgba(0,0,0,0);
+		background: <?php echo $prim; ?>;
+		border-radius: 0;
+		margin-top:3vw;
+	}
+	.nav-icon:before{
+		line-height: 10vw;
+	    position: absolute;
+	    left:3vw;	    
+	    height: 100%;
+	    width: auto;
+	    font-size:7vw;
+	}
+	.nav-content{
+	    top:1.8vw;
+		left:12vw;
+	}
+	.nav-main{
+		color:#fff;
+	    font-size: 5vw;
+	    font-weight:normal;
+	    text-align: left;
+	    left:6vw;
+	}
+	.nav-menu li:hover{
+		-moz-transform: translateX(10%);
+    	-webkit-transform: translateX(10%);
+		transform: translateX(10%);
+	}
+	input[type="submit"], input[type="button"]{
+		height:7vw;
+	}
+	#error{
+		font-size: 5vw;
+		text-align:left;
+	}
+}
 /**iPhone 3,4**/@media screen and (device-aspect-ratio: 2/3) {
 	
 }
@@ -492,18 +466,6 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 	
 }
 /**iPad+iPad Mini**/@media screen and (device-aspect-ratio: 3/4) {
-	.nav-menu li{
-		width: 230px;
-		height: 230px;
-		border: 10px solid #f6f6f6;
-		overflow: hidden;
-		position: relative;
-		float:left;
-		background: #fff;
-		margin-right: -35px;
-		border-radius: 125px;
-		-moz-transition: all 400ms ease-in-out;
-		-webkit-transition: all 400ms ease-in-out;
-		transition: all 400ms ease-in-out;
-	}
+	
 }
+/** end:media queries **/

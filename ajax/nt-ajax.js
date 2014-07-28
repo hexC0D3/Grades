@@ -121,6 +121,7 @@ function postData(urlToPost, form, callBack){
     	} 
     });
     form.find("select").each(function(index){
+    	if($(this).val()==null){return false;}
     	if($(this).val().indexOf(":")>-1){
 			alertify.error($(this).attr("placeholder") + " must not contain the char ':'!");
 			br = true;

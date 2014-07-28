@@ -482,3 +482,94 @@ td{
 	to	 { opacity: .5;	transform: scale( .75 ); }
 }
 /** end:loading **/
+/** hide mobile stuff **/
+#mobileMenuTrigger{
+	display:none;
+}
+/** start:media queries **/
+@media screen and (max-device-width: 480px){
+	*{
+		font-size:2.5vw;
+		font-weight:normal !important;
+	}
+	#page{
+		margin-top:8.5vw;
+	}
+	#mobileMenuTrigger{
+		display:block;
+		position:absolute;
+		left:2%;
+	}
+	#mobileMenuTrigger:before{
+		color:#fff;
+		font-size:8vw;
+		margin-left:2%;
+		float: left;
+	}
+	#mobileMenuTrigger:after{clear:both;}
+	.title{
+		padding-left:10%;
+	}
+	#menuBar{
+		height:8.5vw;
+	}
+	#menuBar li{
+		font-size:100%;
+	}
+	#menuBar > ul > li{
+		margin-right:3vw;
+	}
+	#menuBar ul,.drop-down-arrow, .drop-down-arrow:after{
+		display:none;
+		z-index:-1;
+	}
+	table, #gradesTable{
+		width:98%;
+	}
+	.actions{
+		display:none;
+	}
+	#gradesTable{
+		margin-top:4vw;
+	}
+	#gradesTable *{
+		font-size:4vw;
+	}
+	#theChart{
+		max-width:100%;
+		margin-top:5vw;
+	}
+	#averageMark{
+		margin-left: 3%;
+		margin-top:3vw;
+	}
+	#averageMark{
+		font-size: 200%;
+	}
+	#averageMark span{
+		font-size:100%;
+	}
+	input[type="submit"], input[type="button"]{
+		height:7vw;
+	}
+	/** mobile menu **/
+	#jPanelMenu-menu{
+		margin-top:8.5vw;
+		color:#000;
+	}
+	#jPanelMenu-menu .drop-down-arrow{
+		font-size:4vw;
+		display:block;
+	}
+	.drop-down-arrow > .submenu{
+		position: relative;
+		background-color:#fff;
+		opacity:1;
+		z-index:1;
+		margin-top:0px;
+	}
+	.drop-down-arrow > .submenu a{
+		font-size:3.5vw;
+		color:<?php echo $prim; ?>;
+	}
+}

@@ -51,7 +51,7 @@ function showSchoolList(){?>
 			$array = $ntdb->getAllInformationFromTable('schools');
 			usort($array, 'compareByName');
 			foreach($array as $val){
-				echo "<tr class='schoolTableRow'><td class='schoolTableName'><a href='http://".$val['website']."' target='_blank'>".$val['name']."</a></td><td class='schoolTableActions'>".getSchoolTableFunction($val)."</td></tr>";
+				echo "<tr class='schoolTableRow'><td class='schoolTableName'><a href='http://".$val['website']."' target='_blank'>".$val['name']."</a></td><td class='schoolTableActions actions'>".getSchoolTableFunction($val)."</td></tr>";
 			}
 		?>
 	</tbody>
@@ -75,7 +75,7 @@ function getSchoolTableFunction($val){
 			<input type="hidden" name="joinSchool" value='.$val['id'].' />
 			<input type="submit" class="join" value="'._("Join").'" '.$dis1.' />
 		</form>
-		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list" warning="true" message="lol">
+		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list" warning="true" message="Do you really want to leave this school? This will wipe all of your data!">
 			<input type="hidden" name="leaveSchool" value='.$val['id'].' />
 			<input type="submit" class="leave" value="'._("Leave").'" '.$dis2.' />
 		</form>

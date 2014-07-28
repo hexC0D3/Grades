@@ -16,6 +16,16 @@
 	jQuery(document).ready(function() {
 		$("select").flexselect();
 	});
+	<?php if(isMobile()){
+		require_once(UI_DIR."js/jPanelMenu/jquery.jpanelmenu.min.js");
+		echo '
+		var jPM = $.jPanelMenu({
+			menu: "#menuBar > ul",
+			trigger: ".title"
+		});
+		jPM.on();
+		';
+	}?>
 	</script>
 	</footer>
 </body>

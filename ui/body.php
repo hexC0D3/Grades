@@ -29,9 +29,16 @@ foreach($array as $key => $value){
 	echo "<td class='mark averageMark".$secondClass."'>".$average."</td>";
 	echo "</td>";
 }
-echo "</table>";
+echo '</table>
+		
+<canvas id="theChart" width="500px" height="575px"></canvas>';
+
+if(isMobile()){
+	echo '<script>
+	$("#theChart").attr("width", $(window).width());
+	</script>';
+}
 ?>
-<canvas id="theChart" width="500px" height="575px"></canvas>
 <div class="clear"></div>
 <?php
 if($ver != 0){

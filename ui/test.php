@@ -67,7 +67,7 @@ function showTestList(){
 					$mark = "<a href='#page:/ui/grade.php?p=edit&id=".$m[0]['id']."'>".$m[0]['mark']."</a>";
 				}
 				?>
-				<tr class='testTableRow'><td class='testTableTopic'><?php echo $val['topic']; ?></td><td class='testTableSubject'><?php echo $subject['name']; ?></td><td class='testTableMark'><?php echo $mark; ?></td><td class='testTableDate'><?php echo $val['timestamp']; ?></td><?php if($admin==true){echo '<td class="testTableActions">'.getTestTableFunction($val).'</td>';}?></tr>
+				<tr class='testTableRow'><td class='testTableTopic'><?php echo $val['topic']; ?></td><td class='testTableSubject'><?php echo $subject['name']; ?></td><td class='testTableMark'><?php echo $mark; ?></td><td class='testTableDate'><?php echo $val['timestamp']; ?></td><?php if($admin==true){echo '<td class="testTableActions actions">'.getTestTableFunction($val).'</td>';}?></tr>
 				<?php
 			}
 		?>
@@ -99,12 +99,7 @@ function showCreateTest($get){
 	<h1><?php echo htmlentities(_("Create a test")); ?></h1>
 	<input name="testTopic" id="testTopic" type="text" placeholder="<?php echo htmlentities(_("Test Topic")); ?>" />
 	<br/><br/>
-	<select id="testType" name="testType" placeholder="<?php echo htmlentities(_("Test Type(written, oral, ..)")); ?>">
-		<option><?php echo _("written"); ?></option>
-		<option><?php echo _("oral"); ?></option>
-		<option><?php echo _("multiple choice"); ?></option>
-		<option><?php echo _("mixed"); ?></option>
-	</select>
+	<input name="testType" id="testType" type="text" placeholder="<?php echo htmlentities(_("Test Type(written, oral, ..)")); ?>" />
 	<br/><br/>
 	<input name="testDesc" id="testDesc" type="text" maxlength="200" placeholder="<?php echo htmlentities(_("Short Test Description")); ?>" />
 	<br/><br/>
@@ -137,12 +132,7 @@ function showEditTest($id){
 	<h1><?php echo htmlentities(_("Create a test")); ?></h1>
 	<input name="testTopic" id="testTopic" type="text" placeholder="<?php echo htmlentities(_("Test Topic")); ?>" value="<?php echo $test['topic']; ?>" />
 	<br/><br/>
-	<select id="testType" name="testType" placeholder="<?php echo htmlentities(_("Test Type(written, oral, ..)")); ?>" value="<?php echo $test['type']; ?>">
-		<option><?php echo _("written"); ?></option>
-		<option><?php echo _("oral"); ?></option>
-		<option><?php echo _("multiple choice"); ?></option>
-		<option><?php echo _("mixed"); ?></option>
-	</select>
+	<input name="testType" id="testType" type="text" placeholder="<?php echo htmlentities(_("Test Type(written, oral, ..)")); ?>" value="<?php echo $test['type']; ?>"/>
 	<br/><br/>
 	<input name="testDesc" id="testDesc" type="text" maxlength="200" placeholder="<?php echo htmlentities(_("Short Test Description")); ?>" value="<?php echo $test['description']; ?>" />
 	<br/><br/>
