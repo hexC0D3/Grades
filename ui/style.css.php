@@ -492,6 +492,9 @@ td{
 		font-size:2.5vw;
 		font-weight:normal !important;
 	}
+	a:focus{
+		border:none;
+	}
 	#page{
 		margin-top:8.5vw;
 	}
@@ -508,20 +511,55 @@ td{
 	}
 	#mobileMenuTrigger:after{clear:both;}
 	.title{
-		padding-left:10%;
+		margin-left:10%;
+	}
+	#menuBar > ul li.seperator{
+		margin-top: 0;
+		border:none;
+	}
+	#menuBar ul, #menuBar li{
+		margin-top:-50vh;
+	}
+	#menuBar:target ul, #menuBar:target li{
+		margin-top:0;
 	}
 	#menuBar{
 		height:8.5vw;
 	}
-	#menuBar li{
-		font-size:100%;
+	#menuBar:target{
+		position: absolute;
+		height: auto;
+	}
+	#menuBar:target ul .submenu{
+		opacity:1 !important;
+		position:relative;
+	}
+	#menuBar:target ul{
+		display:block;
+		float:none;
+	}
+	#menuBar:target > ul{
+		margin-top:5vw;
+	}
+	#menuBar:target li{
+		display:block !important;	
+		font-size:10vw;
+		display: block;
+		border: none;
+	}
+	#menuBar:target li a{
+		font-size:7vw;
+		display:block;
 	}
 	#menuBar > ul > li{
-		margin-right:3vw;
+		margin-right:0;
 	}
-	#menuBar ul,.drop-down-arrow, .drop-down-arrow:after{
+	.drop-down-arrow:after{
 		display:none;
 		z-index:-1;
+	}
+	.drop-down-arrow > .submenu{
+		z-index:1;
 	}
 	table, #gradesTable{
 		width:98%;
@@ -553,23 +591,4 @@ td{
 		height:7vw;
 	}
 	/** mobile menu **/
-	#jPanelMenu-menu{
-		margin-top:8.5vw;
-		color:#000;
-	}
-	#jPanelMenu-menu .drop-down-arrow{
-		font-size:4vw;
-		display:block;
-	}
-	.drop-down-arrow > .submenu{
-		position: relative;
-		background-color:#fff;
-		opacity:1;
-		z-index:1;
-		margin-top:0px;
-	}
-	.drop-down-arrow > .submenu a{
-		font-size:3.5vw;
-		color:<?php echo $prim; ?>;
-	}
 }

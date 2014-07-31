@@ -13,7 +13,7 @@
 </head>
 <body>
 	<header>
-		<div id="menuBar"><div id="mobileMenuTrigger" class="fa fa-bars"></div><a href="#grades" class="title">Grades</a>
+		<div id="menuBar"><a href="#menuBar"><div id="mobileMenuTrigger" class="fa fa-bars"></div></a><a href="#grades" class="title">Grades</a>
 			<ul>
 				<?php 
 				global $ntdb;
