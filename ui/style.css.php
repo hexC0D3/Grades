@@ -1,6 +1,8 @@
 <?php
 /** DYNAMIC CSS FILE **/
-session_start();
+if(session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 $prim = $_SESSION['firstColor'];
 $sec = $_SESSION['secondColor'];
 ?>
@@ -492,7 +494,7 @@ td{
 		font-size:2.5vw;
 		font-weight:normal !important;
 	}
-	a:focus{
+	a:focus, a:hover{
 		border:none;
 	}
 	#page{

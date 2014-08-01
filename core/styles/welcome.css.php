@@ -1,6 +1,8 @@
 <?php
 /** DYNAMIC CSS FILE **/
-session_start();
+if(session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 $prim = $_SESSION['firstColor'];
 $sec = $_SESSION['secondColor'];
 ?>
