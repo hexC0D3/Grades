@@ -10,27 +10,27 @@ function postCallbackClass($data){
 			echo "Class wasn't deleted, grades is running in [WIP] mode!";
 			//echo $ntdb->removeFromDatabase('classes', 'id', $data['deleteClass']); TODO:Uncomment line if done
 		}else{
-			echo _("You don't have the permission to do this!");
+			echo sanitizeOutput(_("You don't have the permission to do this!"));
 		}
 	}else if(!empty($data['joinClass'])){
 		if($user['classID']==-1){
 			if($user['schoolID']==$ntdb->getAllInformationFrom('classes', 'id', $data['joinClass'])[0]['schoolID']){//TODO: test
 				echo $ntdb->updateInDatabase('users', array('classID'), array($data['joinClass']), 'id', $user['id']);
 			}else{
-				echo _("You aren't able to join this class!");
+				echo sanitizeOutput(_("You aren't able to join this class!"));
 			}
 		}else{
-			echo _("You have already joined a class!");
+			echo sanitizeOutput(_("You have already joined a class!"));
 		}
 	}else if(!empty($data['leaveClass'])){//TODO: Warning message: loose all grades + remove all grades
 		if($user['classID']==$data['leaveClass']){
 			if($ntdb->getAllInformationFrom('classes', 'id', $data['leaveClass'])[0]['adminID']!=$user['id']){
 				echo $ntdb->updateInDatabase('users', array('classID'), array(-1), 'id', $user['id']);
 			}else{
-				echo _("You are not able to leave this class, because you're the admin of it!");
+				echo sanitizeOutput(_("You are not able to leave this class, because you're the admin of it!"));
 			}
 		}else{
-			echo _("You aren't a member of this class!");
+			echo sanitizeOutput(_("You aren't a member of this class!"));
 		}
 	}else if(!empty($data['className'])){
 		if(isset($user['schoolID']) && $user['schoolID']!=-1){
@@ -39,14 +39,14 @@ function postCallbackClass($data){
 					if($ntdb->getAllInformationFrom('classes', 'id', $data['updateClass'])[0]['adminID']==$user['id']){
 						echo $ntdb->updateInDatabase('classes', array('name'), array($data['className']), 'id', $data['updateClass']);
 					}else{
-						echo _("You don't have the permission to do this!");
+						echo sanitizeOutput(_("You don't have the permission to do this!"));
 					}
 				}else{
-					echo _("This class doesn't exist!");
+					echo sanitizeOutput(_("This class doesn't exist!"));
 				}
 			}else{
 				if($ntdb->isInDatabase('classes', 'adminID', $user['id'])==true){
-					echo _("You are already admin of a class!");
+					echo sanitizeOutput(_("You are already admin of a class!"));
 				}else{
 					//Check if already exists in the same school
 					$subjects = $ntdb->getAllInformationFrom('classes', 'name', $data['className']);
@@ -58,7 +58,7 @@ function postCallbackClass($data){
 						}
 					}
 					if($exists){
-						echo _("This class already exists!");
+						echo sanitizeOutput(_("This class already exists!"));
 					}else{
 						echo $ntdb->addToDatabase('classes', array('schoolID', 'name', 'adminID'), array($user['schoolID'], $data['className'], $user['id']));
 						$classID = $ntdb->getAllInformationFrom('classes', 'name', $data['className'])[0]['id'];
@@ -67,7 +67,7 @@ function postCallbackClass($data){
 				}
 			}
 		}else{
-			echo _("First you have to join a school!");
+			echo sanitizeOutput(_("First you have to join a school!"));
 		}
 	}
 }
@@ -88,7 +88,7 @@ if($user['schoolID']==-1){
 ?>
 
 <table>
-	<thead><tr><th><?php echo htmlentities(_("Class Name")); ?></th><th><?php echo htmlentities(_("Class Admin")); ?></th><th class="actions"><?php echo htmlentities(_("Actions")); ?></th></tr></thead>
+	<thead><tr><th><?php echo sanitizeOutput(_("Class Name")); ?></th><th><?php echo sanitizeOutput(_("Class Admin")); ?></th><th class="actions"><?php echo sanitizeOutput(_("Actions")); ?></th></tr></thead>
 	<tbody>
 		<?php 
 			global $ntdb;
@@ -96,7 +96,7 @@ if($user['schoolID']==-1){
 			usort($array, 'compareByName');
 			foreach($array as $val){
 				$cAdmin = $ntdb->getAllInformationFrom('users', 'id', $val['adminID'])[0];
-				echo "<tr class='classTableRow'><td class='classTableName'>".$val['name']."</td><td class='classTableAdmin'>".$cAdmin['username']."</td><td class='classTableActions actions'>".getClassTableFunction($val)."</td></tr>";
+				echo "<tr class='classTableRow'><td class='classTableName'>".sanitizeOutput($val['name'])."</td><td class='classTableAdmin'>".sanitizeOutput($cAdmin['username'])."</td><td class='classTableActions actions'>".getClassTableFunction($val)."</td></tr>";
 			}
 		?>
 	</tbody>
@@ -141,10 +141,10 @@ function showCreateClass($get){
 	}
 ?>
 <form id="createNewSubject_form" action="/ui/class.php" method="POST" callBackUrl="/ui/class.php?p=list">
-	<h1><?php echo htmlentities(_("Create a new class")); ?></h1>
-	<input name="className" id="className" type="text" placeholder="<?php echo htmlentities(_("Class Name")); ?>" />
+	<h1><?php echo sanitizeOutput(_("Create a new class")); ?></h1>
+	<input name="className" id="className" type="text" placeholder="<?php echo sanitizeOutput(_("Class Name")); ?>" />
 	<br/><br/>
-	<input type="submit" value="<?php echo _("Create a new class"); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Create a new class")); ?>" />
 </form>
 <?php }
 
@@ -156,11 +156,11 @@ function showEditClass($id){
 	}
 	?>
 <form id="createNewSubject_form" action="/ui/class.php" method="POST" callBackUrl="/ui/class.php?p=list">
-	<h1><?php echo htmlentities(_("Create a new class")); ?></h1>
-	<input name="className" id="className" type="text" placeholder="<?php echo htmlentities(_("Class Name")); ?>" value='<?php echo $class['name']; ?>'" />
+	<h1><?php echo sanitizeOutput(_("Create a new class")); ?></h1>
+	<input name="className" id="className" type="text" placeholder="<?php echo sanitizeOutput(_("Class Name")); ?>" value='<?php echo sanitizeOutput($class['name']); ?>'" />
 	<br/><br/>
 	<input type="hidden" name="updateClass" value="<?php echo $id; ?>" />
-	<input type="submit" value="<?php echo _("Update class"); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Update class")); ?>" />
 </form>
 <?php }
 ?>

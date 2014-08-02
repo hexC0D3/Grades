@@ -474,6 +474,18 @@ function setupTables(){
 	tokenExpireTime timestamp NOT NULL
 	)';
 	$mysqli->query($table);
+	
+	#mailTokens
+	$table='
+	CREATE TABLE mailTokens (
+	tokenID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	tokenContent varchar(30) NOT NULL,
+	tokenMail INT NOT NULL,
+	tokenType INT NOT NULL,
+	tokenIP varchar(30) NOT NULL,
+	tokenExpireTime timestamp NOT NULL
+	)';/* tokenType: 0=register, 1=resetPW*/
+	$mysqli->query($table);
 }
 function clearTables(){
 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);

@@ -13,41 +13,41 @@ function postCallbackSujects($data){
 		if($user['schoolID']==$subject['schoolID'] && $school['adminID']==$user['id']){
 			echo $ntdb->removeFromDatabase('subjects', 'id', $data['deleteSubject']);
 		}else{
-			echo _("You don't have the permission to do this!");
+			echo sanitizeOutput(_("You don't have the permission to do this!"));
 		}
 	}else if(!empty($data['joinSubject'])){
 		if($ntdb->getAllInformationFrom('subjects', 'id', $data['joinSubject'])[0]['schoolID']==$user['schoolID']){
 			if($ntdb->addSubjectToUser($user['id'], $data['joinSubject'])!=true){
-				echo _("You have already joined this subject!");
+				echo sanitizeOutput(_("You have already joined this subject!"));
 			}else{
 				echo true;
 			}	
 		}else{
-			echo _("You aren't able to join this subject!");
+			echo sanitizeOutput(_("You aren't able to join this subject!"));
 		}
 	}else if(!empty($data['leaveSubject'])){//TODO: Warning message: loose all grades + delete all grades
 		if($ntdb->removeSubjectFromUser($user['id'], $data['leaveSubject'])!=true){
-			echo _("Yet you haven't joined this subject!");
+			echo sanitizeOutput(_("Yet you haven't joined this subject!"));
 		}else{
 			echo true;
 		}
 	}else{
 		if($user['schoolID']==-1){
-			echo _("First you have to join a school!");
+			echo sanitizeOutput(_("First you have to join a school!"));
 		}else{
 			$school = $ntdb->getAllInformationFrom('schools', 'id', $user['schoolID'])[0];
 			if($user['id']==$school['adminID']){
 				if(empty($data['subjectName'])){
-					echo _("Subject Name"). " " . _("shouldn't be empty!");
+					echo sanitizeOutput(_("Subject Name"). " " . _("shouldn't be empty!"));
 				}else if(empty($data['isSubjectRelevant'])){
-					echo _("Is subject relevant?"). " " . _("shouldn't be empty!");
+					echo sanitizeOutput(_("Is subject relevant?"). " " . _("shouldn't be empty!"));
 				}else{
 					$data['isSubjectRelevant'] = $data['isSubjectRelevant']=="false" ? 0 : 1;
 					if(!empty($data['updateSubject'])){//TODO: check permissions
 						if($ntdb->getAllInformationFrom('subjects', 'id', $data['updateSubject'])[0]['schoolID']==$user['schoolID']){
 							echo $ntdb->updateInDatabase('subjects', array('name', 'relevant'), array($data['subjectName'], (int)$data['isSubjectRelevant']), 'id', $data['updateSubject']);
 						}else{
-							echo _("You don't have the permission to do this!");
+							echo sanitizeOutput(_("You don't have the permission to do this!"));
 						}
 					}else{
 						//Check if already exists in the same school
@@ -64,14 +64,14 @@ function postCallbackSujects($data){
 							$exists=false;
 						}
 						if($exists==true){
-							echo _("This subject already exists!");
+							echo sanitizeOutput(_("This subject already exists!"));
 						}else{
 							echo $ntdb->addToDatabase('subjects', array('schoolID', 'name', 'relevant'), array($user['schoolID'], $data['subjectName'], (int)$data['isSubjectRelevant']));
 						}
 					}
 				}	
 			}else{
-				echo _("You don't have the permission to do this!");
+				echo sanitizeOutput(_("You don't have the permission to do this!"));
 			}
 		}
 	}
@@ -82,7 +82,7 @@ function showMySubjects(){
 function showSubjectList(){?>
 
 <table>
-	<thead><tr><th><?php echo htmlentities(_("Subject Name")); ?></th><th><?php echo htmlentities(_("Relevant ?")); ?></th><th class='actions'><?php echo htmlentities(_("Actions")); ?></th></tr></thead>
+	<thead><tr><th><?php echo sanitizeOutput(_("Subject Name")); ?></th><th><?php echo sanitizeOutput(_("Relevant ?")); ?></th><th class='actions'><?php echo sanitizeOutput(_("Actions")); ?></th></tr></thead>
 	<tbody>
 		<?php 
 			global $ntdb;
@@ -94,7 +94,7 @@ function showSubjectList(){?>
 				usort($array, 'compareByName');
 				foreach($array as $val){
 					$rel = $val['relevant']== 1 ? _("Yes") : _("No");
-					echo "<tr class='subjectTableRow'><td class='subjectTableName'>".$val['name']."</td><td class='subjectTableRelevance'>".$rel."</td><td class='actions'>".getSubjectTableFunction($val)."</td></tr>";
+					echo "<tr class='subjectTableRow'><td class='subjectTableName'>".sanitizeOutput($val['name'])."</td><td class='subjectTableRelevance'>".$rel."</td><td class='actions'>".getSubjectTableFunction($val)."</td></tr>";
 				}
 			}
 		?>
@@ -137,16 +137,16 @@ function showCreateSubject($get){
 	}
 ?>
 <form id="createNewSubject_form" action="/ui/subjects.php" method="POST" callBackUrl="/ui/subjects.php?p=list">
-	<h1><?php echo htmlentities(_("Create a new subject")); ?></h1>
-	<input name="subjectName" id="subjectName" type="text" placeholder="<?php echo htmlentities(_("Subject Name")); ?>" />
+	<h1><?php echo sanitizeOutput(_("Create a new subject")); ?></h1>
+	<input name="subjectName" id="subjectName" type="text" placeholder="<?php echo sanitizeOutput(_("Subject Name")); ?>" />
 	<br/><br/>
 	<div class='checkboxContainer'>
-		<span class="checkbox_label"><?php echo _("Is subject relevant?"); ?></span>
+		<span class="checkbox_label"><?php echo sanitizeOutput(_("Is subject relevant?")); ?></span>
 		<input type="checkbox" id="isSubjectRelevant" name="isSubjectRelevant" checked="checked" />
 		<label for="isSubjectRelevant"></label>
 	</div>
 	<br/>
-	<input type="submit" value="<?php echo _("Create a new subject"); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Create a new subject")); ?>" />
 </form>
 <?php }
 
@@ -158,17 +158,17 @@ function showEditSubject($id){
 	}
 	?>
 	<form id="updateSubject_form" action="/ui/subjects.php" method="POST" callBackUrl="/ui/subjects.php?p=list">
-	<h1><?php echo htmlentities(_("Edit the subject")); ?></h1>
-	<input name="subjectName" id="subjectName" type="text" placeholder="<?php echo htmlentities(_("Subject Name")); ?>" value="<?php echo $subject['name']; ?>" />
+	<h1><?php echo sanitizeOutput(_("Edit the subject")); ?></h1>
+	<input name="subjectName" id="subjectName" type="text" placeholder="<?php echo sanitizeOutput(_("Subject Name")); ?>" value="<?php echo sanitizeOutput($subject['name']); ?>" />
 	<br/><br/>
 	<div class='checkboxContainer'>
-		<span class="checkbox_label"><?php echo _("Is subject relevant?"); ?></span>
-		<input type="checkbox" id="isSubjectRelevant" name="isSubjectRelevant" <?php echo $subject['relevant']==0 ? "" : "checked='checked'"; ?> />
+		<span class="checkbox_label"><?php echo sanitizeOutput(_("Is subject relevant?")); ?></span>
+		<input type="checkbox" id="isSubjectRelevant" name="isSubjectRelevant" <?php echo sanitizeOutput($subject['relevant']==0 ? "" : "checked='checked'"); ?> />
 		<label for="isSubjectRelevant"></label>
 	</div>
 	<br/>
-	<input type="hidden" name="updateSubject" value="<?php echo $id; ?>" />
-	<input type="submit" value="<?php echo _("Update subject"); ?>" />
+	<input type="hidden" name="updateSubject" value="<?php echo sanitizeOutput($id); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Update subject")); ?>" />
 </form>
 <?php }
 

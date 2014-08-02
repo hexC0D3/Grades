@@ -17,13 +17,13 @@ if(!empty($_POST)){
 }
 ?>
 <form id="updateProfile_form" action="/admin/profile.php" method="POST" callBackUrl="/admin/profile.php" refreshCSS="true">
-	<h1><?php echo _("Profile Settings"); ?></h1>
-	<input type="text" name="username" value="<?php echo $user['username']; ?>" placeholder="<?php echo _("Username");?>"/>
+	<h1><?php echo sanitizeOutput(_("Profile Settings")); ?></h1>
+	<input type="text" name="username" value="<?php echo sanitizeOutput($user['username']); ?>" placeholder="<?php echo sanitizeOutput(_("Username"));?>"/>
 	<br/><br/>
-	<h2><?php echo _("Some cool nice colors can be found"); ?> <a href="http://flatuicolors.com" target="_blank"><?php echo _("here"); ?></a></h2>
-	<input type="text" name="color1" value="<?php echo $user['color1']; ?>" placeholder="<?php echo _("Color One (Hexcode, like #000 for black)");?>"/>
+	<h2><?php echo sanitizeOutput(_("Some cool nice colors can be found")); ?> <a href="http://flatuicolors.com" target="_blank"><?php echo sanitizeOutput(_("here")); ?></a></h2>
+	<input type="text" name="color1" value="<?php echo sanitizeOutput($user['color1']); ?>" placeholder="<?php echo sanitizeOutput(_("Color One (Hexcode, like #000 for black)"));?>"/>
 	<br/><br/>
-	<input type="text" name="color2" value="<?php echo $user['color2']; ?>" placeholder="<?php echo _("Color Two (Hexcode, like #f00 for red)");?>"/>
+	<input type="text" name="color2" value="<?php echo sanitizeOutput($user['color2']); ?>" placeholder="<?php echo sanitizeOutput(_("Color Two (Hexcode, like #f00 for red)"));?>"/>
 	<br/><br/>
-	<input type="submit" value="<?php echo _("Update Profile"); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Update Profile")); ?>" />
 </form>

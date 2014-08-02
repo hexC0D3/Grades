@@ -11,17 +11,17 @@ function postCallbackSchool($data){
 			if($ntdb->isInDatabase('schools', 'id', $data['updateSchool'])==true){
 				echo $ntdb->updateInDatabase('schools', array('name', 'website'), array($data['schoolName'], $data['schoolWebsite']), 'id', $data['updateSchool']);
 			}else{
-				echo _("This school doesn't exist!");
+				echo sanitizeOutput(_("This school doesn't exist!"));
 			}
 		}else{
 			if($ntdb->isInDatabase('schools', 'website', $data['schoolWebsite']) || $ntdb->isInDatabase('schools', 'name', $data['schoolName'])){
-				echo htmlentities(_("Your school already exists!"));
+				echo sanitizeOutput(_("Your school already exists!"));
 			}else{
 				echo $ntdb->addToDatabase('schools', array('adminID', 'name', 'website'), array($user['id'], $data['schoolName'], $data['schoolWebsite']));
 				$schools = $ntdb->getAllInformationFrom('schools', 'name', $data['schoolName']);
 				foreach($schools as $school){
 					if($school['website']==$data['website']){
-						$ntdb->updateInDatabase('users', array('schoolUD'), array($school['id']), 'id', $user['id']);
+						$ntdb->updateInDatabase('users', array('schoolID'), array($school['id']), 'id', $user['id']);
 					}
 				}
 			}	
@@ -30,13 +30,13 @@ function postCallbackSchool($data){
 		if($user['schoolID']==-1){
 			echo $ntdb->updateInDatabase('users', array('schoolID'), array($data['joinSchool']), 'id', $user['id']);
 		}else{
-			echo _("You have already joined a school!");
+			echo sanitizeOutput(_("You have already joined a school!"));
 		}
 	}else if(!empty($data['deleteSchool'])){
 		if($ntdb->getAllInformationFrom('schools', 'id', $data['deleteSchool'])[0]['adminID']==$user['id']){
 			echo $ntdb->removeFromDatabase('schools', 'id', $data['deleteSchool']);
 		}else{
-			echo _("You don't have the permission to do this!");
+			echo sanitizeOutput(_("You don't have the permission to do this!"));
 		}
 	}
 	//TODO: leave school
@@ -44,13 +44,14 @@ function postCallbackSchool($data){
 function showSchoolList(){?>
 
 <table>
-	<thead><tr><th><?php echo htmlentities(_("School Name")); ?></th><th class="actions"><?php echo htmlentities(_("Actions")); ?></th></tr></thead>
+	<thead><tr><th><?php echo sanitizeOutput(_("School Name")); ?></th><th class="actions"><?php echo sanitizeOutput(_("Actions")); ?></th></tr></thead>
 	<tbody>
 		<?php 
 			global $ntdb;
 			$array = $ntdb->getAllInformationFromTable('schools');
 			usort($array, 'compareByName');
 			foreach($array as $val){
+				$val = sanitizeOutput($val);
 				echo "<tr class='schoolTableRow'><td class='schoolTableName'><a href='http://".$val['website']."' target='_blank'>".$val['name']."</a></td><td class='schoolTableActions actions'>".getSchoolTableFunction($val)."</td></tr>";
 			}
 		?>
@@ -96,12 +97,12 @@ function getSchoolTableFunction($val){
 }
 function showCreateSchool($get){ ?>
 <form id="createNewSubject_form" action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list">
-	<h1><?php echo htmlentities(_("Create a school")); ?></h1>
-	<input name="schoolName" id="schoolName" type="text" placeholder="<?php echo htmlentities(_("School Name")); ?>" />
+	<h1><?php echo sanitizeOutput(_("Create a school")); ?></h1>
+	<input name="schoolName" id="schoolName" type="text" placeholder="<?php echo sanitizeOutput(_("School Name")); ?>" />
 	<br/><br/>
-	<input name="schoolWebsite" id="schoolWebsite" type="text" placeholder="<?php echo htmlentities(_("School Website URL (without http://)")); ?>" />
+	<input name="schoolWebsite" id="schoolWebsite" type="text" placeholder="<?php echo sanitizeOutput(_("School Website URL (without http://)")); ?>" />
 	<br/><br/>
-	<input type="submit" value="<?php echo _("Create a school"); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Create a school")); ?>" />
 </form>
 <?php }
 
@@ -113,13 +114,13 @@ if(getCurrentUser()['id']!=$school['adminID']){
 }
 ?>
 <form id="createNewSubject_form" action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list">
-	<h1><?php echo htmlentities(_("Create a school")); ?></h1>
-	<input name="schoolName" id="schoolName" type="text" placeholder="<?php echo htmlentities(_("School Name")); ?>" value="<?php echo $school['name']; ?>" />
+	<h1><?php echo sanitizeOutput(_("Create a school")); ?></h1>
+	<input name="schoolName" id="schoolName" type="text" placeholder="<?php echo sanitizeOutput(_("School Name")); ?>" value="<?php echo sanitizeOutput($school['name']); ?>" />
 	<br/><br/>
-	<input name="schoolWebsite" id="schoolWebsite" type="text" placeholder="<?php echo htmlentities(_("School Website URL (without http://)")); ?>" value="<?php echo $school['website']; ?>" />
+	<input name="schoolWebsite" id="schoolWebsite" type="text" placeholder="<?php echo sanitizeOutput(_("School Website URL (without http://)")); ?>" value="<?php echo sanitizeOutput($school['website']); ?>" />
 	<br/><br/>
-	<input type="hidden" name="updateSchool" value="<?php echo $id; ?>" />
-	<input type="submit" value="<?php echo _("Update school"); ?>" />
+	<input type="hidden" name="updateSchool" value="<?php echo sanitizeOutput($id); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Update school")); ?>" />
 </form>
 <?php }
 ?>

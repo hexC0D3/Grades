@@ -6,12 +6,12 @@ $average_a = 0;
 $ver = 0;
 echo "<table id='gradesTable' cellspacing='0'>";
 foreach($array as $key => $value){
-	echo "<tr><td class='subject'>".$key."</td>";
+	echo "<tr><td class='subject'>".sanitizeOutput($key)."</td>";
 	$s = 0;
 	for($i=0;$i<$num;$i++){
 		if(isset($value[$i])){
 			$secondClass = $value[$i] > 4 ? "" : " negativeMark";
-			echo "<td class='mark".$secondClass."'>".$value[$i]."</td>";
+			echo "<td class='mark".$secondClass."'>".sanitizeOutput($value[$i])."</td>";
 			$s += $value[$i];
 		}else{
 			echo "<td class='mark'>-</td>";

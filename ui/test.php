@@ -19,10 +19,10 @@ function testData($data){
 				}
 			}else{
 				print_r($data);
-				echo _("Something went wrong, please contact me@tyratox.ch");
+				echo sanitizeOutput(_("Something went wrong, please contact me@tyratox.ch"));
 			}
 		}else{
-			echo _("You don't have the permission to do this!");
+			echo sanitizeOutput(_("You don't have the permission to do this!"));
 		}
 	}else{
 		if(isset($data['deleteTest'])){
@@ -30,10 +30,10 @@ function testData($data){
 			if($class['adminID']==$user['id']){
 				echo $ntdb->removeFromDatabase('tests', 'id', $data['deleteTest']);
 			}else{
-				echo _("You don't have the permission to do this!");
+				echo sanitizeOutput(_("You don't have the permission to do this!"));
 			}
 		}else{
-			echo _("Please fill in all required fields!");
+			echo sanitizeOutput(_("Please fill in all required fields!"));
 		}
 	}
 }
@@ -50,7 +50,7 @@ function showTestList(){
 	}
 ?>
 <table>
-	<thead><tr><th><?php echo htmlentities(_("Topic")); ?></th><th style="width:20%;"><?php echo htmlentities(_("Subject")); ?></th><th><?php echo htmlentities(_("Mark")); ?></th><th><?php echo htmlentities(_("Date")); ?></th><?php if($admin==true){ echo '<th class="actions">'.htmlentities(_("Actions")).'</th>'; }?></tr></thead>
+	<thead><tr><th><?php echo sanitizeOutput(_("Topic")); ?></th><th style="width:20%;"><?php echo sanitizeOutput(_("Subject")); ?></th><th><?php echo sanitizeOutput(_("Mark")); ?></th><th><?php echo sanitizeOutput(_("Date")); ?></th><?php if($admin==true){ echo '<th class="actions">'.sanitizeOutput(_("Actions")).'</th>'; }?></tr></thead>
 	<tbody>
 		<?php 
 			global $ntdb;
@@ -64,10 +64,10 @@ function showTestList(){
 				$m = search($grades, 'testID', $val['id']);
 				$mark = generateAddMarkLink($val);
 				if(isset($m)&&!empty($m)){
-					$mark = "<a href='#page:/ui/grade.php?p=edit&id=".$m[0]['id']."'>".$m[0]['mark']."</a>";
+					$mark = "<a href='#page:/ui/grade.php?p=edit&id=".sanitizeOutput($m[0]['id'])."'>".sanitizeOutput($m[0]['mark'])."</a>";
 				}
 				?>
-				<tr class='testTableRow'><td class='testTableTopic'><?php echo $val['topic']; ?></td><td class='testTableSubject'><?php echo $subject['name']; ?></td><td class='testTableMark'><?php echo $mark; ?></td><td class='testTableDate'><?php echo $val['timestamp']; ?></td><?php if($admin==true){echo '<td class="testTableActions actions">'.getTestTableFunction($val).'</td>';}?></tr>
+				<tr class='testTableRow'><td class='testTableTopic'><?php echo sanitizeOutput($val['topic']); ?></td><td class='testTableSubject'><?php echo sanitizeOutput($subject['name']); ?></td><td class='testTableMark'><?php echo $mark; ?></td><td class='testTableDate'><?php echo sanitizeOutput($val['timestamp']); ?></td><?php if($admin==true){echo '<td class="testTableActions actions">'.getTestTableFunction($val).'</td>';}?></tr>
 				<?php
 			}
 		?>
@@ -96,26 +96,27 @@ function showCreateTest($get){
 	}
 ?>
 <form id="createNewTest_form" action="/ui/test.php" method="POST" callBackUrl="/ui/test.php?p=list">
-	<h1><?php echo htmlentities(_("Create a test")); ?></h1>
-	<input name="testTopic" id="testTopic" type="text" placeholder="<?php echo htmlentities(_("Test Topic")); ?>" />
+	<h1><?php echo sanitizeOutput(_("Create a test")); ?></h1>
+	<input name="testTopic" id="testTopic" type="text" placeholder="<?php echo sanitizeOutput(_("Test Topic")); ?>" />
 	<br/><br/>
-	<input name="testType" id="testType" type="text" placeholder="<?php echo htmlentities(_("Test Type(written, oral, ..)")); ?>" />
+	<input name="testType" id="testType" type="text" placeholder="<?php echo sanitizeOutput(_("Test Type(written, oral, ..)")); ?>" />
 	<br/><br/>
-	<input name="testDesc" id="testDesc" type="text" maxlength="200" placeholder="<?php echo htmlentities(_("Short Test Description")); ?>" />
+	<input name="testDesc" id="testDesc" type="text" maxlength="200" placeholder="<?php echo sanitizeOutput(_("Short Test Description")); ?>" />
 	<br/><br/>
-	<select id="testSubjectID" name="testSubjectID" placeholder="<?php echo htmlentities(_("Test Subject")); ?>">
+	<select id="testSubjectID" name="testSubjectID" placeholder="<?php echo sanitizeOutput(_("Test Subject")); ?>">
 		<?php 
 		global $ntdb;
 		$subjects = $ntdb->getAllInformationFrom('subjects', 'schoolID', getCurrentUser()['schoolID']);
 		foreach($subjects as $subject){
+			$subject=sanitizeOutput($subject);
 			echo "<option value='".$subject['id']."'>".$subject['name']."</option>";
 		}
 		?>
 	</select>
 	<br/><br/>
-	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo htmlentities(_("Test Date (dd. mm. yyyy)")); ?>" />
+	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo sanitizeOutput(_("Test Date (dd. mm. yyyy)")); ?>" />
 	<br/><br/>
-	<input type="submit" value="<?php echo _("Create a test"); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Create a test")); ?>" />
 </form>
 <?php }
 function showEditTest($id){
@@ -129,27 +130,28 @@ function showEditTest($id){
 	$test['timestamp'] = date("d. m. Y", strtotime($test['timestamp']));
 ?>
 <form id="createNewTest_form" action="/ui/test.php" method="POST" callBackUrl="/ui/test.php?p=list">
-	<h1><?php echo htmlentities(_("Create a test")); ?></h1>
-	<input name="testTopic" id="testTopic" type="text" placeholder="<?php echo htmlentities(_("Test Topic")); ?>" value="<?php echo $test['topic']; ?>" />
+	<h1><?php echo sanitizeOutput(_("Create a test")); ?></h1>
+	<input name="testTopic" id="testTopic" type="text" placeholder="<?php echo sanitizeOutput(_("Test Topic")); ?>" value="<?php echo sanitizeOutput($test['topic']); ?>" />
 	<br/><br/>
-	<input name="testType" id="testType" type="text" placeholder="<?php echo htmlentities(_("Test Type(written, oral, ..)")); ?>" value="<?php echo $test['type']; ?>"/>
+	<input name="testType" id="testType" type="text" placeholder="<?php echo sanitizeOutput(_("Test Type(written, oral, ..)")); ?>" value="<?php echo sanitizeOutput($test['type']); ?>"/>
 	<br/><br/>
-	<input name="testDesc" id="testDesc" type="text" maxlength="200" placeholder="<?php echo htmlentities(_("Short Test Description")); ?>" value="<?php echo $test['description']; ?>" />
+	<input name="testDesc" id="testDesc" type="text" maxlength="200" placeholder="<?php echo sanitizeOutput(_("Short Test Description")); ?>" value="<?php echo sanitizeOutput($test['description']); ?>" />
 	<br/><br/>
-	<select id="testSubjectID" name="testSubjectID" placeholder="<?php echo htmlentities(_("Test Subject")); ?>" value="<?php echo $test['subjectID']; ?>">
+	<select id="testSubjectID" name="testSubjectID" placeholder="<?php echo sanitizeOutput(_("Test Subject")); ?>" value="<?php echo sanitizeOutput($test['subjectID']); ?>">
 		<?php 
 		global $ntdb;
 		$subjects = $ntdb->getAllInformationFrom('subjects', 'schoolID', getCurrentUser()['schoolID']);
 		foreach($subjects as $subject){
+			$subject=sanitizeOutput($subject);
 			echo "<option value='".$subject['id']."'>".$subject['name']."</option>";
 		}
 		?>
 	</select>
 	<br/><br/>
-	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo htmlentities(_("Test Date (dd. mm. yyyy)")); ?>" value="<?php echo $test['timestamp']; ?>" />
+	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo sanitizeOutput(_("Test Date (dd. mm. yyyy)")); ?>" value="<?php echo sanitizeOutput($test['timestamp']); ?>" />
 	<br/><br/>
-	<input type="hidden" name="updateTest" value="<?php echo $id; ?>" />
-	<input type="submit" value="<?php echo _("Update test"); ?>" />
+	<input type="hidden" name="updateTest" value="<?php echo sanitizeOutput($id); ?>" />
+	<input type="submit" value="<?php echo sanitizeOutput(_("Update test")); ?>" />
 </form>
 <?php }
 ?>

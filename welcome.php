@@ -56,8 +56,8 @@ if(!empty($_POST['resetPW'])){
 		</div>
 	</header>
 	
-	<div id="welcome"><?php echo htmlentities(_("Welcome")); ?></div>
-	<div id="to"><?php echo htmlentities(_("to")); ?></div>
+	<div id="welcome"><?php echo sanitizeOutput(_("Welcome")); ?></div>
+	<div id="to"><?php echo sanitizeOutput(_("to")); ?></div>
 	<div id="title">Grades</div>
 	<div id="page">
 		<ul class="nav-menu">
@@ -65,7 +65,7 @@ if(!empty($_POST['resetPW'])){
 				<a href="#register">
 					<i class="nav-icon fa fa-lock"></i>
 					<div class="nav-content">
-						<h2 class="nav-main"><?php echo htmlentities(_("Register")); ?></h2>
+						<h2 class="nav-main"><?php echo sanitizeOutput(_("Register")); ?></h2>
             		</div>
         		</a>
 			</li>
@@ -73,7 +73,7 @@ if(!empty($_POST['resetPW'])){
 				<a href="#login">
 					<i class="nav-icon fa fa-unlock-alt"></i>
 					<div class="nav-content">
-						<h2 class="nav-main"><?php echo htmlentities(_("Login")); ?></h2>
+						<h2 class="nav-main"><?php echo sanitizeOutput(_("Login")); ?></h2>
             		</div>
         		</a>
 			</li>
@@ -81,7 +81,7 @@ if(!empty($_POST['resetPW'])){
 				<a href="#resetPW">
 					<i class="nav-icon fa fa-folder"></i>
 					<div class="nav-content">
-						<h2 class="nav-main"><?php echo htmlentities(_("Reset your Password")); ?></h2>
+						<h2 class="nav-main"><?php echo sanitizeOutput(_("Reset your Password")); ?></h2>
             		</div>
         		</a>
 			</li>
@@ -89,7 +89,7 @@ if(!empty($_POST['resetPW'])){
 				<a href="http://hexcode.ch">
 					<i class="nav-icon fa fa-question"></i>
 					<div class="nav-content">
-						<h2 class="nav-main"><?php echo htmlentities(_("About this Website")); ?></h2>
+						<h2 class="nav-main"><?php echo sanitizeOutput(_("About this Website")); ?></h2>
             		</div>
         		</a>
 			</li>
@@ -97,13 +97,13 @@ if(!empty($_POST['resetPW'])){
 				<a href="http://hexcode.ch">
 					<i class="nav-icon fa fa-users"></i>
 					<div class="nav-content">
-						<h2 class="nav-main"><?php echo htmlentities(_("Our Team")); ?></h2>
+						<h2 class="nav-main"><?php echo sanitizeOutput(_("Our Team")); ?></h2>
             		</div>
         		</a>
 			</li>
 		</ul>
 		<div class="clear"></div>
-		<div id="error"><?php if(isset($error)&&!empty($error)){echo $error;}?></div>
+		<div id="error"><?php if(isset($error)&&!empty($error)){echo sanitizeOutput($error);}?></div>
 	</div>
 	<footer>
 		<?php if(isset($_GET['skip'])||!empty($_POST)||isMobile()){ ?>
@@ -144,42 +144,42 @@ if(!empty($_POST['resetPW'])){
 	</footer>
 	<div id="login" class="window">
 		<div class="windowContent">
-			<h1><?php echo htmlentities(_("Login")); ?></h1>
+			<h1><?php echo sanitizeOutput(_("Login")); ?></h1>
 			<br/>
 			<form action="/" method="POST">
-				<input type="text" name="username" placeholder="<?php echo htmlentities(_("Username")); ?>"/>
+				<input type="text" name="username" placeholder="<?php echo sanitizeOutput(_("Username")); ?>"/>
 				<br/><br/>
-				<input type="password" name="password" placeholder="<?php echo htmlentities(_("Password")); ?>"/>
+				<input type="password" name="password" placeholder="<?php echo sanitizeOutput(_("Password")); ?>"/>
 				<br/><br/>
-				<input type="submit" value="<?php echo htmlentities(_("Log In")); ?>"/>
+				<input type="submit" value="<?php echo sanitizeOutput(_("Log In")); ?>"/>
 			</form>
 		</div>
 	</div>
 	<div id="register" class="window">
 		<div class="windowContent">
-			<h1><?php echo htmlentities(_("Register")); ?></h1>
+			<h1><?php echo sanitizeOutput(_("Register")); ?></h1>
 			<br/>
 			<form action="/" method="POST">
-				<input type="text" name="username" placeholder="<?php echo htmlentities(_("Username")); ?>"/>
+				<input type="text" name="username" placeholder="<?php echo sanitizeOutput(_("Username")); ?>"/>
 				<br/><br/>
-				<input type="password" name="password" placeholder="<?php echo htmlentities(_("Password")); ?>"/>
+				<input type="password" name="password" placeholder="<?php echo sanitizeOutput(_("Password")); ?>"/>
 				<br/><br/>
-				<input type="password" name="passwordVerify" placeholder="<?php echo htmlentities(_("Verify Password")); ?>"/>
+				<input type="password" name="passwordVerify" placeholder="<?php echo sanitizeOutput(_("Verify Password")); ?>"/>
 				<br/><br/>
-				<input type="text" name="mail" placeholder="<?php echo htmlentities(_("Mail")); ?>"/>
+				<input type="text" name="mail" placeholder="<?php echo sanitizeOutput(_("Mail")); ?>"/>
 				<br/><br/>
-				<input type="submit" value="<?php echo htmlentities(_("Log In")); ?>"/>
+				<input type="submit" value="<?php echo sanitizeOutput(_("Log In")); ?>"/>
 			</form>
 		</div>
 	</div>
 	<div id="resetPW" class="window">
 		<div class="windowContent">
-			<h1><?php echo htmlentities(_("Reset Password")); ?></h1>
+			<h1><?php echo sanitizeOutput(_("Reset Password")); ?></h1>
 			<br/>
 			<form action="/" method="POST">
-				<input type="text" name="username" placeholder="<?php echo htmlentities(_("Username or E-Mail")); ?>"/>
+				<input type="text" name="username" placeholder="<?php echo sanitizeOutput(_("Username or E-Mail")); ?>"/>
 				<br/><br/>
-				<input type="submit" value="<?php echo htmlentities(_("Reset your password")); ?>"/>
+				<input type="submit" value="<?php echo sanitizeOutput(_("Reset your password")); ?>"/>
 			</form>
 		</div>
 	</div>

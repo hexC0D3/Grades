@@ -7,3 +7,6 @@
 .buildpath
 .project
 .settings/*
+
+#local config file
+core/config.php

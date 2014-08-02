@@ -12,9 +12,38 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 	session_start();
 }
 
+/** Sanitize $_POST and $_GET **/
+$_POST = sanitizeInput($_POST);
+$_GET = sanitizeInput($_GET);
+
 /** Custom die function **/
 function nt_die($arg){
 	die($arg);
+}
+/** Sanitizes User Input **/
+function sanitizeInput($input){
+	if(is_array($input)){
+		foreach($input as $key => $data){
+			$input[$key] = sanitizeInput($data);
+		}
+		return $input;
+	}else{
+		return strip_tags($input);
+	}
+}
+/** Sanitizes Database Output **/
+function sanitizeOutput($output){
+	if(is_array($output)){
+		foreach($output as $key => $data){
+			$output[$key] = sanitizeOutput($data);
+		}
+		return $output;
+	}else{
+		if(strpos($output, "<script>")===true||strpos($output, "document.cookie")){/*Prevent XSS*/
+			return "XSS ALERT PLEASE REPORT THIS TO: me@tyratox.ch";
+		}
+		return htmlentities($output);
+	}
 }
 /** Gets current page url **/
 function curPageURL(){
