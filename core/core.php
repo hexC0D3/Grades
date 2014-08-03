@@ -39,7 +39,7 @@ function sanitizeOutput($output){
 		}
 		return $output;
 	}else{
-		if(strpos($output, "<script>")===true||strpos($output, "document.cookie")){/*Prevent XSS*/
+		if(preg_match("/(document.cookie|<script|onclick|javascript:)/i", $output)){/*Prevent XSS*/
 			return "XSS ALERT PLEASE REPORT THIS TO: me@tyratox.ch";
 		}
 		return htmlentities($output);
