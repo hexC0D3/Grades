@@ -140,6 +140,10 @@ class NTDB{
 		}
 		return false;
 	}
+	/** Resets the password of a user **/
+	function resetPassword($userID){
+		
+	}
 	/** Adds a user to the databse **/
 	function addUser($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2){
 		if(!$this->user_exists($username, $mail)){
@@ -421,10 +425,8 @@ class NTDB{
 		foreach($array as $test){
 			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
 			$subject = $this->getAllInformationFrom('subjects', 'id', $test['subjectID'])[0];
-			if(isset($newArray[$subject['name']])){
-				if(count($newArray[$subject['name']])<=$numberOfGradesPerSubject){
-					$newArray[$subject['name']][] = $mark['mark'];
-				}	
+			if(empty($newArray[$subject['name']])||count($newArray[$subject['name']])<=$numberOfGradesPerSubject){
+				$newArray[$subject['name']][] = $mark['mark'];
 			}
 		}
 		return $newArray;

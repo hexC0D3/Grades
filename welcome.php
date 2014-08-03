@@ -1,13 +1,24 @@
 <?php
+global $ntdb;
+
+
 if(!empty($_POST['resetPW'])){
 	$resetPW = $_POST['resetPW'];
 	//reset password
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+	if(!filter_var($resetPW, FILTER_VALIDATE_EMAIL)){
 		//username
-
+		if($ntdb->isInDatabase('users', 'username', $resetPW)){
+			$ntdb->resetPassword($ntdb->getAllInformationFrom('users', 'username', $resetPW)[0]['id']);
+		}else{
+			$error=sanitizeOutput(_("User not found!"));
+		}
 	}else{
 		//mail
-
+		if($ntdb->isInDatabase('users', 'mail', $resetPW)){
+			$ntdb->resetPassword($ntdb->getAllInformationFrom('users', 'mail', $resetPW)[0]['id']);
+		}else{
+			$error=sanitizeOutput(_("User not found!"));
+		}
 	}
 	$error = "This feature is currently WIP";
 }else if(!empty($_POST['passwordVerify'])){
