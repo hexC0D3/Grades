@@ -7,9 +7,14 @@ function postCallbackSchool($data){
 	$user = getCurrentUser();
 	
 	if(!empty($data['schoolName'])){
-		if(!empty($data['updateSchool'])){//TODO: permission check
+		if(!empty($data['updateSchool'])){
 			if($ntdb->isInDatabase('schools', 'id', $data['updateSchool'])==true){
-				echo $ntdb->updateInDatabase('schools', array('name', 'website'), array($data['schoolName'], $data['schoolWebsite']), 'id', $data['updateSchool']);
+				$school = $ntdb->getAllInformationFrom('schools', 'id', $data['updateSchool'])[0];
+				if($school['adminID']==$user['id']){
+					echo $ntdb->updateInDatabase('schools', array('name', 'website'), array($data['schoolName'], $data['schoolWebsite']), 'id', $data['updateSchool']);
+				}else{
+					echo sanitizeOutput(_("You don't have the permission to do this!"));
+				}
 			}else{
 				echo sanitizeOutput(_("This school doesn't exist!"));
 			}
@@ -38,8 +43,13 @@ function postCallbackSchool($data){
 		}else{
 			echo sanitizeOutput(_("You don't have the permission to do this!"));
 		}
+	}else if(!empty($data['leaveSchool'])){
+		if($ntdb->isInDatabase('schools', 'adminID', $user['id'])){
+			echo sanitizeOutput(_("You can't leave this school, because you're the admin of it!"));
+		}else{
+			$ntdb->safelyRemoveUserFromSchool($user['id']);
+		}
 	}
-	//TODO: leave school
 }
 function showSchoolList(){?>
 
@@ -76,7 +86,7 @@ function getSchoolTableFunction($val){
 			<input type="hidden" name="joinSchool" value='.$val['id'].' />
 			<input type="submit" class="join" value="'._("Join").'" '.$dis1.' />
 		</form>
-		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list" warning="true" message="Do you really want to leave this school? This will wipe all of your data!">
+		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list" warning="true" message="'.sanitizeOutput(_("Do you really want to leave this school? This will wipe all of your data!")).'"">
 			<input type="hidden" name="leaveSchool" value='.$val['id'].' />
 			<input type="submit" class="leave" value="'._("Leave").'" '.$dis2.' />
 		</form>

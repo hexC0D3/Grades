@@ -23,14 +23,10 @@ function postCallbackClass($data){
 			echo sanitizeOutput(_("You have already joined a class!"));
 		}
 	}else if(!empty($data['leaveClass'])){//TODO: Warning message: loose all grades + remove all grades
-		if($user['classID']==$data['leaveClass']){
-			if($ntdb->getAllInformationFrom('classes', 'id', $data['leaveClass'])[0]['adminID']!=$user['id']){
-				echo $ntdb->updateInDatabase('users', array('classID'), array(-1), 'id', $user['id']);
-			}else{
-				echo sanitizeOutput(_("You are not able to leave this class, because you're the admin of it!"));
-			}
+		if(!$ntdb->isInDatabase('classes', 'adminID', $user['id'])){
+			echo $ntdb->safelyRemoveUserFromClass($user['id']);
 		}else{
-			echo sanitizeOutput(_("You aren't a member of this class!"));
+			echo sanitizeOutput(_("You are not able to leave this class, because you're the admin of it!"));
 		}
 	}else if(!empty($data['className'])){
 		if(isset($user['schoolID']) && $user['schoolID']!=-1){

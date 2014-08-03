@@ -41,6 +41,10 @@ function showAddGrade($get){
 	if(isset($get['test'])){
 		$test = $get['test'];
 	}
+	if(getCurrentUser()['classID']==-1){
+		echo sanitizeOutput(_("First you have to join a class!"));
+		exit;
+	}
 ?>
 	<form id="addNewMark_form" action="/ui/grade.php" method="POST" callBackUrl="/ui/test.php?p=list">
 	<h1><?php echo sanitizeOutput(_("Add a mark")); ?></h1>

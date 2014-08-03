@@ -142,17 +142,47 @@ class NTDB{
 	}
 	/** Adds a user to the databse **/
 	function addUser($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2){
-		$check = $this->getAllInformationFrom('users', 'username', $username)[0];
-		if(!empty($check)){
-			return false;
-		}else{
+		if(!$this->user_exists($username, $mail)){
 			return $this->addToDatabase('users', array('username', 'password', 'mail', 'classID', 'schoolID', 'subjectIDs', 'color1', 'color2'), array($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2));
+		}else{
+			return false;
 		}
 	}
 	/** Register a new user **/
-	function registerUser($username, $password, $mail, $classID, $schoolID, $subjectIDs,  $color1, $color2){
-		$password = hashPassword($password);
-		return $this->addUser($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2);//FIXME
+	function registerUser($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2){
+		global $ntdb;
+		if(!$this->user_exists($username, $mail)){
+			$password = hashPassword($password);
+			$uuid = uniqid('', true);
+			$expireTime = time() + 7200;/* +2h */
+			$meta=$username.";".$password.";".$mail.";".$classID.";".$schoolID.";".$subjectIDs.";".$color1.";".$color2;
+			
+			$bool=$ntdb->addToDatabase('mailTokens', array('tokenContent','tokenMeta','tokenMail','tokenType','tokenIP','tokenExpireTime'), array($uuid,$meta,$mail,0,$_SERVER['REMOTE_ADDR'],date('Y-m-d H:i:s',$expireTime)));
+			$msg = _("Hi, \r\nClick <a href='https://".$_SERVER["SERVER_NAME"]."/mail.php?token=".$uuid."&mail=".$mail."'>here</a> to verify your Grades account.");
+			if(sendMail($mail, MAIL_FROM, sanitizeOutput(_("Grades: registration")), sanitizeOutput($msg))&&$bool){
+				return true;
+			}else{
+				echo sanitizeOutput(_("Error while sending mail! Please report this to me@tyratox.ch"));
+				return false;
+			}	
+		}else{
+			return false;
+		}
+	}
+	/** Checks if a user exists **/
+	function user_exists($username, $mail){
+		global $ntdb;
+		$array = $ntdb->getAllInformationFrom('users', 'username', $username);
+		if(is_array($array)&&!empty($array)&&isset($array[0])&&is_array($array[0])&&!empty($array[0])){
+			return true;
+		}else{
+			$array = $ntdb->getAllInformationFrom('users', 'mail', $mail);
+			if(is_array($array)&&!empty($array)&&isset($array[0])&&is_array($array[0])&&!empty($array[0])){
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}
 	/** Adds a subject from user **/
 	function addSubjectToUser($userID, $subjectID){
@@ -240,6 +270,72 @@ class NTDB{
 			return false;
 		}
 	}
+	/** Wipe all data (grades) of a user **/
+	function wipeDataOfUser($userID){
+		$this->removeFromDatabase('grades', 'userID', $userID);
+	}
+	/** Removes a user from a school and sets a new admin **/
+	function safelyRemoveUserFromSchool($userID){
+		$this->wipeDataOfUser($userID);
+		echo $this->updateInDatabase('users', array('schoolID'), array('-1'), 'id', $userID);
+		if($this->isInDatabase('schools', 'adminID', $userID)){
+			$schools=$this->getAllInformationFrom('schools', 'adminID', $userID);
+			foreach($schools as $school){/*just in case*/
+				$u = $this->getRandomUserOfSchool($school['id']);
+			}
+		}
+	}
+	/** Removes a user from a class and sets a new admin **/
+	function safelyRemoveUserFromClass($userID){
+		$this->wipeDataOfUser($userID);
+		echo $this->updateInDatabase('users', array('classID'), array('-1'), 'id', $userID);
+		if($this->isInDatabase('classes', 'adminID', $userID)){
+			$classes=$this->getAllInformationFrom('classes', 'adminID', $userID);
+			foreach($classes as $class){/*just in case*/
+				$u = $this->getRandomUserOfClass($class['id']);
+				$this->setNewClassAdmin($u['id'], $class['id']);
+			}
+		}
+	}
+	/** Sets a new class admin and notifies every member **/
+	function setNewClassAdmin($userID, $classID){
+		$this->updateInDatabase('classes', array('adminID'), array($userID), 'id', $classID);
+		$user = $this->getAllInformationFrom('users', 'id', $userID)[0];
+		$this->sendMailToClass($classID, sanitizeOutput(_("New Class Admin")), $user['username']._(" is your new class admin.")."\r\n"._("Your Grades Team"));
+	}
+	/** Sets a new school admin and notifies every member **/
+	function setNewSchoolAdmin($userID, $schoolID){
+		$this->updateInDatabase('schools', array('adminID'), array($userID), 'id', $schoolID);
+		$user = $this->getAllInformationFrom('users', 'id', $userID)[0];
+		$this->sendMailToSchool($schoolID, sanitizeOutput(_("New School Admin")), $user['username']._(" is your new school admin.")."\r\n"._("Your Grades Team"));
+	}
+	/** Sends a mail to the whole school (with name as prefix) **/
+	function sendMailToSchool($schoolID, $subject, $message){
+		$users = $this->getAllInformationFrom('users', 'schoolID', $schoolID);
+		foreach($users as $user){
+			sendMail($user['mail'], MAIL_FROM, $subject, "Hi " . $user['username']."\r\n".$message);
+		}
+	}
+	/** Sends a mail to the whole class (with name as prefix) **/
+	function sendMailToClass($classID, $subject, $message){
+		$users = $this->getAllInformationFrom('users', 'classID', $classID);
+		foreach($users as $user){
+			sendMail($user['mail'], MAIL_FROM, $subject, "Hi " . $user['username']."\r\n".$message);
+		}
+	}
+	/** Get random user of class **/
+	function getRandomUserOfClass($classID){
+		$users = $this->getAllInformationFrom('users', 'classID', $classID);
+		$rand_keys = array_rand($users);
+		return $users[$rand_keys];
+	}
+	/** Get random user of school **/
+	function getRandomUserOfSchool($schoolID){
+		$users = $this->getAllInformationFrom('users', 'schoolID', $schoolID);
+		$rand_keys = array_rand($users);
+		return $users[$rand_keys];
+	}
+	/** Try to login user **/
 	function tryToLogIn($username, $password){
 		$array = $this->getAllInformationFrom('users', 'username', $username);
 		foreach($array as $user){
@@ -295,6 +391,7 @@ class NTDB{
 	function getLastGradesOfCurrentUserWithTimeStamp($numberOfGrades){
 		$user = getCurrentUser();
 		$array = $this->getAllInformationFrom('tests', 'classID', $user['classID']);
+		if(empty($array)){return array();};
 		usort($array, 'compareByTimestamp');
 		if(count($array)<$numberOfGrades){
 			$numberOfGrades=0;
@@ -313,6 +410,7 @@ class NTDB{
 	function getLastGradesofSubjectsOfCurrentUser($numberOfGradesPerSubject){
 		$user = getCurrentUser();
 		$array = $this->getAllInformationFrom('tests', 'classID', $user['classID']);
+		if(empty($array)){return array();};
 		usort($array, 'compareByTimestamp');
 		if(count($array)<$numberOfGradesPerSubject){
 			$numberOfGradesPerSubject=0;
@@ -323,8 +421,10 @@ class NTDB{
 		foreach($array as $test){
 			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
 			$subject = $this->getAllInformationFrom('subjects', 'id', $test['subjectID'])[0];
-			if(count($newArray[$subject['name']])<=$numberOfGradesPerSubject){
-				$newArray[$subject['name']][] = $mark['mark'];
+			if(isset($newArray[$subject['name']])){
+				if(count($newArray[$subject['name']])<=$numberOfGradesPerSubject){
+					$newArray[$subject['name']][] = $mark['mark'];
+				}	
 			}
 		}
 		return $newArray;
@@ -480,7 +580,8 @@ function setupTables(){
 	CREATE TABLE mailTokens (
 	tokenID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	tokenContent varchar(30) NOT NULL,
-	tokenMail INT NOT NULL,
+	tokenMeta varchar(200) NOT NULL,
+	tokenMail varchar(30) NOT NULL,
 	tokenType INT NOT NULL,
 	tokenIP varchar(30) NOT NULL,
 	tokenExpireTime timestamp NOT NULL

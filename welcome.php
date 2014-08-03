@@ -14,12 +14,16 @@ if(!empty($_POST['resetPW'])){
 	if(!empty($_POST['password']) && !empty($_POST['username']) && !empty($_POST['mail'])){
 		if($_POST['passwordVerify']==$_POST['password']){
 			global $ntdb;
-			$ntdb->registerUser($_POST['username'], $_POST['password'], $_POST['mail'], -1, -1, "", $_SESSION['firstColor'], $_SESSION['secondColor']);
+			if($ntdb->registerUser($_POST['username'], $_POST['password'], $_POST['mail'], -1, -1, "", $_SESSION['firstColor'], $_SESSION['secondColor'])){
+				$error=sanitizeOutput(_("Check your mail account."));
+			}else{
+				$error=sanitizeOutput(_("Your mail or your username is already in use!"));
+			}
 		}else{
-			$error=htmlentities(_("The entered passwords aren't equal!"));
+			$error=sanitizeOutput(_("The entered passwords aren't equal!"));
 		}
 	}else{
-		$error = htmlentities(_("Please fill in all fields!"));
+		$error = sanitizeOutput(_("Please fill in all fields!"));
 	}
 }else if(isset($_POST['username'])&&!empty($_POST['username'])&&isset($_POST['password'])&&!empty($_POST['password'])){
 	if(tryToLogIn($_POST['username'], $_POST['password'])){
@@ -28,10 +32,10 @@ if(!empty($_POST['resetPW'])){
 		$_SESSION['secondColor'] = $user['color2'];
 		header("Location: /");
 	}else{
-		$error = htmlentities(_("Please check your login!"));
+		$error = sanitizeOutput(_("Please check your login!"));
 	}
 }else if(!empty($_POST)){
-	$error = htmlentities(_("Please fill in all fields!"));
+	$error = sanitizeOutput(_("Please fill in all fields!"));
 }
 ?>
 <!DOCTYPE html>
