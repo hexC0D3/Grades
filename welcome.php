@@ -8,14 +8,14 @@ if(!empty($_POST['resetPW'])){
 	if(!filter_var($resetPW, FILTER_VALIDATE_EMAIL)){
 		//username
 		if($ntdb->isInDatabase('users', 'username', $resetPW)){
-			$ntdb->resetPassword($ntdb->getAllInformationFrom('users', 'username', $resetPW)[0]['id']);
+			$ntdb->resetPassword($ntdb->getAllInformationFrom('users', 'username', $resetPW)[0]);
 		}else{
 			$error=sanitizeOutput(_("User not found!"));
 		}
 	}else{
 		//mail
 		if($ntdb->isInDatabase('users', 'mail', $resetPW)){
-			$ntdb->resetPassword($ntdb->getAllInformationFrom('users', 'mail', $resetPW)[0]['id']);
+			$ntdb->resetPassword($ntdb->getAllInformationFrom('users', 'mail', $resetPW)[0]);
 		}else{
 			$error=sanitizeOutput(_("User not found!"));
 		}

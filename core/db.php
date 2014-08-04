@@ -141,8 +141,17 @@ class NTDB{
 		return false;
 	}
 	/** Resets the password of a user **/
-	function resetPassword($userID){
-		
+	function resetPassword($user){
+		$mail=$user['mail'];
+		$uuid = uniqid('', true);
+		$expireTime = time() + 7200;/* +2h */
+		$bool=$this->addToDatabase('mailTokens', array('tokenContent','tokenMeta','tokenMail','tokenType','tokenIP','tokenExpireTime'), array($uuid,$user['id'],$mail,1,$_SERVER['REMOTE_ADDR'],date('Y-m-d H:i:s',$expireTime)));
+		if(sendMail($mail, MAIL_FROM,_("Grades: password reset"), "The reset of your password was requested! If you didn't request it, ignore this mail. If you want to reset your password click <a href='https://".$_SERVER["SERVER_NAME"]."/mail.php?token=".$uuid."&mail=".$mail."'>here</a>.")){
+			if($bool){
+				return true;
+			}
+		}
+		return false;
 	}
 	/** Adds a user to the databse **/
 	function addUser($username, $password, $mail, $classID, $schoolID, $subjectIDs, $color1, $color2){
@@ -163,7 +172,7 @@ class NTDB{
 			
 			$bool=$ntdb->addToDatabase('mailTokens', array('tokenContent','tokenMeta','tokenMail','tokenType','tokenIP','tokenExpireTime'), array($uuid,$meta,$mail,0,$_SERVER['REMOTE_ADDR'],date('Y-m-d H:i:s',$expireTime)));
 			$msg = _("Hi, \r\nClick <a href='https://".$_SERVER["SERVER_NAME"]."/mail.php?token=".$uuid."&mail=".$mail."'>here</a> to verify your Grades account.");
-			if(sendMail($mail, MAIL_FROM, sanitizeOutput(_("Grades: registration")), sanitizeOutput($msg))&&$bool){
+			if(sendMail($mail, MAIL_FROM, _("Grades: registration"), sanitizeOutput($msg))&&$bool){
 				return true;
 			}else{
 				echo sanitizeOutput(_("Error while sending mail! Please report this to me@tyratox.ch"));
@@ -305,13 +314,13 @@ class NTDB{
 	function setNewClassAdmin($userID, $classID){
 		$this->updateInDatabase('classes', array('adminID'), array($userID), 'id', $classID);
 		$user = $this->getAllInformationFrom('users', 'id', $userID)[0];
-		$this->sendMailToClass($classID, sanitizeOutput(_("New Class Admin")), $user['username']._(" is your new class admin.")."\r\n"._("Your Grades Team"));
+		$this->sendMailToClass($classID, sanitizeOutput(_("Grades: new class admin")), $user['username']._(" is your new class admin.")."\r\n"._("Your Grades Team"));
 	}
 	/** Sets a new school admin and notifies every member **/
 	function setNewSchoolAdmin($userID, $schoolID){
 		$this->updateInDatabase('schools', array('adminID'), array($userID), 'id', $schoolID);
 		$user = $this->getAllInformationFrom('users', 'id', $userID)[0];
-		$this->sendMailToSchool($schoolID, sanitizeOutput(_("New School Admin")), $user['username']._(" is your new school admin.")."\r\n"._("Your Grades Team"));
+		$this->sendMailToSchool($schoolID, sanitizeOutput(_("Grades: new school admin")), $user['username']._(" is your new school admin.")."\r\n"._("Your Grades Team"));
 	}
 	/** Sends a mail to the whole school (with name as prefix) **/
 	function sendMailToSchool($schoolID, $subject, $message){
