@@ -59,16 +59,20 @@ function showTestList(){
 			usort($array, 'comparyByTimestamp');
 			$grades = $ntdb->getAllInformationFrom('grades', 'userID', $user['id']);
 			foreach($array as $val){
-				$subject = $ntdb->getAllInformationFrom('subjects', 'id', $val['subjectID'])[0];
-				$val['timestamp'] = date("d. m. Y", strtotime($val['timestamp']));
-				$m = search($grades, 'testID', $val['id']);
-				$mark = generateAddMarkLink($val);
-				if(isset($m)&&!empty($m)){
-					$mark = "<a href='#page:/ui/grade.php?p=edit&id=".sanitizeOutput($m[0]['id'])."'>".sanitizeOutput($m[0]['mark'])."</a>";
+				if($ntdb->doesUserHaveSubject($user['id'], $val['subjectID'])){
+					$subject = $ntdb->getAllInformationFrom('subjects', 'id', $val['subjectID'])[0];
+					$val['timestamp'] = date("d. m. Y", strtotime($val['timestamp']));
+					$m = search($grades, 'testID', $val['id']);
+					$mark = generateAddMarkLink($val);
+					if(isset($m)&&!empty($m)){
+						$mark = "<a href='#page:/ui/grade.php?p=edit&id=".sanitizeOutput($m[0]['id'])."'>".sanitizeOutput($m[0]['mark'])."</a>";
+					}
+					$average=$ntdb->getAverageMark($val['id']);
+					$mark.=" [".$average."]";
+					?>
+					<tr class='testTableRow'><td class='testTableTopic'><?php echo sanitizeOutput($val['topic']); ?></td><td class='testTableSubject'><?php echo sanitizeOutput($subject['name']); ?></td><td class='testTableMark'><?php echo $mark; ?></td><td class='testTableDate'><?php echo sanitizeOutput($val['timestamp']); ?></td><?php if($admin==true){echo '<td class="testTableActions actions">'.getTestTableFunction($val).'</td>';}?></tr>
+					<?php
 				}
-				?>
-				<tr class='testTableRow'><td class='testTableTopic'><?php echo sanitizeOutput($val['topic']); ?></td><td class='testTableSubject'><?php echo sanitizeOutput($subject['name']); ?></td><td class='testTableMark'><?php echo $mark; ?></td><td class='testTableDate'><?php echo sanitizeOutput($val['timestamp']); ?></td><?php if($admin==true){echo '<td class="testTableActions actions">'.getTestTableFunction($val).'</td>';}?></tr>
-				<?php
 			}
 		?>
 	</tbody>

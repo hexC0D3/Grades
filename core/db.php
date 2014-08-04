@@ -348,6 +348,15 @@ class NTDB{
 		$rand_keys = array_rand($users);
 		return $users[$rand_keys];
 	}
+	/** Get Average mark of test **/
+	function getAverageMark($testID){
+		$grades = $this->getAllInformationFrom('grades', 'testID', $testID);
+		$marks = array();
+		foreach($grades as $grade){
+			$marks[] = $grade['mark'];
+		}
+		return (array_sum($marks)/count($marks));
+	}
 	/** Try to login user **/
 	function tryToLogIn($username, $password){
 		$array = $this->getAllInformationFrom('users', 'username', $username);

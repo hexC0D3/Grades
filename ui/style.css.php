@@ -364,6 +364,10 @@ td{
 }
 .averageMark{
 	font-size:250%;
+	width:15%;
+}
+.points{
+	font-size:30%;
 }
 /** end:#gradesTable **/
 /** start:chart **/

@@ -1,33 +1,57 @@
-<?php 
+<?php
 global $ntdb;
+$user = getCurrentUser();
+
 $num = 5;
 $array = $ntdb->getLastGradesofSubjectsOfCurrentUser($num);
+$grades=$ntdb->getAllInformationFrom('grades', 'userID', $user['id']);
+
+$averages=array();
+/** Generate table with grades **/
 if(!empty($array)){
-	$average_a = 0;
-	$ver = 0;
 	echo "<table id='gradesTable' cellspacing='0'>";
+	$pointsAV=0;
 	foreach($array as $key => $value){
 		echo "<tr><td class='subject'>".sanitizeOutput($key)."</td>";
-		$s = 0;
 		for($i=0;$i<$num;$i++){
 			if(isset($value[$i])){
 				$secondClass = $value[$i] > 4 ? "" : " negativeMark";
 				echo "<td class='mark".$secondClass."'>".sanitizeOutput($value[$i])."</td>";
-				$s += $value[$i];
 			}else{
 				echo "<td class='mark'>-</td>";
 			}
 		}
-		$average = round($s/count($value), 2);
+		/** Get all marks of subject and calc the average mark of subject **/
+		$average = array();
+		$subject=$ntdb->getAllInformationFrom('subjects', 'name', $key)[0];
+		foreach($grades as $grade){
+			$test=$ntdb->getAllInformationFrom('tests', 'id', $grade['testID'])[0];
+			if($test['subjectID']==$subject['id']){
+				$average[]=$grade['mark'];
+			}
+		}
+		$average = round(array_sum($average)/count($average), 2);
+		/** Add average to array **/
+		$averages[]=$average;
+		$points = "";
+		/** Generate points, print it and add it to total **/
 		if($average>0){
-			$average_a+=$average;
-			$secondClass = $average > 4 ? "" : " negativeMark";
-			$ver++;
+			if($average > 4){
+				$secondClass = "";
+				$p=($average-4);
+				$pointsAV+=$p;
+				$points = " (+" . $p . ")";
+			}else{
+				$secondClass = " negativeMark";
+				$p=(2*(4-$average));
+				$pointsAV-=$p;
+				$points = " (-" . $p . ")";
+			}
 		}else{
 			$average="-";
 			$secondClass="";
 		}
-		echo "<td class='mark averageMark".$secondClass."'>".$average."</td>";
+		echo "<td class='mark averageMark".$secondClass."'>".$average."<span class='points'>".$points."</span></td>";
 		echo "</td>";
 	}
 	echo '</table>
@@ -42,15 +66,24 @@ if(!empty($array)){
 	?>
 	<div class="clear"></div>
 	<?php
-	if($ver != 0){
-		$x = ($average_a/$ver);
+	/** Recalc and re-round average mark **/
+	$count = count($averages);
+	$sum = array_sum($averages);
+	
+	if($count > 0){
+		$x = ($sum/$count);
 		$x = round($x, 2);
-		$secondClass = $x > 4 ? "" : " class='negativeMark'";
+		if($x > 4){
+			$secondClass = "";
+		}else{
+			$secondClass = " class='negativeMark'";
+		}
+		$pointsAV = $pointsAV>0 ?  " (+" . $pointsAV . ")" : " (-" . $pointsAV . ")";
 	}else{
 		$x="-";
 		$secondClass="";
 	}
-	
+	/** Generate data for graph.js **/
 	$array = $ntdb->getLastGradesOfCurrentUserWithTimeStamp(7);
 	$subjects = '"'.implode('", "',array_keys($array)).'"';
 	$marks = array();
@@ -61,11 +94,11 @@ if(!empty($array)){
 	}
 	$marks = implode(",", $marks);
 	$dates = '"'.implode('", "', $dates).'"';
-	$user = getCurrentUser();
 	$color1 = $user['color1'];
 	$color2 = $user['color2'];
+	
 	?>
-	<div id="averageMark"> <?php echo _("Average Mark") ." : <span ".$secondClass.">". $x . "</span>"; ?></div>
+	<div id="averageMark"> <?php echo _("Average Mark") ." : <span ".$secondClass.">". $x .$pointsAV. "</span>"; ?></div>
 	<script>
 	var data =
 	{
