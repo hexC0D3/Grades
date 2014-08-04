@@ -103,7 +103,7 @@ h1 a, h2 a{
 	font-size:187.5%;
 }
 #menuBar li a{
-	font-size:85%;
+	font-size:70%;
 }
 .title{
 	font-size:312.5%;
@@ -358,6 +358,7 @@ td{
 	color:#000;
 	text-align:center;
 	width:70px;
+	white-space: nowrap;
 }
 .negativeMark{
 	color:#e74c3c;
@@ -365,9 +366,6 @@ td{
 .averageMark{
 	font-size:250%;
 	width:15%;
-}
-.points{
-	font-size:30%;
 }
 /** end:#gradesTable **/
 /** start:chart **/

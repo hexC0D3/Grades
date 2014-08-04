@@ -62,6 +62,10 @@ if(!empty($array)){
 		echo '<script>
 	$("#theChart").attr("width", $(window).width());
 	</script>';
+	}else{
+		echo '<script>
+	$("#theChart").attr("width", ($(window).width())/2.75);
+	</script>';
 	}
 	?>
 	<div class="clear"></div>
