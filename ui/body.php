@@ -35,9 +35,10 @@ if(!empty($array)){
 			$average="-";
 		}else{
 			$average = round(array_sum($average)/count($average), 2);
+			
+			/** Add average to array **/
+			$averages[]=$average;
 		}
-		/** Add average to array **/
-		$averages[]=$average;
 		$points = "";
 		/** Generate points, print it and add it to total **/
 		if($average>0){
