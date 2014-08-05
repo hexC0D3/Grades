@@ -31,7 +31,11 @@ if(!empty($array)){
 				$average[]=$grade['mark'];
 			}
 		}
-		$average = round(array_sum($average)/count($average), 2);
+		if(count($average)<=0){
+			$average="-";
+		}else{
+			$average = round(array_sum($average)/count($average), 2);
+		}
 		/** Add average to array **/
 		$averages[]=$average;
 		$points = "";

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Grades\n"
-"POT-Creation-Date: 2014-08-05 17:38+0100\n"
-"PO-Revision-Date: 2014-08-05 17:39+0100\n"
+"POT-Creation-Date: 2014-08-05 18:53+0100\n"
+"PO-Revision-Date: 2014-08-05 18:53+0100\n"
 "Last-Translator: Nico Hauser <me@tyratox.ch>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -186,15 +186,15 @@ msgid ""
 "me@tyratox.ch"
 msgstr "Etwas ist schief gelaufen, bitte kontaktiere me@tyratox.ch"
 
-#: ../../../../ui/body.php:106
+#: ../../../../ui/body.php:110
 msgid "Average Mark"
 msgstr "Durchschnitt"
 
-#: ../../../../ui/body.php:144
+#: ../../../../ui/body.php:148
 msgid "Welcome to Grades"
 msgstr "Willkommen bei Grades"
 
-#: ../../../../ui/body.php:145
+#: ../../../../ui/body.php:149
 msgid ""
 "You can now start with joining a school and a class. After that you can "
 "start adding grades."
@@ -204,8 +204,8 @@ msgstr ""
 
 #: ../../../../ui/class.php:13 ../../../../ui/class.php:38
 #: ../../../../ui/school.php:16 ../../../../ui/school.php:44
-#: ../../../../ui/subjects.php:16 ../../../../ui/subjects.php:53
-#: ../../../../ui/subjects.php:76 ../../../../ui/test.php:25
+#: ../../../../ui/subjects.php:25 ../../../../ui/subjects.php:62
+#: ../../../../ui/subjects.php:85 ../../../../ui/test.php:25
 #: ../../../../ui/test.php:33
 msgid "You don't have the permission to do this!"
 msgstr "Du bist nicht dazu berechtigt, dies zu tun!"
@@ -235,36 +235,44 @@ msgstr "Du bist bereits ein Mitglied einer Klasse!"
 msgid "This class already exists!"
 msgstr "Diese Klasse existiert bereits!"
 
-#: ../../../../ui/class.php:66 ../../../../ui/class.php:82
-#: ../../../../ui/subjects.php:40 ../../../../ui/subjects.php:128
+#: ../../../../ui/class.php:66 ../../../../ui/class.php:90
+#: ../../../../ui/subjects.php:49 ../../../../ui/subjects.php:137
 msgid "First you have to join a school!"
 msgstr "Zuerst musst du einer Schule beitreten!"
 
-#: ../../../../ui/class.php:74 ../../../../ui/grade.php:41
+#: ../../../../ui/class.php:76 ../../../../ui/grade.php:41
 #: ../../../../ui/test.php:44
 msgid "First you have to join a class!"
 msgstr "Zuerst musst du einer Klasse beitreten!"
 
-#: ../../../../ui/class.php:87 ../../../../ui/class.php:141
-#: ../../../../ui/class.php:156
+#: ../../../../ui/class.php:79
+msgid "Mail Subject"
+msgstr "Betreff"
+
+#: ../../../../ui/class.php:83
+msgid "Send Mail"
+msgstr "Mail absenden"
+
+#: ../../../../ui/class.php:95 ../../../../ui/class.php:149
+#: ../../../../ui/class.php:164
 msgid "Class Name"
 msgstr "Klassenname"
 
-#: ../../../../ui/class.php:87
+#: ../../../../ui/class.php:95
 msgid "Class Admin"
 msgstr "Klassenchef"
 
-#: ../../../../ui/class.php:87 ../../../../ui/school.php:57
-#: ../../../../ui/subjects.php:122 ../../../../ui/test.php:53
+#: ../../../../ui/class.php:95 ../../../../ui/school.php:57
+#: ../../../../ui/subjects.php:131 ../../../../ui/test.php:53
 msgid "Actions"
 msgstr "Aktionen"
 
-#: ../../../../ui/class.php:113 ../../../../ui/school.php:87
-#: ../../../../ui/subjects.php:157
+#: ../../../../ui/class.php:121 ../../../../ui/school.php:87
+#: ../../../../ui/subjects.php:166
 msgid "Join"
 msgstr "Beitreten"
 
-#: ../../../../ui/class.php:115
+#: ../../../../ui/class.php:123
 msgid ""
 "If you leave this class all test and the related grades will be lost for "
 "you! Do you want to continue?"
@@ -272,17 +280,17 @@ msgstr ""
 "Falls du diese Klasse verlässt, werden alle deine Tests und die "
 "dazugehörigen Noten verloren gehen! Willst du fortfahren?"
 
-#: ../../../../ui/class.php:117 ../../../../ui/school.php:91
-#: ../../../../ui/subjects.php:161
+#: ../../../../ui/class.php:125 ../../../../ui/school.php:91
+#: ../../../../ui/subjects.php:170
 msgid "Leave"
 msgstr "Verlassen"
 
-#: ../../../../ui/class.php:125 ../../../../ui/school.php:99
-#: ../../../../ui/subjects.php:167 ../../../../ui/test.php:86
+#: ../../../../ui/class.php:133 ../../../../ui/school.php:99
+#: ../../../../ui/subjects.php:176 ../../../../ui/test.php:86
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../../../../ui/class.php:126
+#: ../../../../ui/class.php:134
 msgid ""
 "Are you sure, that you want to delete your class? This will delete all tests "
 "of this class and also the corresponding grades!"
@@ -290,35 +298,35 @@ msgstr ""
 "Bist du dir sicher, dass du diese Klasse löschen willst? Es würden alle "
 "Prüfungen und die dazugehörigen Noten gelöscht werden!"
 
-#: ../../../../ui/class.php:128 ../../../../ui/school.php:102
-#: ../../../../ui/subjects.php:171 ../../../../ui/test.php:89
+#: ../../../../ui/class.php:136 ../../../../ui/school.php:102
+#: ../../../../ui/subjects.php:180 ../../../../ui/test.php:89
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../../../../ui/class.php:136
+#: ../../../../ui/class.php:144
 msgid "First you've to join a school!"
 msgstr "Zuerst musst du einer Schule beitreten!"
 
-#: ../../../../ui/class.php:140 ../../../../ui/class.php:143
-#: ../../../../ui/class.php:155
+#: ../../../../ui/class.php:148 ../../../../ui/class.php:151
+#: ../../../../ui/class.php:163
 msgid "Create a new class"
 msgstr "Klasse erstellen"
 
-#: ../../../../ui/class.php:151 ../../../../ui/grade.php:70
+#: ../../../../ui/class.php:159 ../../../../ui/grade.php:70
 #: ../../../../ui/school.php:123 ../../../../ui/test.php:99
 #: ../../../../ui/test.php:131
 msgid "You aren't allowed to see this page!"
 msgstr "Du bist nicht dazu berechtigt diese Seite zu sehen!"
 
-#: ../../../../ui/class.php:159
+#: ../../../../ui/class.php:167
 msgid "Update class"
 msgstr "Klasse aktualisieren"
 
 #: ../../../../ui/footer.php:11
-msgid "Data succesfully saved!"
-msgstr "Daten wurden erfolgreich gespeichert!"
+msgid "Action has successfully been completed!"
+msgstr "Die Aktion wurde erfolgreich beendet!"
 
-#: ../../../../ui/footer.php:13 ../../../../ui/subjects.php:133
+#: ../../../../ui/footer.php:13 ../../../../ui/subjects.php:142
 msgid "Yes"
 msgstr "Ja"
 
@@ -472,70 +480,70 @@ msgstr "Website der Schule (ohne http://)"
 msgid "Update school"
 msgstr "Schule aktualisieren"
 
-#: ../../../../ui/subjects.php:21
+#: ../../../../ui/subjects.php:30
 msgid "You have already joined this subject!"
 msgstr "Du hast dieses Fach bereits ausgewählt!"
 
-#: ../../../../ui/subjects.php:26
+#: ../../../../ui/subjects.php:35
 msgid "You aren't able to join this subject!"
 msgstr "Du bist nicht in der Lage dieses Fach zu wählen!"
 
-#: ../../../../ui/subjects.php:30
+#: ../../../../ui/subjects.php:39
 msgid "Yet you haven't joined this subject!"
 msgstr "Du hast dieses Fach bisher noch nicht gewählt!"
 
-#: ../../../../ui/subjects.php:43 ../../../../ui/subjects.php:122
-#: ../../../../ui/subjects.php:188 ../../../../ui/subjects.php:210
+#: ../../../../ui/subjects.php:52 ../../../../ui/subjects.php:131
+#: ../../../../ui/subjects.php:197 ../../../../ui/subjects.php:219
 msgid "Subject Name"
 msgstr "Fachname"
 
-#: ../../../../ui/subjects.php:43 ../../../../ui/subjects.php:45
+#: ../../../../ui/subjects.php:52 ../../../../ui/subjects.php:54
 msgid "shouldn't be empty!"
 msgstr "sollte nicht leer sein!"
 
-#: ../../../../ui/subjects.php:45 ../../../../ui/subjects.php:191
-#: ../../../../ui/subjects.php:213
+#: ../../../../ui/subjects.php:54 ../../../../ui/subjects.php:200
+#: ../../../../ui/subjects.php:222
 msgid "Is subject relevant?"
 msgstr "Promotionswirksam?"
 
-#: ../../../../ui/subjects.php:70
+#: ../../../../ui/subjects.php:79
 msgid "This subject already exists!"
 msgstr "Dieses Fach existiert bereits!"
 
-#: ../../../../ui/subjects.php:96 ../../../../ui/test.php:53
+#: ../../../../ui/subjects.php:105 ../../../../ui/test.php:53
 msgid "Topic"
 msgstr "Thema"
 
-#: ../../../../ui/subjects.php:97
+#: ../../../../ui/subjects.php:106
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ../../../../ui/subjects.php:98
+#: ../../../../ui/subjects.php:107
 msgid "Type"
 msgstr "Typ"
 
-#: ../../../../ui/subjects.php:99 ../../../../ui/test.php:121
+#: ../../../../ui/subjects.php:108 ../../../../ui/test.php:121
 msgid "Test Date"
 msgstr "Test Datum"
 
-#: ../../../../ui/subjects.php:100 ../../../../ui/test.php:53
+#: ../../../../ui/subjects.php:109 ../../../../ui/test.php:53
 msgid "Mark"
 msgstr "Note"
 
-#: ../../../../ui/subjects.php:116
+#: ../../../../ui/subjects.php:125
 msgid "Choose a subject on the main page by clicking on its name."
 msgstr ""
 "Wähle ein Fach auf der Hauptseite indem du auf den jeweiligen Namen klickst."
 
-#: ../../../../ui/subjects.php:122
+#: ../../../../ui/subjects.php:131
 msgid "Relevant ?"
 msgstr "Promotionswirksam ?"
 
-#: ../../../../ui/subjects.php:133
+#: ../../../../ui/subjects.php:142
 msgid "No"
 msgstr "Nein"
 
-#: ../../../../ui/subjects.php:159
+#: ../../../../ui/subjects.php:168
 msgid ""
 "Are you sure, that you want to leave this subject? This will delete all "
 "grades related to this subject!"
@@ -543,7 +551,7 @@ msgstr ""
 "Bist du dir sicher, dass du dieses Fach verlassen willst? Es werden alle "
 "Noten die zu diesem Fach gehören gelöscht!"
 
-#: ../../../../ui/subjects.php:169
+#: ../../../../ui/subjects.php:178
 msgid ""
 "Are you sure, that you want to delete this subject? This will delete all "
 "grades related to this subject!"
@@ -551,23 +559,23 @@ msgstr ""
 "Bist du dir sicher, dass du dieses Fach löschen willst? Es werden alle Noten "
 "die zu diesem Fach gehören gelöscht!"
 
-#: ../../../../ui/subjects.php:183
+#: ../../../../ui/subjects.php:192
 msgid "You aren't allowed to create a subject!"
 msgstr "Du bist nicht dazu berechtigt ein Fach zu erstellen!"
 
-#: ../../../../ui/subjects.php:187 ../../../../ui/subjects.php:196
+#: ../../../../ui/subjects.php:196 ../../../../ui/subjects.php:205
 msgid "Create a new subject"
 msgstr "Fach erstellen"
 
-#: ../../../../ui/subjects.php:205
+#: ../../../../ui/subjects.php:214
 msgid "You aren't allowed to edit this subject!"
 msgstr "Du bist nicht dazu berechtigt diese Fach zu bearbeiten!"
 
-#: ../../../../ui/subjects.php:209
+#: ../../../../ui/subjects.php:218
 msgid "Edit the subject"
 msgstr "Fach bearbeiten"
 
-#: ../../../../ui/subjects.php:219
+#: ../../../../ui/subjects.php:228
 msgid "Update subject"
 msgstr "Fach aktualisieren"
 
@@ -695,14 +703,11 @@ msgstr "Benutzername oder E-Mail"
 msgid "Reset your password"
 msgstr "Setze mein Passwort zurück"
 
-#~ msgid "My Subjects"
-#~ msgstr "Meine Fächer"
+#~ msgid "Data succesfully saved!"
+#~ msgstr "Daten wurden erfolgreich gespeichert!"
 
 #~ msgid "Sign In"
 #~ msgstr "Einloggen"
-
-#~ msgid "Send me a mail"
-#~ msgstr "Sende mir eine E-Mail"
 
 #~ msgid "You aren't a member of this class!"
 #~ msgstr "Du bist kein Mitglied dieser Klasse!"

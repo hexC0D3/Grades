@@ -8,7 +8,7 @@
 	<?php require_once(UI_DIR . "js/alertify/alertify.min.js"); ?>
 	<?php require_once(UI_DIR . "js/chart/Chart.min.js"); ?>
 	<?php require_once(AJAX_DIR."nt-ajax.js"); ?>
-	var successText = "<?php echo sanitizeOutput(_("Data succesfully saved!")); ?>";
+	var successText = "<?php echo sanitizeOutput(_("Action has successfully been completed!")); ?>";
 	alertify.set({ labels: {
 	    ok     : "<?php echo sanitizeOutput(_("Yes")); ?>",
 	    cancel : "<?php echo sanitizeOutput(_("Cancel")); ?>"

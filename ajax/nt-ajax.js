@@ -119,6 +119,9 @@ function postData(urlToPost, form, callBack){
     		}
     	} 
     });
+    form.find("textarea").each(function(index){
+    	stringData+=$(this).attr("name") + ":" + $(this).val() +";";
+    });
     form.find("select").each(function(index){
     	if($(this).val()==null){return false;}
     	if($(this).val().indexOf(":")>-1){

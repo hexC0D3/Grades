@@ -371,6 +371,7 @@ class NTDB{
 		foreach($users as $user){
 			sendMail($user['mail'], MAIL_FROM, $subject, "Hi " . $user['username']."\r\n".$message);
 		}
+		return true;
 	}
 	/** Get random user of class **/
 	function getRandomUserOfClass($classID){

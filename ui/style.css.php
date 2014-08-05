@@ -161,6 +161,20 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 #page a:hover{
 	border-color:<?php echo $prim; ?>;
 }
+/** start:textarea **/
+textarea{
+	color:<?php echo $prim; ?>;
+	font-size:150%;
+	font-weight:200;
+	border:1px solid <?php echo $prim; ?>;
+	max-width:98%;
+	width:98%;
+	min-width:98%;
+	max-height:30vw;
+	height:30vw;
+	min-height:30vw;
+}
+/** end:textarea **/
 /** start:input[type="text"], input[type="password"] and input[type="number"] **/
 input[type="text"], input[type="number"],input[type="password"]{
 	border: <?php echo $prim; ?> 1px solid;

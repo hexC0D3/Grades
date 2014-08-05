@@ -65,6 +65,8 @@ function postCallbackClass($data){
 		}else{
 			echo sanitizeOutput(_("First you have to join a school!"));
 		}
+	}else if(!empty($data['subject'])&&!empty($data['text'])){
+		echo $ntdb->sendMailToClass($user['classID'], $subject, $data['text']);
 	}
 }
 function showClassroom($get){
@@ -72,9 +74,15 @@ function showClassroom($get){
 	$classID = getCurrentUser()['classID'];
 	if($classID==-1){
 		redirectToHome(_("First you have to join a class!"));
-	}else{
-		die("Classroom");
-	}
+	}else{ ?>
+		<form action="/ui/class.php" callBackUrl="/ui/class.php?p=classroom">
+			<input type="text" name="subject" placeholder="<?php echo sanitizeOutput(_("Mail Subject"));?>" />
+			<br/><br/>
+			<textarea name="text"></textarea>
+			<br/><br/>
+			<input type="submit" value="<?php echo sanitizeOutput(_("Send Mail")); ?>" />
+		</form>
+	<?php }
 }
 function showClassList($get){
 $user = getCurrentUser();
