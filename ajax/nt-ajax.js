@@ -32,7 +32,6 @@ function loadPage(url){
 		dateFormat: 'dd. mm. yy',
 		beforeShowDay: $.datepicker.noWeekends,
 		constrainInput: true,
-		minDate: new Date(),
 		firstDay: 1
 	});
 	$('#ui-datepicker-div').css("display","none");
