@@ -6,11 +6,20 @@ checkHead('postCallbackSujects', 'showMySubjects', 'showSubjectList', 'showCreat
 function postCallbackSujects($data){
 	global $ntdb;
 	$user = getCurrentUser();
-	if(!empty($data['deleteSubject'])){//TODO: Remove subject of users and test and marks
+	if(!empty($data['deleteSubject'])){
 		
 		$subject = $ntdb->getAllInformationFrom('subjects', 'id', $data['deleteSubject'])[0];
 		$school = $ntdb->getAllInformationFrom('schools', 'id', $subject['schoolID'])[0];
 		if($user['schoolID']==$subject['schoolID']&&$school['adminID']==$user['id']){
+			$users=$ntdb->getAllInformationFrom('users', array('classID'), array($user['classID']));
+			foreach($users as $user){
+				$ntdb->removeSubjectFromUser($user['id'], $data['deleteSubject']);
+			}
+			$tests = $ntdb->getAllInformationFrom('tests', array('subjectID'), array($data['deleteSubject']));
+			foreach($tests as $test){
+				$ntdb->removeFromDatabase('grades', array('testID'), array($test['id']));
+				$ntdb->removeFromDatabase('tests', array('id'), array($test['id']));	
+			}
 			echo $ntdb->removeFromDatabase('subjects', 'id', $data['deleteSubject']);
 		}else{
 			echo sanitizeOutput(_("You don't have the permission to do this!"));
@@ -25,10 +34,14 @@ function postCallbackSujects($data){
 		}else{
 			echo sanitizeOutput(_("You aren't able to join this subject!"));
 		}
-	}else if(!empty($data['leaveSubject'])){//TODO: Warning message: loose all grades + delete all grades
+	}else if(!empty($data['leaveSubject'])){
 		if($ntdb->removeSubjectFromUser($user['id'], $data['leaveSubject'])!=true){
 			echo sanitizeOutput(_("Yet you haven't joined this subject!"));
 		}else{
+			$tests=$ntdb->getAllInformationFrom('tests', array('classID', 'subjectID'), array($user['classID'], $data['leaveSubject']));
+			foreach($tests as $test){
+				$ntdb->removeFromDatabase('grades', array('userID', 'testID'), array($user['id'], $test['id']));
+			}
 			echo true;
 		}
 	}else{
@@ -41,7 +54,7 @@ function postCallbackSujects($data){
 				echo sanitizeOutput(_("Is subject relevant?"). " " . _("shouldn't be empty!"));
 			}else{
 				$data['isSubjectRelevant'] = $data['isSubjectRelevant']=="false" ? 0 : 1;
-				if(!empty($data['updateSubject'])){//TODO: check permissions
+				if(!empty($data['updateSubject'])){
 					$school = $ntdb->getAllInformationFrom('schools', 'id', $ntdb->getAllInformationFrom('subjects', 'id', $data['updateSubject'])[0])[0];
 					if($school['adminID']==$user['id']){
 						echo $ntdb->updateInDatabase('subjects', array('name', 'relevant'), array($data['subjectName'], (int)$data['isSubjectRelevant']), 'id', $data['updateSubject']);
@@ -77,10 +90,42 @@ function postCallbackSujects($data){
 		}
 	}
 }
-function showMySubjects(){
-	die("my subjects");
+function showMySubjects($get){
+	global $ntdb;
+	$user=getCurrentUser();
+	$subject=$ntdb->getAllInformationFrom('subjects', array('id'), array($get['id']))[0];
+	
+	
+	if(isset($get['id'])&&!empty($get['id'])){
+		echo "<h1>".$subject['name']."</h1>";
+	?>
+		<table>
+			<thead>
+				<tr>
+					<th><?php echo sanitizeOutput(_("Topic")); ?></th>
+					<th><?php echo sanitizeOutput(_("Description")); ?></th>
+					<th><?php echo sanitizeOutput(_("Type")); ?></th>
+					<th><?php echo sanitizeOutput(_("Test Date")); ?></th>
+					<th><?php echo sanitizeOutput(_("Mark")); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+					$tests=$ntdb->getAllInformationFrom('tests', array('subjectID', 'classID'), array($get['id'],$user['classID']));
+					usort($tests, 'compareByTimestamp');
+					foreach($tests as $test){
+						$grade=$ntdb->getAllInformationFrom('grades', array('testID'), array($test['id']))[0];
+						$test['timestamp'] = date("d. m. Y", strtotime($test['timestamp']));
+						echo "<tr><td>".$test['topic']."</td><td>".$test['description']."</td><td>".$test['type']."</td><td>".$test['timestamp']."</td><td><a href='#page:/ui/grade.php?p=edit&id=".sanitizeOutput($grade['id'])."'>".$grade['mark']."</a> [".$ntdb->getAverageMark($test['id'])."]</td></tr>";
+					}
+				?>
+			</tbody>
+		</table>
+	<?php }else{
+		redirectToHome(_("Choose a subject on the main page by clicking on its name."));
+	}
 }
-function showSubjectList(){?>
+function showSubjectList($get){?>
 
 <table>
 	<thead><tr><th><?php echo sanitizeOutput(_("Subject Name")); ?></th><th><?php echo sanitizeOutput(_("Relevant ?")); ?></th><th class='actions'><?php echo sanitizeOutput(_("Actions")); ?></th></tr></thead>
@@ -120,19 +165,19 @@ function getSubjectTableFunction($val){
 		<input type="hidden" name="joinSubject" value='.$val['id'].' />
 		<input type="submit" class="join" value="'.htmlentities(_("Join")).'" '.$dis1.' />
 	</form>
-	<form action="/ui/subjects.php" method="POST" callBackUrl="/ui/subjects.php?p=list">
+	<form action="/ui/subjects.php" method="POST" callBackUrl="/ui/subjects.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to leave this subject? This will delete all grades related to this subject!")) . '">
 		<input type="hidden" name="leaveSubject" value='.$val['id'].' />
 		<input type="submit" class="leave" value="'.htmlentities(_("Leave")).'" '.$dis2.' />
 	</form>';
 	
 	
-	$school = $ntdb->getAllInformationFrom('schools', 'id', $ntdb->getAllInformationFrom('subjects', 'id', $val['id'])[0])[0];
+	$school = $ntdb->getAllInformationFrom('schools', 'id', $ntdb->getAllInformationFrom('subjects', 'id', $val['id'])[0]['schoolID'])[0];
 	if($school['adminID']==$user['id']){
-		$code.='<a href="#page:/ui/subjects.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" '.$dis3.' /></a>
+		$code.='<a href="#page:/ui/subjects.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'"/></a>
 
-	<form action="/ui/subjects.php" method="POST" callBackUrl="/ui/subjects.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to delete this subject? This will delete all of the test and grades related to this subject!")) . '">
+	<form action="/ui/subjects.php" method="POST" callBackUrl="/ui/subjects.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to delete this subject? This will delete all grades related to this subject!")) . '">
 		<input type="hidden" name="deleteSubject" value='.$val['id'].' />
-		<input type="submit" class="delete" value="'.htmlentities(_("Delete")).'" '.$dis4.' />
+		<input type="submit" class="delete" value="'.htmlentities(_("Delete")).'"/>
 	</form>
 	';
 	}

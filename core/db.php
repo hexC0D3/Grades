@@ -38,57 +38,93 @@ class NTDB{
 		}
 		return false;
 	}
-	/** Get row from the database **/
-	function getAllInformationFrom($tableName, $key, $value){
-		if ($stmt = $this->mysqli->prepare("SELECT * FROM ".$tableName." WHERE ".$key."=?")) {
-			$type="";
-			if(is_string($value)){
-				$type="s";
-			}else if(is_int($value)){
-				$type="i";
-			}else{
-				return false;
+	/** Get row(s) from the database **/
+	function getAllInformationFrom($tableName, $arrayOfKeys, $arrayOfValues){
+		if(is_string($arrayOfKeys)){/*Fallback*/
+			$arrayOfKeys=array($arrayOfKeys);
+			$arrayOfValues=array($arrayOfValues);
+		}
+		if(count($arrayOfKeys)==count($arrayOfValues)){
+			$statement = " WHERE ".$arrayOfKeys[0]."=?";
+			for($i=1;$i<count($arrayOfKeys);$i++){
+				$statement.=" AND ".$arrayOfKeys[$i]."=?";
 			}
-			$stmt->bind_param($type, $value);
-			$stmt->execute();
-
-			$meta = $stmt->result_metadata();
-			while ($field = $meta->fetch_field()) {
-				$parameters[] = &$row[$field->name];
-			}
-			call_user_func_array(array($stmt, 'bind_result'), $parameters);
-			while ($stmt->fetch()) {
-				foreach($row as $key => $val) {
-					$x[$key] = $val;
+			$types="";
+			foreach($arrayOfValues as $key => $value){
+				if(is_string($value)){
+					$types.="s";
+				}else if(is_int($value)){
+					$types.="i";
+				}else if(is_bool($value)){
+					$arrayOfValues[$key]=(int)$value;
+					$types.="i";
+				}else{
+					return false;
 				}
-				$results[] = $x;
 			}
-			#print_r($results);
-
-			$stmt->close();
-			if(isset($results)){
-				return $results;
-			}else{
-				return null;
+			$values = array();
+			for($i = 0;$i<count($arrayOfValues);$i++){
+				$values[$i] = &$arrayOfValues[$i];
+			}
+			if ($stmt = $this->mysqli->prepare("SELECT * FROM ".$tableName.$statement)) {
+				call_user_func_array(array($stmt, "bind_param"), array_merge(array($types), $values));
+				$stmt->execute();
+				
+				$meta = $stmt->result_metadata();
+				while ($field = $meta->fetch_field()) {
+					$parameters[] = &$row[$field->name];
+				}
+				call_user_func_array(array($stmt, 'bind_result'), $parameters);
+				while ($stmt->fetch()) {
+					foreach($row as $key => $val) {
+						$x[$key] = $val;
+					}
+					$results[] = $x;
+				}
+				$stmt->close();
+				if(isset($results)){
+					return $results;
+				}else{
+					return null;
+				}
 			}
 		}
 		return false;
 	}
 	/** Remove something from the database **/
-	function removeFromDatabase($tableName, $key, $value){
-		if ($stmt = $this->mysqli->prepare("DELETE FROM ".$tableName." WHERE ".$key." = ?")) {
-			$type="";
-			if(is_string($value)){
-				$type="s";
-			}else if(is_int($value)){
-				$type="i";
-			}else{
-				return false;
+	function removeFromDatabase($tableName, $arrayOfKeys, $arrayOfValues){
+		if(is_string($arrayOfKeys)){/*Fallback*/
+			$arrayOfKeys=array($arrayOfKeys);
+			$arrayOfValues=array($arrayOfValues);
+		}
+		if(count($arrayOfKeys)==count($arrayOfValues)){
+			$statement = " WHERE ".$arrayOfKeys[0]."=?";
+			for($i=1;$i<count($arrayOfKeys);$i++){
+				$statement.=" AND ".$arrayOfKeys[$i]."=?";
 			}
-			$stmt->bind_param($type, $value);
-			$stmt->execute();
-			$stmt->close();
-			return true;
+			$types="";
+			foreach($arrayOfValues as $key => $value){
+				if(is_string($value)){
+					$types.="s";
+				}else if(is_int($value)){
+					$types.="i";
+				}else if(is_bool($value)){
+					$arrayOfValues[$key]=(int)$value;
+					$types.="i";
+				}else{
+					return false;
+				}
+			}
+			$values = array();
+			for($i = 0;$i<count($arrayOfValues);$i++){
+				$values[$i] = &$arrayOfValues[$i];
+			}
+			if ($stmt = $this->mysqli->prepare("DELETE FROM ".$tableName.$statement)) {
+				call_user_func_array(array($stmt, "bind_param"), array_merge(array($types), $values));
+				$stmt->execute();
+				$stmt->close();
+				return true;
+			}
 		}
 		return false;
 	}
@@ -452,9 +488,13 @@ class NTDB{
 }
 function getCurrentUser(){
 	global $ntdb;
-	$id = $ntdb->getTokenUser($_SESSION['_loginToken']);
-	$user = $ntdb->getAllInformationFrom('users', 'id', $id);
-	return $user[0];
+	if(isset($_SESSION['_loginToken'])){
+		$id = $ntdb->getTokenUser($_SESSION['_loginToken']);
+		$user = $ntdb->getAllInformationFrom('users', 'id', $id);
+		return $user[0];
+	}else{
+		return false;
+	}
 }
 function tryToLogIn($username, $password){
 	global $ntdb;
@@ -489,7 +529,7 @@ function randFlatColor(){
 	$rKey = array_rand($flatColors, 1);
 	$rand = $flatColors[$rKey];
 	
-	if(isset($ntdb)){
+	if(isset($ntdb)&&isUserLoggedIn()){
 		$user = getCurrentUser();
 		$ntdb->updateInDatabase('users', array("color1", "color2"), array($rand[0], $rand[1]), 'id', $user['id']);
 	}

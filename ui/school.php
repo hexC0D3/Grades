@@ -51,7 +51,7 @@ function postCallbackSchool($data){
 		}
 	}
 }
-function showSchoolList(){?>
+function showSchoolList($get){?>
 
 <table>
 	<thead><tr><th><?php echo sanitizeOutput(_("School Name")); ?></th><th class="actions"><?php echo sanitizeOutput(_("Actions")); ?></th></tr></thead>
@@ -82,7 +82,7 @@ function getSchoolTableFunction($val){
 		$dis2="disabled";
 	}//TODO: warning message
 	$return .= '
-		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=my">
+		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list">
 			<input type="hidden" name="joinSchool" value='.$val['id'].' />
 			<input type="submit" class="join" value="'._("Join").'" '.$dis1.' />
 		</form>

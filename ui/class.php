@@ -67,7 +67,7 @@ function postCallbackClass($data){
 		}
 	}
 }
-function showClassroom(){
+function showClassroom($get){
 	global $ntdb;
 	$classID = getCurrentUser()['classID'];
 	if($classID==-1){
@@ -76,7 +76,7 @@ function showClassroom(){
 		die("Classroom");
 	}
 }
-function showClassList(){
+function showClassList($get){
 $user = getCurrentUser();
 if($user['schoolID']==-1){
 	redirectToHome(_("First you have to join a school!"));

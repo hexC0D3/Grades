@@ -35,7 +35,6 @@
 					?>
 				</ul></li>
 				<li class="drop-down-arrow" tabindex="0"><?php echo sanitizeOutput(_("Subjects")); ?><ul class="submenu">
-					<li><a href='#page:/ui/subjects.php?p=my'><?php echo sanitizeOutput(_("My Subjects")); ?></a></li>
 					<li><a href='#page:/ui/subjects.php?p=list'><?php echo sanitizeOutput(_("Subject List")); ?></a></li>
 					<?php
 					if($user['id']==$school['adminID']){

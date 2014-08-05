@@ -353,6 +353,10 @@ td{
 	white-space: nowrap;
 	text-overflow:ellipsis;
 }
+.subject a{
+	font-size:100%;
+	color:#000 !important;
+}
 .mark{
 	font-size:187.5%;
 	color:#000;

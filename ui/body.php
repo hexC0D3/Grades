@@ -12,7 +12,9 @@ if(!empty($array)){
 	echo "<table id='gradesTable' cellspacing='0'>";
 	$pointsAV=0;
 	foreach($array as $key => $value){
-		echo "<tr><td class='subject'>".sanitizeOutput($key)."</td>";
+		$subject=$ntdb->getAllInformationFrom('subjects', 'name', $key)[0];
+		
+		echo "<tr><td class='subject'><a href='#page:/ui/subjects.php?p=my&id=".$subject['id']."'>".sanitizeOutput($key)."</a></td>";
 		for($i=0;$i<$num;$i++){
 			if(isset($value[$i])){
 				$secondClass = $value[$i] > 4 ? "" : " negativeMark";
@@ -23,7 +25,6 @@ if(!empty($array)){
 		}
 		/** Get all marks of subject and calc the average mark of subject **/
 		$average = array();
-		$subject=$ntdb->getAllInformationFrom('subjects', 'name', $key)[0];
 		foreach($grades as $grade){
 			$test=$ntdb->getAllInformationFrom('tests', 'id', $grade['testID'])[0];
 			if($test['subjectID']==$subject['id']){

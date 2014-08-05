@@ -1,6 +1,6 @@
 <?php
 require_once('head.php');
-checkHead('gradeData', 'showGadeList', 'showGradeList', 'showAddGrade', 'showEditGrade', 'showGradeList');
+checkHead('gradeData', 'showGradeList', 'showGradeList', 'showAddGrade', 'showEditGrade', 'showGradeList');
 
 function gradeData($data){
 	global $ntdb;
@@ -29,10 +29,6 @@ function gradeData($data){
 	}else{
 		echo sanitizeOutput(_("Please fill in all required fields!"));
 	}
-}
-
-function showGradeList(){
-	redirectToHome("Please don't mess around with the url ;)");
 }
 
 function showAddGrade($get){

@@ -1,7 +1,6 @@
 <?php
 global $ntdb;
 
-
 if(!empty($_POST['resetPW'])){
 	$resetPW = $_POST['resetPW'];
 	//reset password
@@ -118,7 +117,7 @@ if(!empty($_POST['resetPW'])){
 			</li>
 		</ul>
 		<div class="clear"></div>
-		<div id="error"><?php if(isset($error)&&!empty($error)){echo sanitizeOutput($error);}?></div>
+		<div id="error"><?php if(isset($error)&&!empty($error)){echo $error;}?></div>
 	</div>
 	<footer>
 		<?php if(isset($_GET['skip'])||!empty($_POST)||isMobile()){ ?>

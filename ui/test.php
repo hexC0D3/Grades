@@ -37,7 +37,7 @@ function testData($data){
 		}
 	}
 }
-function showTestList(){
+function showTestList($get){
 	global $ntdb;
 	$user = getCurrentUser();
 	if($user['classID']==-1){
@@ -118,7 +118,7 @@ function showCreateTest($get){
 		?>
 	</select>
 	<br/><br/>
-	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo sanitizeOutput(_("Test Date (dd. mm. yyyy)")); ?>" />
+	<input name="testDate" id="testDate" class="datepicker" type="text" placeholder="<?php echo sanitizeOutput(_("Test Date"). " dd. mm. yyyy"); ?>" />
 	<br/><br/>
 	<input type="submit" value="<?php echo sanitizeOutput(_("Create a test")); ?>" />
 </form>
