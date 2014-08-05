@@ -88,7 +88,7 @@ function get_data($url, $path){
 	<form action="/admin/update.php" method="post">
 		<input type="text" name="username" placeholder="<?php echo sanitizeOutput(_("Admin Username")); ?>" />
 		<br/><br/>
-		<input type="text" name="password" placeholder="<?php echo sanitizeOutput(_("Admin Password")); ?>" />
+		<input type="password" name="password" placeholder="<?php echo sanitizeOutput(_("Admin Password")); ?>" />
 		<br/><br/>
 		<input type="submit" value="<?php echo sanitizeOutput(_("Update Grades"));?>"/>
 	</form>
