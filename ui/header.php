@@ -53,7 +53,10 @@
 				</ul></li>
 				<li class="drop-down-arrow" tabindex="0"><?php echo sanitizeOutput(_("Schools")); ?><ul class="submenu">
 					<li><a href='#page:/ui/school.php?p=list'><?php echo sanitizeOutput(_("School List")); ?></a></li>
-					<li><a href='#page:/ui/school.php?p=create'><?php echo sanitizeOutput(_("Create a school")); ?></a></li>
+					<?php
+					if($user['schoolID']==-1){
+						echo "<li><a href='#page:/ui/school.php?p=create'><".sanitizeOutput(_("Create a school"))."</a></li>";
+					}?>
 				</ul></li>
 				<li class="drop-down-arrow" tabindex="0"><?php echo sanitizeOutput(_("Profile")); ?><ul class="submenu">
 					<li><a href='#page:/admin/profile.php'><?php echo sanitizeOutput(_("Settings")); ?></a></li>
