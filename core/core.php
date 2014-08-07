@@ -126,9 +126,9 @@ function isMobile(){
 function sendMail($to, $from, $subject, $message){
 	$header  = 'MIME-Version: 1.0' . "\r\n";
 	$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-	$header .= 'To: '.$to.' <'.$to.'>' . "\r\n";
+	$header .= 'To: '.$to. "\r\n";
 	$header .= 'From: Grades <'.$from.'>' . "\r\n";
-	return mail($to, $subject, $message, $header);
+	return mail($to, mb_convert_encoding($subject, 'UTF-8', 'ISO-8859-1'), $message, $header);
 }
 require_once('db.php');
 require_once('lang.php');

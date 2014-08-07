@@ -182,7 +182,7 @@ class NTDB{
 		$uuid = uniqid('', true);
 		$expireTime = time() + 7200;/* +2h */
 		$bool=$this->addToDatabase('mailTokens', array('tokenContent','tokenMeta','tokenMail','tokenType','tokenIP','tokenExpireTime'), array($uuid,$user['id'],$mail,1,$_SERVER['REMOTE_ADDR'],date('Y-m-d H:i:s',$expireTime)));
-		if(sendMail($mail, MAIL_FROM, sanitizeOutput(_("Grades: password reset")), sanitizeOutput(_("The reset of your password was requested! If you didn't request it, ignore this mail. If you want to reset your password click"))." <a href='https://".$_SERVER["SERVER_NAME"]."/mail.php?token=".$uuid."&mail=".$mail."'>".sanitizeOutput(_("here"))."</a>.")){
+		if(sendMail($mail, MAIL_FROM, _("Grades: password reset"), sanitizeOutput(_("The reset of your password was requested! If you didn't request it, ignore this mail. If you want to reset your password click"))." <a href='https://".$_SERVER["SERVER_NAME"]."/mail.php?token=".$uuid."&mail=".$mail."'>".sanitizeOutput(_("here"))."</a>.")){
 			if($bool){
 				return true;
 			}
@@ -208,7 +208,7 @@ class NTDB{
 			
 			$bool=$ntdb->addToDatabase('mailTokens', array('tokenContent','tokenMeta','tokenMail','tokenType','tokenIP','tokenExpireTime'), array($uuid,$meta,$mail,0,$_SERVER['REMOTE_ADDR'],date('Y-m-d H:i:s',$expireTime)));
 			$msg = _("Hi").", \r\n"._("Click"). " <a href='https://".$_SERVER["SERVER_NAME"]."/mail.php?token=".$uuid."&mail=".$mail."'>".sanitizeOutput(_("here"))."</a> ".sanitizeOutput(_("to verify your Grades account."));
-			if(sendMail($mail, MAIL_FROM, sanitizeOutput(_("Grades: registration")), $msg)&&$bool){
+			if(sendMail($mail, MAIL_FROM, _("Grades: registration"), $msg)&&$bool){
 				return true;
 			}else{
 				echo sanitizeOutput(_("Error while sending mail! Please report this to me@tyratox.ch"));
