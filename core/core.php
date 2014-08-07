@@ -124,11 +124,10 @@ function isMobile(){
 }
 /** Sends a mail **/
 function sendMail($to, $from, $subject, $message){
-	$header='MIME-Version: 1.0' . "\r\n".
-			'Content-type: text/html; charset=iso-8859-1' . "\r\n".
-			'To: '.$to.'<'.$to.'>'.
-			'From: '.$from. "\r\n".
-			'X-Mailer: PHP/' . phpversion();
+	$header  = 'MIME-Version: 1.0' . "\r\n";
+	$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+	$header .= 'To: '.$to.' <'.$to.'>' . "\r\n";
+	$header .= 'From: Grades <'.$from.'>' . "\r\n";
 	return mail($to, $subject, $message, $header);
 }
 require_once('db.php');
