@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Grades\n"
-"POT-Creation-Date: 2014-08-07 08:54+0100\n"
-"PO-Revision-Date: 2014-08-07 08:54+0100\n"
+"POT-Creation-Date: 2014-08-07 09:55+0100\n"
+"PO-Revision-Date: 2014-08-07 09:55+0100\n"
 "Last-Translator: Nico Hauser <me@tyratox.ch>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -47,7 +47,7 @@ msgstr "Farbe zwei (Hex-Farbe, wie #f00 für rot)"
 msgid "Update Profile"
 msgstr "Profil aktualisieren"
 
-#: ../../../../admin/setup.php:3
+#: ../../../../admin/setup.php:5
 msgid ""
 "The config file already exists! Please delete this file! You can also delete "
 "the config file to redo the setup."
@@ -55,44 +55,44 @@ msgstr ""
 "Die Konfigurationsdatei existiert bereits! Bitte lösche diese Datei oder die "
 "Konfigurationsdatei um das Setup erneut zu starten."
 
-#: ../../../../admin/setup.php:13
+#: ../../../../admin/setup.php:14
 msgid "Please check your database data"
 msgstr "Bitte überprüfe die Datenbank Daten"
 
-#: ../../../../admin/setup.php:31
+#: ../../../../admin/setup.php:32
 msgid "The 2 entered passwords don't match!"
 msgstr "Die 2 eingegebenen Passwörter stimmen nicht überein"
 
-#: ../../../../admin/setup.php:39 ../../../../admin/setup.php:51
-#: ../../../../admin/setup.php:67 ../../../../mail.php:63
+#: ../../../../admin/setup.php:40 ../../../../admin/setup.php:52
+#: ../../../../admin/setup.php:68 ../../../../mail.php:63
 msgid "Setup"
 msgstr "Setup"
 
-#: ../../../../admin/setup.php:53
+#: ../../../../admin/setup.php:54
 msgid "Database Name"
 msgstr "Datenbankname"
 
-#: ../../../../admin/setup.php:55
+#: ../../../../admin/setup.php:56
 msgid "Database Username"
 msgstr "Datenbank-Benutzername"
 
-#: ../../../../admin/setup.php:57
+#: ../../../../admin/setup.php:58
 msgid "Database Password"
 msgstr "Datenbank-Passwort"
 
-#: ../../../../admin/setup.php:59
+#: ../../../../admin/setup.php:60
 msgid "Database Host, 'localhost' in most cases"
 msgstr "Datenbank Host, 'localhost' in den meisten Fällen"
 
-#: ../../../../admin/setup.php:61 ../../../../admin/update.php:89
+#: ../../../../admin/setup.php:62 ../../../../admin/update.php:103
 msgid "Admin Username"
 msgstr "Admin Benutzername"
 
-#: ../../../../admin/setup.php:63 ../../../../admin/update.php:91
+#: ../../../../admin/setup.php:64 ../../../../admin/update.php:105
 msgid "Admin Password"
 msgstr "Admin Passwort"
 
-#: ../../../../admin/setup.php:65
+#: ../../../../admin/setup.php:66
 msgid "Confirm Admin Password"
 msgstr "Bestätige Admin Passwort"
 
@@ -100,11 +100,11 @@ msgstr "Bestätige Admin Passwort"
 msgid "ERROR WHILE UPDATING"
 msgstr "Fehler beim Aktualisieren"
 
-#: ../../../../admin/update.php:75 ../../../../admin/update.php:87
+#: ../../../../admin/update.php:89 ../../../../admin/update.php:101
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: ../../../../admin/update.php:93
+#: ../../../../admin/update.php:107
 msgid "Update Grades"
 msgstr "Grades aktualisieren"
 

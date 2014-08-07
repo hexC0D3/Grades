@@ -207,7 +207,7 @@ class NTDB{
 			$meta=$username.";".$password.";".$mail.";".$classID.";".$schoolID.";".$subjectIDs.";".$color1.";".$color2;
 			
 			$bool=$ntdb->addToDatabase('mailTokens', array('tokenContent','tokenMeta','tokenMail','tokenType','tokenIP','tokenExpireTime'), array($uuid,$meta,$mail,0,$_SERVER['REMOTE_ADDR'],date('Y-m-d H:i:s',$expireTime)));
-			$msg = _("Hi").", \r\n"._("Click"). "<a href='https://".$_SERVER["SERVER_NAME"]."/mail.php?token=".$uuid."&mail=".$mail."'>"._("here")."</a> "._("to verify your Grades account.");
+			$msg = _("Hi").", \r\n"._("Click"). " <a href='https://".$_SERVER["SERVER_NAME"]."/mail.php?token=".$uuid."&mail=".$mail."'>"._("here")."</a> "._("to verify your Grades account.");
 			if(sendMail($mail, MAIL_FROM, _("Grades: registration"), $msg)&&$bool){
 				return true;
 			}else{
