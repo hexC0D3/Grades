@@ -191,7 +191,7 @@ if(!empty($_POST['resetPW'])){
 			<h1><?php echo sanitizeOutput(_("Reset Password")); ?></h1>
 			<br/>
 			<form action="/" method="POST">
-				<input type="text" name="username" placeholder="<?php echo sanitizeOutput(_("Username or E-Mail")); ?>"/>
+				<input type="text" name="resetPW" placeholder="<?php echo sanitizeOutput(_("Username or E-Mail")); ?>"/>
 				<br/><br/>
 				<input type="submit" value="<?php echo sanitizeOutput(_("Reset your password")); ?>"/>
 			</form>
