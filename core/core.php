@@ -130,7 +130,7 @@ function sendMail($to, $from, $subject, $message){
 			'From: '.$from. "\r\n".
 			'Reply-To: '.$from. "\r\n".
 			'X-Mailer: PHP/' . phpversion();
-	return mail($to, $subject, $message);
+	return mail($to, $subject, $message, $header);
 }
 require_once('db.php');
 require_once('lang.php');
