@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Grades\n"
-"POT-Creation-Date: 2014-08-07 09:55+0100\n"
-"PO-Revision-Date: 2014-08-07 09:55+0100\n"
+"POT-Creation-Date: 2014-08-07 10:01+0100\n"
+"PO-Revision-Date: 2014-08-07 10:01+0100\n"
 "Last-Translator: Nico Hauser <me@tyratox.ch>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -31,7 +31,8 @@ msgstr "Benutzername"
 msgid "Some cool nice colors can be found"
 msgstr "Einige tolle Farben können bei folgendem Link gefunden werden: "
 
-#: ../../../../admin/profile.php:23 ../../../../core/db.php:210
+#: ../../../../admin/profile.php:23 ../../../../core/db.php:185
+#: ../../../../core/db.php:210
 msgid "here"
 msgstr "hier"
 
@@ -111,6 +112,15 @@ msgstr "Grades aktualisieren"
 #: ../../../../core/db.php:185
 msgid "Grades: password reset"
 msgstr "Grades: Zurücksetzen des Passworts"
+
+#: ../../../../core/db.php:185
+msgid ""
+"The reset of your password was requested! If you didn't request it, ignore "
+"this mail. If you want to reset your password click"
+msgstr ""
+"Das Zurücksetzen deines Passwortes wurde angefordert! Falls es nicht du "
+"warst, kannst du diese Mail ignorieren. Andernfalls kannst dein Password bei "
+"folgendem Link zurücksetzen: "
 
 #: ../../../../core/db.php:210
 msgid "Hi"
