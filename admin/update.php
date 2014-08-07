@@ -19,7 +19,10 @@ function updateGrades(){
 			foreach (new RecursiveIteratorIterator($di) as $filename => $file) {
 				if(strpos($filename, "/.")===false&&strpos($filename, "/..")===false){
 					$name=explode('Grades-master/', $filename)[1];
-					if(strpos(realpath(ROOT_DIR.$name), ROOT_DIR)!==false){//FIXME can't add new files
+					if(!file_exists(ROOT_DIR.$name)){/*realpath() only works with existing files*/
+						touch(ROOT_DIR.$name);
+					}
+					if(strpos(realpath(ROOT_DIR.$name), ROOT_DIR)!==false){
 						if(file_exists(ROOT_DIR.$name)){
 							unlink(ROOT_DIR.$name);
 						}

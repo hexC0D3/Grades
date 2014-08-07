@@ -128,7 +128,6 @@ function sendMail($to, $from, $subject, $message){
 			'Content-type: text/html; charset=iso-8859-1' . "\r\n".
 			'To: '.$to.'<'.$to.'>'.
 			'From: '.$from. "\r\n".
-			'Reply-To: '.$from. "\r\n".
 			'X-Mailer: PHP/' . phpversion();
 	return mail($to, $subject, $message, $header);
 }
