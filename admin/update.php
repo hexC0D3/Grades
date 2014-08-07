@@ -23,7 +23,7 @@ function updateGrades(){
 						if(file_exists(ROOT_DIR.$name)){
 							unlink(ROOT_DIR.$name);
 						}
-						rename($filename, ROOT_DIR.$name);
+						copy($filename, ROOT_DIR.$name);
 						if(file_exists($filename)){
 							unlink($filename);
 						}
