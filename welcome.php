@@ -182,7 +182,7 @@ if(!empty($_POST['resetPW'])){
 				<br/><br/>
 				<input type="text" name="mail" placeholder="<?php echo sanitizeOutput(_("Mail")); ?>"/>
 				<br/><br/>
-				<input type="submit" value="<?php echo sanitizeOutput(_("Log In")); ?>"/>
+				<input type="submit" value="<?php echo sanitizeOutput(_("Register")); ?>"/>
 			</form>
 		</div>
 	</div>
