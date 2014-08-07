@@ -45,7 +45,7 @@ if(isset($_GET)){
 							<title>Grades - <?php echo sanitizeOutput(_("Password Reset")); ?></title>
 							<meta name="viewport" content="user-scalable=no" />
 							<style type="text/css">
-							<?php require_once('../ui/style.css.php'); ?>
+							<?php require_once(UI_DIR.'style.css.php'); ?>
 							body{
 								margin-top:2%;
 								margin-left:2%;
