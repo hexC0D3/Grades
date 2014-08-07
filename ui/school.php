@@ -22,12 +22,12 @@ function postCallbackSchool($data){
 			if($ntdb->isInDatabase('schools', 'website', $data['schoolWebsite']) || $ntdb->isInDatabase('schools', 'name', $data['schoolName'])){
 				echo sanitizeOutput(_("Your school already exists!"));
 			}else{
-				echo $ntdb->addToDatabase('schools', array('adminID', 'name', 'website'), array($user['id'], $data['schoolName'], $data['schoolWebsite']));
-				$schools = $ntdb->getAllInformationFrom('schools', 'name', $data['schoolName']);
-				foreach($schools as $school){
-					if($school['website']==$data['website']){
-						$ntdb->updateInDatabase('users', array('schoolID'), array($school['id']), 'id', $user['id']);
-					}
+				if($user['schoolID']==-1){
+					echo $ntdb->addToDatabase('schools', array('adminID', 'name', 'website'), array($user['id'], $data['schoolName'], $data['schoolWebsite']));
+					$school = $ntdb->getAllInformationFrom('schools', array('name', 'website', 'adminID'), array($data['schoolName'], $data['schoolWebsite'], $user['id']))[0];
+					$ntdb->updateInDatabase('users', array('schoolID'), array($school['id']), 'id', $user['id']);
+				}else{
+					echo sanitizeOutput(_("You have already joined a school!"));
 				}
 			}	
 		}
