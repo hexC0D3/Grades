@@ -5,6 +5,7 @@ if(isset($_POST['username'])&&isset($_POST['password'])){
 	if(!empty($_POST['username'])&&!empty($_POST['password'])){
 		if($_POST['username']==ADMIN_USER && verifyPassword($_POST['password'], ADMIN_HASH)){
 			if(updateGrades()==true){
+				die();
 				header("Location: /");
 			}else{
 				nt_die(_("ERROR WHILE UPDATING"));
@@ -19,15 +20,15 @@ function updateGrades(){
 			foreach (new RecursiveIteratorIterator($di) as $filename => $file) {
 				if(strpos($filename, "/.")===false&&strpos($filename, "/..")===false){
 					$name=explode('Grades-master/', $filename)[1];
-					if(strpos(realpath(ROOT_DIR.$name), ROOT_DIR)!==false){
+// 					if(strpos(realpath(ROOT_DIR.$name), ROOT_DIR)!==false){ FIXME: dir traversal
 						if(file_exists(ROOT_DIR.$name)){
 							unlink(ROOT_DIR.$name);
 						}
-						copy($filename, ROOT_DIR.$name);
+						rename($filename, ROOT_DIR.$name);
 						if(file_exists($filename)){
 							unlink($filename);
 						}
-					}
+// 					}
 				}
 			}
 			unlink(ADMIN_DIR.'update.zip');
@@ -68,6 +69,20 @@ function get_data($url, $path){
 	curl_exec($ch);
 	curl_close($ch);
 	return true;
+}
+function normalizePath($path) {
+	return array_reduce(explode('/', $path), create_function('$a, $b', '
+         if($a === 0)
+             $a = &quot;/&quot;;
+
+         if($b === &quot;&quot; || $b === &quot;.&quot;)
+             return $a;
+
+         if($b === &quot;..&quot;)
+             return dirname($a);
+
+         return preg_replace(&quot;/\/+/&quot;, &quot;/&quot;, &quot;$a/$b&quot;);
+     '), 0);
 }
 ?>
 <!DOCTYPE html>

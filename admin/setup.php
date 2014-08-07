@@ -1,8 +1,9 @@
 <?php
+require_once("../core/core.php");
+
 if(file_exists("../core/config.php")){
 	die(sanitizeOutput(_("The config file already exists! Please delete this file! You can also delete the config file to redo the setup.")));
 }
-require_once("../core/core.php");
 $error="";
 if(isset($_POST)&&!empty($_POST)){
 	if(isset($_POST['db_name'])&&isset($_POST['db_user'])&&isset($_POST['db_pw'])&&isset($_POST['db_host'])&&isset($_POST['admin_user'])&&isset($_POST['admin_pw'])){
