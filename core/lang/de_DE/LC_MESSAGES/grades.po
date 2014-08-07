@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Grades\n"
-"POT-Creation-Date: 2014-08-05 18:53+0100\n"
-"PO-Revision-Date: 2014-08-05 18:53+0100\n"
+"POT-Creation-Date: 2014-08-07 08:54+0100\n"
+"PO-Revision-Date: 2014-08-07 08:54+0100\n"
 "Last-Translator: Nico Hauser <me@tyratox.ch>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -33,7 +33,7 @@ msgstr "Einige tolle Farben können bei folgendem Link gefunden werden: "
 
 #: ../../../../admin/profile.php:23 ../../../../core/db.php:210
 msgid "here"
-msgstr "FlatUIColors"
+msgstr "hier"
 
 #: ../../../../admin/profile.php:24
 msgid "Color One (Hexcode, like #000 for black)"
@@ -186,15 +186,15 @@ msgid ""
 "me@tyratox.ch"
 msgstr "Etwas ist schief gelaufen, bitte kontaktiere me@tyratox.ch"
 
-#: ../../../../ui/body.php:110
+#: ../../../../ui/body.php:111
 msgid "Average Mark"
 msgstr "Durchschnitt"
 
-#: ../../../../ui/body.php:148
+#: ../../../../ui/body.php:149
 msgid "Welcome to Grades"
 msgstr "Willkommen bei Grades"
 
-#: ../../../../ui/body.php:149
+#: ../../../../ui/body.php:150
 msgid ""
 "You can now start with joining a school and a class. After that you can "
 "start adding grades."
