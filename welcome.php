@@ -19,7 +19,7 @@ if(!empty($_POST['resetPW'])){
 			$error=sanitizeOutput(_("User not found!"));
 		}
 	}
-	$error = "This feature is currently WIP";
+	$error=sanitizeOutput(_("Check your mail account."));
 }else if(!empty($_POST['passwordVerify'])){
 	if(!empty($_POST['password']) && !empty($_POST['username']) && !empty($_POST['mail'])){
 		if($_POST['passwordVerify']==$_POST['password']){
