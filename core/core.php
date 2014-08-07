@@ -126,7 +126,6 @@ function isMobile(){
 function sendMail($to, $from, $subject, $message){
 	$header  = 'MIME-Version: 1.0' . "\r\n";
 	$header .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-	$header .= 'To: '.$to. "\r\n";
 	$header .= 'From: Grades <'.$from.'>' . "\r\n";
 	return mail($to, $subject, $message, $header);
 }
