@@ -398,7 +398,7 @@ class NTDB{
 	function tryToLogIn($username, $password){
 		$array = $this->getAllInformationFrom('users', 'username', $username);
 		foreach($array as $user){
-			if($user['password'] == $password){
+			if(verifyPassword($password, $user['password'])){
 				return $user['id'];
 			}
 		}
@@ -487,6 +487,7 @@ class NTDB{
 		return $newArray;
 	}
 }
+/** Returns current user **/
 function getCurrentUser(){
 	global $ntdb;
 	if(isset($_SESSION['_loginToken'])){
@@ -497,9 +498,9 @@ function getCurrentUser(){
 		return false;
 	}
 }
+/** Trys to log in a user **/
 function tryToLogIn($username, $password){
 	global $ntdb;
-	$password = hashPassword($password);
 	$id = $ntdb->tryToLogIn($username, $password);
 	if($id!=false){
 		$token = $ntdb->generateToken($id);
@@ -509,6 +510,7 @@ function tryToLogIn($username, $password){
 		return false;
 	}
 }
+/** Checks if a user is logged in **/
 function isUserLoggedIn(){
 	global $ntdb;
 	if(!empty($_SESSION['_loginToken'])){
@@ -518,10 +520,14 @@ function isUserLoggedIn(){
 	}
 	return false;
 }
+/** Hashes a password **/
 function hashPassword($pw){
-	return md5($pw);
+	return password_hash($pw, PASSWORD_DEFAULT);
 }
-
+/** Verify password **/
+function verifyPassword($pw, $hash){
+	return password_verify($pw, $hash);
+}
 /** Gets random flat UI color **/
 function randFlatColor(){
 	global $ntdb;
@@ -562,7 +568,7 @@ function setupTables(){
 	'CREATE TABLE IF NOT EXISTS users(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(200) NOT NULL,
-    password VARCHAR(200) NOT NULL,
+    password VARCHAR(300) NOT NULL,
 	mail VARCHAR(200) NOT NULL,
 	classID INT NOT NULL,
 	schoolID INT NOT NULL,

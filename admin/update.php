@@ -3,7 +3,7 @@ require_once("../core/core.php");
 
 if(isset($_POST['username'])&&isset($_POST['password'])){
 	if(!empty($_POST['username'])&&!empty($_POST['password'])){
-		if($_POST['username']==ADMIN_USER && hashPassword($_POST['password'])==ADMIN_HASH){
+		if($_POST['username']==ADMIN_USER && verifyPassword($_POST['password'], ADMIN_HASH)){
 			if(updateGrades()==true){
 				header("Location: /");
 			}else{
