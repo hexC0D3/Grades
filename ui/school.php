@@ -42,6 +42,7 @@ function postCallbackSchool($data){
 			if(count($ntdb->getAllInformationFrom('users', array('schoolID'), array($data['deleteSchool'])))>1){
 				echo $ntdb->safelyRemoveUserFromSchool($user['id']);
 			}else{
+				echo $ntdb->safelyRemoveUserFromSchool($user['id']);
 				echo $ntdb->removeFromDatabase('schools', 'id', $data['deleteSchool']);
 			}
 		}else{
@@ -101,7 +102,7 @@ function getSchoolTableFunction($val){
 	}else{
 		$return.='
 		<a href="#page:/ui/school.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" '.$dis3.' /></a>
-		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list" warning="true" message="'.sanitizeOutput(_("Do you really want to delete this school? This will wipe all of your data!")).'"">>
+		<form action="/ui/school.php" method="POST" callBackUrl="/ui/school.php?p=list" warning="true" message="'.sanitizeOutput(_("Do you really want to delete this school? This will wipe all of your data!")).'"">
 			<input type="hidden" name="deleteSchool" value='.$val['id'].' />
 			<input type="submit" class="delete" value="'._("Delete").'" '.$dis4.' />
 		</form>

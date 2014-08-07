@@ -331,6 +331,7 @@ class NTDB{
 			$schools=$this->getAllInformationFrom('schools', 'adminID', $userID);
 			foreach($schools as $school){/*just in case*/
 				$u = $this->getRandomUserOfSchool($school['id']);
+				$this->setNewSchoolAdmin($u['id'], $class['id']);
 			}
 		}
 	}
