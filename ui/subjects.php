@@ -55,7 +55,8 @@ function postCallbackSujects($data){
 			}else{
 				$data['isSubjectRelevant'] = $data['isSubjectRelevant']=="false" ? 0 : 1;
 				if(!empty($data['updateSubject'])){
-					$school = $ntdb->getAllInformationFrom('schools', 'id', $ntdb->getAllInformationFrom('subjects', 'id', $data['updateSubject'])[0])[0];
+					$subject=$ntdb->getAllInformationFrom('subjects', 'id', $data['updateSubject'])[0];
+					$school = $ntdb->getAllInformationFrom('schools', 'id', $subject['schoolID'])[0];
 					if($school['adminID']==$user['id']){
 						echo $ntdb->updateInDatabase('subjects', array('name', 'relevant'), array($data['subjectName'], (int)$data['isSubjectRelevant']), 'id', $data['updateSubject']);
 					}else{
@@ -63,23 +64,11 @@ function postCallbackSujects($data){
 					}
 				}else{
 					//Check if already exists in the same school
-					$subjects = $ntdb->getAllInformationFrom('subjects', 'name', $data['subjectName']);
-					$exists = false;
-					if(!empty($subject)){
-						foreach($subjects as $subject){
-							if($subject['schoolID']==$user['schoolID']){
-								$exists=true;
-								break;
-							}
-						}
-					}else{
-						$exists=false;
-					}
-					if($exists==true){
+					if(count($ntdb->getAllInformationFrom('subjects', array('name', 'schoolID'), array($data['subjectName'], $user['schoolID'])))>0){
 						echo sanitizeOutput(_("This subject already exists!"));
 					}else{
 						$school = $ntdb->getAllInformationFrom('schools', 'id', $user['schoolID'])[0];
-						if($school['adminID']==$user['adminID']){
+						if($school['adminID']==$user['id']){
 							echo $ntdb->addToDatabase('subjects', array('schoolID', 'name', 'relevant'), array($user['schoolID'], $data['subjectName'], (int)$data['isSubjectRelevant']));
 						}else{
 							echo sanitizeOutput(_("You don't have the permission to do this!"));
