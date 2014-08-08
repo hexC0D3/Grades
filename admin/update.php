@@ -19,6 +19,9 @@ function updateGrades(){
 			foreach (new RecursiveIteratorIterator($di) as $filename => $file) {
 				if(strpos($filename, "/.")===false&&strpos($filename, "/..")===false){
 					$name=explode('Grades-master/', $filename)[1];
+					if(!is_dir(($dirname=dirname(ROOT_DIR.$name)))) {
+						mkdir(dirname(ROOT_DIR.$name), 0777, true);
+					}
 					if(!file_exists(ROOT_DIR.$name)){/*realpath() only works with existing files*/
 						touch(ROOT_DIR.$name);
 					}
@@ -26,15 +29,13 @@ function updateGrades(){
 						if(file_exists(ROOT_DIR.$name)){
 							unlink(ROOT_DIR.$name);
 						}
-						if(!is_dir(dirname(ROOT_DIR.$name))) {
-							mkdir(dirname(ROOT_DIR.$name), 0777, true);
-						}
 						rename($filename, ROOT_DIR.$name);
 						if(file_exists($filename)){
 							unlink($filename);
 						}
 					}else{
 						unlink(ROOT_DIR.$name);
+						rmdir($dirname);
 					}
 				}
 			}
@@ -115,5 +116,4 @@ function normalizePath($path) {
 		<br/><br/>
 		<input type="submit" value="<?php echo sanitizeOutput(_("Update Grades"));?>"/>
 	</form>
-	<div style="color:#e74c3c;font-size:200%;"><?php echo sanitizeOutput($error); ?></div>
 </body>
