@@ -26,10 +26,15 @@ function updateGrades(){
 						if(file_exists(ROOT_DIR.$name)){
 							unlink(ROOT_DIR.$name);
 						}
+						if(!is_dir(dirname(ROOT_DIR.$name))) {
+							mkdir(dirname(ROOT_DIR.$name), 0777, true);
+						}
 						rename($filename, ROOT_DIR.$name);
 						if(file_exists($filename)){
 							unlink($filename);
 						}
+					}else{
+						unlink(ROOT_DIR.$name);
 					}
 				}
 			}
@@ -91,6 +96,7 @@ function normalizePath($path) {
 <head>
 	<title>Grades - <?php echo sanitizeOutput(_("Update")); ?></title>
 	<meta name="viewport" content="user-scalable=no" />
+	<link rel="icon" type="image/png" href="/img/favicon.png">
 	<style type="text/css">
 	<?php require_once('../ui/style.css.php'); ?>
 	body{

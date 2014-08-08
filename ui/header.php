@@ -2,6 +2,7 @@
 <head>
 	<title>Grades</title>
 	<meta name="viewport" content="user-scalable=no" />
+	<link rel="icon" type="image/png" href="/img/favicon.png">
 	<style type="text/css">
 	<?php require_once('style.css.php'); ?>
 	<?php require_once('js/alertify/alertify.core.css'); ?>

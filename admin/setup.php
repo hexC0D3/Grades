@@ -39,6 +39,7 @@ if(isset($_POST)&&!empty($_POST)){
 <head>
 	<title>Grades - <?php echo sanitizeOutput(_("Setup")); ?></title>
 	<meta name="viewport" content="user-scalable=no" />
+	<link rel="icon" type="image/png" href="/img/favicon.png">
 	<style type="text/css">
 	<?php require_once('../ui/style.css.php'); ?>
 	body{

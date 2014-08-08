@@ -53,6 +53,7 @@ if(!empty($_POST['resetPW'])){
 	<head>
 		<title>Grades</title>
 		<meta name="viewport" content="user-scalable=no" />
+		<link rel="icon" type="image/png" href="/img/favicon.png">
 		<link href='https://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
