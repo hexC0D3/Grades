@@ -5,6 +5,7 @@ if(isset($_POST['username'])&&isset($_POST['password'])){
 	if(!empty($_POST['username'])&&!empty($_POST['password'])){
 		if($_POST['username']==ADMIN_USER && verifyPassword($_POST['password'], ADMIN_HASH)){
 			if(updateGrades()==true){
+				die();
 				header("Location: /");
 			}else{
 				nt_die(_("ERROR WHILE UPDATING"));
@@ -19,8 +20,9 @@ function updateGrades(){
 			foreach (new RecursiveIteratorIterator($di) as $filename => $file) {
 				if(strpos($filename, "/.")===false&&strpos($filename, "/..")===false){
 					$name=explode('Grades-master/', $filename)[1];
-					if(!is_dir(($dirname=dirname(ROOT_DIR.$name)))) {
-						mkdir(dirname(ROOT_DIR.$name), 0777, true);
+					$dirname=dirname(ROOT_DIR.$name);
+					if(!file_exists($dirname)&&!is_dir($dirname)) {
+						mkdir(dirname($dirname), 0777, true);
 					}
 					if(!file_exists(ROOT_DIR.$name)){/*realpath() only works with existing files*/
 						touch(ROOT_DIR.$name);
