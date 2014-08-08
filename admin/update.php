@@ -5,7 +5,6 @@ if(isset($_POST['username'])&&isset($_POST['password'])){
 	if(!empty($_POST['username'])&&!empty($_POST['password'])){
 		if($_POST['username']==ADMIN_USER && verifyPassword($_POST['password'], ADMIN_HASH)){
 			if(updateGrades()==true){
-				die();
 				header("Location: /");
 			}else{
 				nt_die(_("ERROR WHILE UPDATING"));
