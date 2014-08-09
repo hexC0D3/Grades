@@ -6,23 +6,22 @@ function testData($data){
 	global $ntdb;
 	$user = getCurrentUser();
 	if(!empty($data['testTopic'])&&!empty($data['testType'])&&!empty($data['testSubjectID'])&&!empty($data['testDate'])){
-		$class = $ntdb->getAllInformationFrom('classes', 'id', $user['classID'])[0];
-		$desc = isset($data['testDesc'])==true ? $data['testDesc'] : '';
-		if($class['adminID']==$user['id']){
-			if($ntdb->isInDatabase('subjects', 'id', $data['testSubjectID'])==true && $ntdb->isInDatabase('classes', 'id', $user['classID'])==true){
-				$array = explode(". ", $data['testDate']);
-				$data['testDate'] = date("Y-m-d H:i:s",strtotime($array[2]."-".$array[1]."-".$array[0]." 12:00:00"));
-				if(isset($data['updateTest']) && !empty($data['updateTest'])){
+		if($ntdb->isInDatabase('subjects', 'id', $data['testSubjectID'])==true && $ntdb->isInDatabase('classes', 'id', $user['classID'])==true){
+			$array = explode(". ", $data['testDate']);
+			$data['testDate'] = date("Y-m-d H:i:s",strtotime($array[2]."-".$array[1]."-".$array[0]." 12:00:00"));
+			if(isset($data['updateTest']) && !empty($data['updateTest'])){
+				$test = $ntdb->getAllInformationFrom('tests', array('id'), array($data['updateTest']))[0];
+				if($test['classID']==$user['classID']){
 					echo $ntdb->updateInDatabase('tests', array('topic', 'type', 'description', 'subjectID', 'timestamp'), array($data['testTopic'], $data['testType'], $desc, $data['testSubjectID'], $data['testDate']), 'id', $data['updateTest']);
 				}else{
-					echo $ntdb->addToDatabase('tests', array('topic', 'type', 'description', 'subjectID', 'classID', 'timestamp'), array($data['testTopic'], $data['testType'], $desc, $data['testSubjectID'], $user['classID'], $data['testDate']));
+					echo _("You don't have the permission to do this!");
 				}
 			}else{
-				print_r($data);
-				echo sanitizeOutput(_("Something went wrong, please contact me@tyratox.ch"));
+				echo $ntdb->addToDatabase('tests', array('topic', 'type', 'description', 'subjectID', 'classID', 'timestamp'), array($data['testTopic'], $data['testType'], $desc, $data['testSubjectID'], $user['classID'], $data['testDate']));
 			}
 		}else{
-			echo sanitizeOutput(_("You don't have the permission to do this!"));
+			print_r($data);
+			echo sanitizeOutput(_("Something went wrong, please contact me@tyratox.ch"));
 		}
 	}else{
 		if(isset($data['deleteTest'])){
@@ -82,25 +81,27 @@ function generateAddMarkLink($val){
 	return "<a href='#page:/ui/grade.php?p=add&test=".$val['id']."'>Add Mark</a>";
 }
 function getTestTableFunction($val){
-	$return = '
-		<a href="#page:/ui/test.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" /></a>
-		<form action="/ui/test.php" method="POST" callBackUrl="/ui/class.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to delete this test? This will delete all grades related to this test!")).'">
+	global $ntdb;
+	$user = getCurrentUser();
+	
+	$return = '<a href="#page:/ui/test.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" /></a>';
+	$class=$ntdb->getAllInformationFrom('classes', array('id'), array($user['classID']))[0];
+	if($class['adminID']==$user['id']){
+		$return.='<form action="/ui/test.php" method="POST" callBackUrl="/ui/class.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to delete this test? This will delete all grades related to this test!")).'">
 			<input type="hidden" name="deleteTest" value='.$val['id'].' />
 			<input type="submit" class="delete" value="'.htmlentities(_("Delete")).'" />
-		</form>
-		';
+		</form>';
+	}
 	return $return;
 }
 function showCreateTest($get){
 	global $ntdb;
 	$user = getCurrentUser();
-	$class = $ntdb->getAllInformationFrom('classes', 'id', $user['classID'])[0];
-	if($class['adminID']!=$user['id']){
-		nt_die(_("You aren't allowed to see this page!"));
-	}
 ?>
 <form id="createNewTest_form" action="/ui/test.php" method="POST" callBackUrl="/ui/test.php?p=list">
 	<h1><?php echo sanitizeOutput(_("Create a test")); ?></h1>
+	<div class="clear"></div>
+	<h2><?php echo sanitizeOutput(_("Please check first if this test already exists!"));?></h2>
 	<input name="testTopic" id="testTopic" type="text" placeholder="<?php echo sanitizeOutput(_("Test Topic")); ?>" />
 	<br/><br/>
 	<input name="testType" id="testType" type="text" placeholder="<?php echo sanitizeOutput(_("Test Type(written, oral, ..)")); ?>" />
@@ -126,11 +127,10 @@ function showCreateTest($get){
 function showEditTest($id){
 	global $ntdb;
 	$user = getCurrentUser();
-	$class = $ntdb->getAllInformationFrom('classes', 'id', $user['classID'])[0];
-	if($class['adminID']!=$user['id']){
+	$test = $ntdb->getAllInformationFrom('tests', 'id', $id)[0];
+	if($test['classID']!=$user['classID']){
 		nt_die(_("You aren't allowed to see this page!"));
 	}
-	$test = $ntdb->getAllInformationFrom('tests', 'id', $id)[0];
 	$test['timestamp'] = date("d. m. Y", strtotime($test['timestamp']));
 ?>
 <form id="createNewTest_form" action="/ui/test.php" method="POST" callBackUrl="/ui/test.php?p=list">
