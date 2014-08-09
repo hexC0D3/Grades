@@ -29,7 +29,7 @@
 					<li class="seperator"></li>
 					
 					<li><a href='#page:/ui/test.php?p=list'><?php echo sanitizeOutput(_("Test List")); ?></a></li>
-					<li><a href='#page:/ui/test.php?p=create'>"<?php echo sanitizeOutput(_("Create a test")); ?>"</a></li>
+					<li><a href='#page:/ui/test.php?p=create'><?php echo sanitizeOutput(_("Create a test")); ?></a></li>
 				</ul></li>
 				<li class="drop-down-arrow" tabindex="0"><?php echo sanitizeOutput(_("Subjects")); ?><ul class="submenu">
 					<li><a href='#page:/ui/subjects.php?p=list'><?php echo sanitizeOutput(_("Subject List")); ?></a></li>
