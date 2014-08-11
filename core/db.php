@@ -389,11 +389,16 @@ class NTDB{
 	/** Get Average mark of test **/
 	function getAverageMark($testID){
 		$grades = $this->getAllInformationFrom('grades', 'testID', $testID);
-		$marks = array();
-		foreach($grades as $grade){
-			$marks[] = $grade['mark'];
+		if(!empty($grades)&&is_array($grades)){
+			$marks = array();
+			foreach($grades as $grade){
+				$marks[] = $grade['mark'];
+			}
+			if(count($marks)>0){
+				return (array_sum($marks)/count($marks));
+			}
 		}
-		return (array_sum($marks)/count($marks));
+		return "";
 	}
 	/** Try to login user **/
 	function tryToLogIn($username, $password){
