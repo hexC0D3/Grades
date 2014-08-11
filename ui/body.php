@@ -4,6 +4,7 @@ $user = getCurrentUser();
 
 $num = 5;
 $array = $ntdb->getLastGradesofSubjectsOfCurrentUser($num);
+
 $grades=$ntdb->getAllInformationFrom('grades', 'userID', $user['id']);
 
 $averages=array();
@@ -13,11 +14,12 @@ if(!empty($array)){
 	$pointsAV=0;
 	foreach($array as $key => $value){
 		$subject=$ntdb->getAllInformationFrom('subjects', 'name', $key)[0];
+		$rel = $subject['relevant']==0 ? false : true;
 		
 		echo "<tr><td class='subject'><a href='#page:/ui/subjects.php?p=my&id=".$subject['id']."'>".sanitizeOutput($key)."</a></td>";
 		for($i=0;$i<$num;$i++){
 			if(isset($value[$i])){
-				$secondClass = $value[$i] > 4 ? "" : " negativeMark";
+				$secondClass = $value[$i] >= 4 ? "" : " negativeMark";
 				echo "<td class='mark".$secondClass."'>".sanitizeOutput($value[$i])."</td>";
 			}else{
 				echo "<td class='mark'>-</td>";
@@ -27,6 +29,7 @@ if(!empty($array)){
 		$average = array();
 		foreach($grades as $grade){
 			$test=$ntdb->getAllInformationFrom('tests', 'id', $grade['testID'])[0];
+			
 			if($test['subjectID']==$subject['id']){
 				$average[]=$grade['mark'];
 			}
@@ -36,22 +39,28 @@ if(!empty($array)){
 		}else{
 			$average = round(array_sum($average)/count($average), 2);
 			
-			/** Add average to array **/
-			$averages[]=$average;
+			if($rel){
+				/** If releavant add average to array **/
+				$averages[]=$average;
+			}
 		}
 		$points = "";
 		/** Generate points, print it and add it to total **/
 		if($average>0){
-			if($average > 4){
+			if($average >= 4){
 				$secondClass = "";
 				$p=($average-4);
-				$pointsAV+=$p;
-				$points = " (+" . $p . ")";
+				if($rel){
+					$pointsAV+=$p;
+					$points = " (+" . $p . ")";
+				}
 			}else{
 				$secondClass = " negativeMark";
 				$p=(2*(4-$average));
-				$pointsAV-=$p;
-				$points = " (-" . $p . ")";
+				if($rel){
+					$pointsAV-=$p;
+					$points = " (-" . $p . ")";
+				}
 			}
 		}else{
 			$average="-";

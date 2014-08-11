@@ -12,12 +12,12 @@ function testData($data){
 			if(isset($data['updateTest']) && !empty($data['updateTest'])){
 				$test = $ntdb->getAllInformationFrom('tests', array('id'), array($data['updateTest']))[0];
 				if($test['classID']==$user['classID']){
-					echo $ntdb->updateInDatabase('tests', array('topic', 'type', 'description', 'subjectID', 'timestamp'), array($data['testTopic'], $data['testType'], $desc, $data['testSubjectID'], $data['testDate']), 'id', $data['updateTest']);
+					echo $ntdb->updateInDatabase('tests', array('topic', 'type', 'description', 'subjectID', 'timestamp'), array($data['testTopic'], $data['testType'], $data['testDesc'], $data['testSubjectID'], $data['testDate']), 'id', $data['updateTest']);
 				}else{
 					echo _("You don't have the permission to do this!");
 				}
 			}else{
-				echo $ntdb->addToDatabase('tests', array('topic', 'type', 'description', 'subjectID', 'classID', 'timestamp'), array($data['testTopic'], $data['testType'], $desc, $data['testSubjectID'], $user['classID'], $data['testDate']));
+				echo $ntdb->addToDatabase('tests', array('topic', 'type', 'description', 'subjectID', 'classID', 'timestamp'), array($data['testTopic'], $data['testType'], $data['testDesc'], $data['testSubjectID'], $user['classID'], $data['testDate']));
 			}
 		}else{
 			print_r($data);

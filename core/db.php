@@ -469,14 +469,13 @@ class NTDB{
 	}
 	function getLastGradesofSubjectsOfCurrentUser($numberOfGradesPerSubject){
 		$user = getCurrentUser();
-		$array = $this->getAllInformationFrom('tests', 'classID', $user['classID']);
+		$grades = $this->getAllInformationFrom('grades', 'userID', $user['id']);
+		$array = array();
+		foreach($grades as $grade){
+			$array[] = $this->getAllInformationFrom('tests', array('id'), array($grade['testID']))[0];
+		}
 		if(empty($array)){return array();};
 		usort($array, 'compareByTimestamp');
-		if(count($array)<$numberOfGradesPerSubject){
-			$numberOfGradesPerSubject=0;
-		}else{
-			$numberOfGradesPerSubject = count($array)-$numberOfGradesPerSubject;
-		}
 		$newArray = array();
 		foreach($array as $test){
 			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
