@@ -336,8 +336,8 @@ tbody{
 tfooter{
 	
 }
-tr{
-	
+tr:nth-child(even){
+	background-color: rgba(166, 166, 166,0.08);
 }
 td{
 	

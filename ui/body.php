@@ -97,7 +97,7 @@ if(!empty($array)){
 		}else{
 			$secondClass = " class='negativeMark'";
 		}
-		$pointsAV = $pointsAV>0 ?  " (+" . $pointsAV . ")" : " (-" . $pointsAV . ")";
+		$pointsAV = $pointsAV>0 ?  " (+" . $pointsAV . ")" : " (" . $pointsAV . ")";
 	}else{
 		$x="-";
 		$secondClass="";
