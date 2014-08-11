@@ -328,7 +328,7 @@ th{
 	font-size:156.25%;
 }
 th.actions{
-	min-width:175px;
+	min-width:220px;
 }
 tbody{
 	
