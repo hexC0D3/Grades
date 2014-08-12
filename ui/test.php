@@ -27,6 +27,7 @@ function testData($data){
 		if(isset($data['deleteTest'])){
 			$class = $ntdb->getAllInformationFrom('classes', 'id', $ntdb->getAllInformationFrom('tests', array('id'), array($data['deleteTest']))[0]['classID'])[0];
 			if($class['adminID']==$user['id']){
+				$ntdb->removeFromDatabase('grades', array('testID'), array($data['deleteTest']));
 				echo $ntdb->removeFromDatabase('tests', 'id', $data['deleteTest']);
 			}else{
 				echo sanitizeOutput(_("You don't have the permission to do this!"));
