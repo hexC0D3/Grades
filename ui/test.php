@@ -58,8 +58,9 @@ function showTestList($get){
 			
 			usort($array, 'compareByTimestamp');
 			$grades = $ntdb->getAllInformationFrom('grades', 'userID', $user['id']);
+			$class = $ntdb->getAllInformationFrom('classes', array('id'), array($user['classID']))[0];
 			foreach($array as $val){
-				if($ntdb->doesUserHaveSubject($user['id'], $val['subjectID'])){
+				if($ntdb->doesUserHaveSubject($user['id'], $val['subjectID'])||$class['adminID']==$user['id']){
 					$subject = $ntdb->getAllInformationFrom('subjects', 'id', $val['subjectID'])[0];
 					$val['timestamp'] = date("d. m. Y", strtotime($val['timestamp']));
 					$m = search($grades, 'testID', $val['id']);
