@@ -25,7 +25,7 @@ function testData($data){
 		}
 	}else{
 		if(isset($data['deleteTest'])){
-			$class = $ntdb->getAllInformationFrom('classes', 'id', $data['deleteTest'])[0];
+			$class = $ntdb->getAllInformationFrom('classes', 'id', $ntdb->getAllInformationFrom('tests', array('id'), array($data['deleteTest']))[0]['classID'])[0];
 			if($class['adminID']==$user['id']){
 				echo $ntdb->removeFromDatabase('tests', 'id', $data['deleteTest']);
 			}else{
@@ -87,7 +87,7 @@ function getTestTableFunction($val){
 	$return = '<a href="#page:/ui/test.php?p=edit&id='.$val['id'].'"><input type="button" value="'._("Edit").'" /></a>';
 	$class=$ntdb->getAllInformationFrom('classes', array('id'), array($user['classID']))[0];
 	if($class['adminID']==$user['id']){
-		$return.='<form action="/ui/test.php" method="POST" callBackUrl="/ui/class.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to delete this test? This will delete all grades related to this test!")).'">
+		$return.='<form action="/ui/test.php" method="POST" callBackUrl="/ui/test.php?p=list" warning="true" message="'.htmlentities(_("Are you sure, that you want to delete this test? This will delete all grades related to this test!")).'">
 			<input type="hidden" name="deleteTest" value='.$val['id'].' />
 			<input type="submit" class="delete" value="'.htmlentities(_("Delete")).'" />
 		</form>';
