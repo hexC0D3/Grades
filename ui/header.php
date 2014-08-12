@@ -5,6 +5,8 @@
 	<link rel="icon" type="image/png" href="/img/favicon.png">
 	<style type="text/css">
 	<?php require_once('style.css.php'); ?>
+	</style>
+	<style type="text/css">
 	<?php require_once('js/alertify/alertify.core.css'); ?>
 	<?php require_once('js/alertify/alertify.default.css'); ?>
 	</style>
