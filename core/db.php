@@ -363,14 +363,14 @@ class NTDB{
 	function sendMailToSchool($schoolID, $subject, $message){
 		$users = $this->getAllInformationFrom('users', 'schoolID', $schoolID);
 		foreach($users as $user){
-			sendMail($user['mail'], MAIL_FROM, $subject, "Hi " . $user['username']."\r\n".$message);
+			sendMail($user['mail'], MAIL_FROM, $subject, "Hi " . $user['username']."<br/>".$message);
 		}
 	}
 	/** Sends a mail to the whole class (with name as prefix) **/
 	function sendMailToClass($classID, $subject, $message){
 		$users = $this->getAllInformationFrom('users', 'classID', $classID);
 		foreach($users as $user){
-			sendMail($user['mail'], MAIL_FROM, $subject, "Hi " . $user['username']."\r\n".$message);
+			sendMail($user['mail'], MAIL_FROM, $subject, "Hi " . $user['username']."<br/>".$message);
 		}
 		return true;
 	}
