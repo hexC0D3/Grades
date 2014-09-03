@@ -220,12 +220,11 @@ class NTDB{
 	}
 	/** Checks if a user exists **/
 	function user_exists($username, $mail){
-		global $ntdb;
-		$array = $ntdb->getAllInformationFrom('users', 'username', $username);
+		$array = $this->getAllInformationFrom('users', 'username', $username);
 		if(is_array($array)&&!empty($array)&&isset($array[0])&&is_array($array[0])&&!empty($array[0])){
 			return true;
 		}else{
-			$array = $ntdb->getAllInformationFrom('users', 'mail', $mail);
+			$array = $this->getAllInformationFrom('users', 'mail', $mail);
 			if(is_array($array)&&!empty($array)&&isset($array[0])&&is_array($array[0])&&!empty($array[0])){
 				return true;
 			}else{
@@ -466,7 +465,7 @@ class NTDB{
 		$tests = array_slice($array, $numberOfGrades);
 		$newArray = array();
 		foreach($tests as $test){
-			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
+			$mark = $this->getAllInformationFrom('grades', array('testID', 'userID'), array($test['id'], $user['id']))[0];
 			$subject = $this->getAllInformationFrom('subjects', 'id', $test['subjectID'])[0];
 			$newArray[strtotime($test['timestamp'])][] = $mark['mark'];
 		}

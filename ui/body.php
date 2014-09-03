@@ -50,6 +50,7 @@ if(!empty($array)){
 			if($average >= 4){
 				$secondClass = "";
 				$p=($average-4);
+				$p = round($p, 1);
 				if($rel){
 					$pointsAV+=$p;
 					$points = " (+" . $p . ")";
@@ -57,6 +58,7 @@ if(!empty($array)){
 			}else{
 				$secondClass = " negativeMark";
 				$p=(2*(4-$average));
+				$p = round($p, 1);
 				if($rel){
 					$pointsAV-=$p;
 					$points = " (-" . $p . ")";
