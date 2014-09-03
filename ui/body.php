@@ -110,7 +110,7 @@ if(!empty($array)){
 	$marks = array();
 	$dates = array();
 	foreach($array as $key => $timestamp){
-		$marks[] = $timestamp[0];
+		$marks[] = str_replace(",", ".", $timestamp[0]);
 		$dates[] = date("d. M",$key);
 	}
 	$marks = implode(",", $marks);
