@@ -1,768 +1,764 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Grades\n"
-"POT-Creation-Date: 2014-08-09 10:02+0100\n"
-"PO-Revision-Date: 2014-08-09 10:02+0100\n"
-"Last-Translator: Nico Hauser <me@tyratox.ch>\n"
+"POT-Creation-Date: 2014-09-08 22:56+0100\n"
+"PO-Revision-Date: 2014-09-08 23:00+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: de_DE\n"
+"Language: de_CH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: ../../../..\n"
+"X-Poedit-KeywordsList: _;_e\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: ../../../../admin/profile.php:13
+#: admin/profile.php:13 master/admin/profile.php:13
 msgid "The hex color format isn't correct!"
-msgstr "Das Format der Hex-Farbe ist nicht korrekt!"
+msgstr "Das HEX-Farbformat ist nicht korrekt!"
 
-#: ../../../../admin/profile.php:20
+#: admin/profile.php:20 master/admin/profile.php:20
 msgid "Profile Settings"
-msgstr "Profil Einstellungen"
+msgstr "Profileinstellungen"
 
-#: ../../../../admin/profile.php:21 ../../../../welcome.php:165
-#: ../../../../welcome.php:178
+#: admin/profile.php:21 master/admin/profile.php:21 master/welcome.php:165
+#: master/welcome.php:178 welcome.php:115 welcome.php:128
 msgid "Username"
 msgstr "Benutzername"
 
-#: ../../../../admin/profile.php:23
+#: admin/profile.php:23 master/admin/profile.php:23
 msgid "Some cool nice colors can be found"
-msgstr "Einige tolle Farben können bei folgendem Link gefunden werden: "
+msgstr "Gute Farben finden sie"
 
-#: ../../../../admin/profile.php:23 ../../../../core/db.php:185
-#: ../../../../core/db.php:210
+#: admin/profile.php:23 db.php:185 db.php:210 master/admin/profile.php:23
+#: master/core/db.php:185 master/core/db.php:210
 msgid "here"
 msgstr "hier"
 
-#: ../../../../admin/profile.php:24
+#: admin/profile.php:24 master/admin/profile.php:24
 msgid "Color One (Hexcode, like #000 for black)"
-msgstr "Farbe eins (Hex-Farbe, wie #000 für schwarz)"
+msgstr "Farbe 1 (HEX-Format)"
 
-#: ../../../../admin/profile.php:26
+#: admin/profile.php:26 master/admin/profile.php:26
 msgid "Color Two (Hexcode, like #f00 for red)"
-msgstr "Farbe zwei (Hex-Farbe, wie #f00 für rot)"
+msgstr "Farbe 2 (HEX-Format)"
 
-#: ../../../../admin/profile.php:28
+#: admin/profile.php:28 master/admin/profile.php:28
 msgid "Update Profile"
-msgstr "Profil aktualisieren"
+msgstr "Profil aktualisiereren"
 
-#: ../../../../admin/setup.php:5
+#: admin/setup.php:5 master/admin/setup.php:5
 msgid ""
 "The config file already exists! Please delete this file! You can also delete "
 "the config file to redo the setup."
 msgstr ""
-"Die Konfigurationsdatei existiert bereits! Bitte lösche diese Datei oder die "
-"Konfigurationsdatei um das Setup erneut zu starten."
+"Die Konfigurationsdatei existiert schon. Bitte löschen Sie diese Datei! Sie "
+"können auch die Konfigurationsdatei löschen, um den Setup-Vorgang zu "
+"wiederholen."
 
-#: ../../../../admin/setup.php:14
+#: admin/setup.php:14 master/admin/setup.php:14
 msgid "Please check your database data"
-msgstr "Bitte überprüfe die Datenbank Daten"
+msgstr "Bitte überprüfen Sie Ihre Datenbankangaben"
 
-#: ../../../../admin/setup.php:32
+#: admin/setup.php:32 master/admin/setup.php:32
 msgid "The 2 entered passwords don't match!"
-msgstr "Die 2 eingegebenen Passwörter stimmen nicht überein"
+msgstr "Die Passwörter stimmen nicht überein!"
 
-#: ../../../../admin/setup.php:40 ../../../../admin/setup.php:53
-#: ../../../../admin/setup.php:69 ../../../../mail.php:63
+#: admin/setup.php:40 admin/setup.php:53 admin/setup.php:69 mail.php:63
+#: master/admin/setup.php:40 master/admin/setup.php:53
+#: master/admin/setup.php:69 master/mail.php:63
 msgid "Setup"
 msgstr "Setup"
 
-#: ../../../../admin/setup.php:55
+#: admin/setup.php:55 master/admin/setup.php:55
 msgid "Database Name"
 msgstr "Datenbankname"
 
-#: ../../../../admin/setup.php:57
+#: admin/setup.php:57 master/admin/setup.php:57
 msgid "Database Username"
 msgstr "Datenbank-Benutzername"
 
-#: ../../../../admin/setup.php:59
+#: admin/setup.php:59 master/admin/setup.php:59
 msgid "Database Password"
 msgstr "Datenbank-Passwort"
 
-#: ../../../../admin/setup.php:61
+#: admin/setup.php:61 master/admin/setup.php:61
 msgid "Database Host, 'localhost' in most cases"
-msgstr "Datenbank Host, 'localhost' in den meisten Fällen"
+msgstr "Datenbank-Host (meist 'localhost')"
 
-#: ../../../../admin/setup.php:63 ../../../../admin/update.php:114
+#: admin/setup.php:63 admin/update.php:114 master/admin/setup.php:63
+#: master/admin/update.php:114
 msgid "Admin Username"
-msgstr "Admin Benutzername"
+msgstr "Administrator-Benutzername"
 
-#: ../../../../admin/setup.php:65 ../../../../admin/update.php:116
+#: admin/setup.php:65 admin/update.php:116 master/admin/setup.php:65
+#: master/admin/update.php:116
 msgid "Admin Password"
-msgstr "Admin Passwort"
+msgstr "Administrator-Passwort"
 
-#: ../../../../admin/setup.php:67
+#: admin/setup.php:67 master/admin/setup.php:67
 msgid "Confirm Admin Password"
-msgstr "Bestätige Admin Passwort"
+msgstr "Administrator-Passwort bestätigen"
 
-#: ../../../../admin/update.php:10
+#: admin/update.php:10 master/admin/update.php:10
 msgid "ERROR WHILE UPDATING"
-msgstr "Fehler beim Aktualisieren"
+msgstr "FEHLER BEI DER AKTUALISIERUNG"
 
-#: ../../../../admin/update.php:99 ../../../../admin/update.php:112
+#: admin/update.php:99 admin/update.php:112 master/admin/update.php:99
+#: master/admin/update.php:112
 msgid "Update"
-msgstr "Aktualisieren"
+msgstr "Aktualisierung"
 
-#: ../../../../admin/update.php:118
+#: admin/update.php:118 master/admin/update.php:118
 msgid "Update Grades"
-msgstr "Grades aktualisieren"
+msgstr "Gardes Aktualisieren"
 
-#: ../../../../core/db.php:185
+#: db.php:185 master/core/db.php:185
 msgid "Grades: password reset"
-msgstr "Grades: Zurücksetzen des Passworts"
+msgstr "Grades: Passwort zurücksetzen"
 
-#: ../../../../core/db.php:185
+#: db.php:185 master/core/db.php:185
 msgid ""
 "The reset of your password was requested! If you didn't request it, ignore "
 "this mail. If you want to reset your password click"
 msgstr ""
-"Das Zurücksetzen deines Passwortes wurde angefordert! Falls es nicht du "
-"warst, kannst du diese Mail ignorieren. Andernfalls kannst dein Password bei "
-"folgendem Link zurücksetzen: "
+"Lieber Grades-BenutzerSie haben ein neues Passwort angefordert. Wenn Sie das "
+"nicht gemacht haben, ignorieren Sie dieses e-Mail. Um Ihr Passwort "
+"zurückzusetzen klicken Sie"
 
-#: ../../../../core/db.php:210
+#: db.php:210 master/core/db.php:210
 msgid "Hi"
 msgstr "Hallo"
 
-#: ../../../../core/db.php:210
+#: db.php:210 master/core/db.php:210
 msgid "Click"
-msgstr "Klicke"
+msgstr "Klicken Sie"
 
-#: ../../../../core/db.php:210
+#: db.php:210 master/core/db.php:210
 msgid "to verify your Grades account."
-msgstr "um deinen Grades Account zu bestätigen"
+msgstr "um ihren Grades-Account zu verifizieren."
 
-#: ../../../../core/db.php:211
+#: db.php:211 master/core/db.php:211
 msgid "Grades: registration"
 msgstr "Grades: Registrierung"
 
-#: ../../../../core/db.php:214
+#: db.php:214 master/core/db.php:214
 msgid "Error while sending mail! Please report this to me@tyratox.ch"
-msgstr "Fehler beim senden des Mails! Bitte melde dies bei me@tyratox.ch"
+msgstr ""
+"e-Mail konnte nicht versendet werden. Bitte melden Sie sich bei me@tyratox.ch"
 
-#: ../../../../core/db.php:354
+#: db.php:354 master/core/db.php:354
 msgid "Grades: new class admin"
-msgstr "Grades: neuer Klassen Admin"
+msgstr "Grades: Neuer Klassen-Administrator"
 
-#: ../../../../core/db.php:354
+#: db.php:354 master/core/db.php:354
 msgid " is your new class admin."
-msgstr " ist dein neuer Klassen-Admin"
+msgstr " ist jetzt ihr neuer Klassen-Administrator."
 
-#: ../../../../core/db.php:354 ../../../../core/db.php:360
+#: db.php:354 db.php:360 master/core/db.php:354 master/core/db.php:360
 msgid "Your Grades Team"
-msgstr "Dein Grades Team"
+msgstr "Ihr Grades-Team"
 
-#: ../../../../core/db.php:360
+#: db.php:360 master/core/db.php:360
 msgid "Grades: new school admin"
-msgstr "Grades: neuer Schul-Admin"
+msgstr "Grades: Schul-Administrator"
 
-#: ../../../../core/db.php:360
+#: db.php:360 master/core/db.php:360
 msgid " is your new school admin."
-msgstr " ist dein neuer Schul-Admin"
+msgstr " ist jetzt ihr neuer Schul-Administrator."
 
-#: ../../../../mail.php:36
+#: mail.php:36 master/mail.php:36
 msgid "The entered password don't match!"
-msgstr "Die eingegebenen Passwörter stimmen nicht überein!"
+msgstr "Das eingegebene Passwort ist nicht korrekt!"
 
-#: ../../../../mail.php:39
+#: mail.php:39 master/mail.php:39
 msgid "You have to enter a new password!"
-msgstr "Du musst ein Admin Passwort festlegen"
+msgstr "Sie müssen ein neues Passwort eingeben."
 
-#: ../../../../mail.php:45 ../../../../mail.php:57
+#: mail.php:45 mail.php:57 master/mail.php:45 master/mail.php:57
 msgid "Password Reset"
 msgstr "Passwort zurücksetzen"
 
-#: ../../../../mail.php:59
+#: mail.php:59 master/mail.php:59
 msgid "New Password"
-msgstr "neues Passwort"
+msgstr "Neues Passwort"
 
-#: ../../../../mail.php:61
+#: mail.php:61 master/mail.php:61
 msgid "Confirm New Password"
-msgstr "Bestätige das neue Passwort"
+msgstr "Neues Passwort bestätigen"
 
-#: ../../../../mail.php:69
+#: mail.php:69 master/mail.php:69
 msgid ""
 "Please re-send the mail, we weren't able to verify, that this is your "
 "account!"
 msgstr ""
-"Bitte sende die Mail erneut, wir konnten nicht feststellen ob dies dein "
-"Account ist!"
+"Bitte fordern Sie einen neue Bestätigungs e-Mail an. Wir konnten nicht "
+"identifizieren, ob dies Ihr Account ist."
 
-#: ../../../../mail.php:84
+#: mail.php:84 master/mail.php:84
 msgid ""
 "Something went wrong! If you believe this is an error please report this to "
 "me@tyratox.ch"
-msgstr "Etwas ist schief gelaufen, bitte kontaktiere me@tyratox.ch"
+msgstr ""
+"Ups, etwas ist falsch gelaufen! Wenn Sie glauben, dass dies ein Fehler ist, "
+"melden Sie sich bei me@tyratox.ch"
 
-#: ../../../../ui/body.php:111
+#: master/ui/body.php:120 ui/body.php:120
 msgid "Average Mark"
-msgstr "Durchschnitt"
+msgstr "Durchschnittsnote"
 
-#: ../../../../ui/body.php:149
+#: master/ui/body.php:158 ui/body.php:158
 msgid "Welcome to Grades"
 msgstr "Willkommen bei Grades"
 
-#: ../../../../ui/body.php:150
+#: master/ui/body.php:159 ui/body.php:159
 msgid ""
 "You can now start with joining a school and a class. After that you can "
 "start adding grades."
 msgstr ""
-"Du kannst nun damit starten, einer Schule und einer Klasse beizutreten. "
-"Danach kannst du damit beginnen deine Noten einzutragen."
+"Sie können nun beginnen, indem Sie einer Klasse beitreten und Ihre Fächer "
+"wählen. Dann können Sie ihre Noten eintragen!"
 
-#: ../../../../ui/class.php:13 ../../../../ui/class.php:38
-#: ../../../../ui/school.php:16 ../../../../ui/school.php:49
-#: ../../../../ui/subjects.php:25 ../../../../ui/subjects.php:63
-#: ../../../../ui/subjects.php:74 ../../../../ui/test.php:17
-#: ../../../../ui/test.php:32
+#: master/ui/class.php:13 master/ui/class.php:38 master/ui/school.php:16
+#: master/ui/school.php:49 master/ui/subjects.php:25 master/ui/subjects.php:63
+#: master/ui/subjects.php:74 master/ui/test.php:17 master/ui/test.php:33
+#: ui/class.php:13 ui/class.php:38 ui/school.php:16 ui/school.php:49
+#: ui/subjects.php:25 ui/subjects.php:63 ui/subjects.php:74 ui/test.php:17
+#: ui/test.php:33
 msgid "You don't have the permission to do this!"
-msgstr "Du bist nicht dazu berechtigt, dies zu tun!"
+msgstr "Sie haben keine Berechtigung, dies zu tun!"
 
-#: ../../../../ui/class.php:20
+#: master/ui/class.php:20 ui/class.php:20
 msgid "You aren't able to join this class!"
-msgstr "Du bist nicht in der Lage dieser Klasse beizutreten!"
+msgstr "Sie können dieser Klasse nicht beitreten!"
 
-#: ../../../../ui/class.php:23
+#: master/ui/class.php:23 ui/class.php:23
 msgid "You have already joined a class!"
-msgstr "Du bist bereits einer Klasse beigetreten!"
+msgstr "Sie sind dieser Klasse bereits beigetreten!"
 
-#: ../../../../ui/class.php:29
+#: master/ui/class.php:29 ui/class.php:29
 msgid "You are not able to leave this class, because you're the admin of it!"
 msgstr ""
-"Du kannst diese Klasse nicht verlassen, da du der Klassenchef von ihr bist!"
+"Sie können diese Klasse nicht verlassen, da sie der Klassen-Administrator "
+"sind!"
 
-#: ../../../../ui/class.php:41
+#: master/ui/class.php:41 ui/class.php:41
 msgid "This class doesn't exist!"
 msgstr "Diese Klasse existiert nicht!"
 
-#: ../../../../ui/class.php:45
+#: master/ui/class.php:45 ui/class.php:45
 msgid "You are already admin of a class!"
-msgstr "Du bist bereits ein Mitglied einer Klasse!"
+msgstr "Sie sind bereits Admin einer Klasse!"
 
-#: ../../../../ui/class.php:57
+#: master/ui/class.php:57 ui/class.php:57
 msgid "This class already exists!"
 msgstr "Diese Klasse existiert bereits!"
 
-#: ../../../../ui/class.php:66 ../../../../ui/class.php:90
-#: ../../../../ui/subjects.php:49 ../../../../ui/subjects.php:126
+#: master/ui/class.php:66 master/ui/class.php:90 master/ui/subjects.php:49
+#: master/ui/subjects.php:126 ui/class.php:66 ui/class.php:90
+#: ui/subjects.php:49 ui/subjects.php:126
 msgid "First you have to join a school!"
-msgstr "Zuerst musst du einer Schule beitreten!"
+msgstr "Sie müssen zuerst einer Schule beitreten!"
 
-#: ../../../../ui/class.php:76 ../../../../ui/grade.php:41
-#: ../../../../ui/test.php:43
+#: master/ui/class.php:76 master/ui/grade.php:41 master/ui/test.php:44
+#: ui/class.php:76 ui/grade.php:41 ui/test.php:44
 msgid "First you have to join a class!"
-msgstr "Zuerst musst du einer Klasse beitreten!"
+msgstr "Sie müssen zuerst einer Klasse beitreten!"
 
-#: ../../../../ui/class.php:79
+#: master/ui/class.php:79 ui/class.php:79
 msgid "Mail Subject"
 msgstr "Betreff"
 
-#: ../../../../ui/class.php:83
+#: master/ui/class.php:83 ui/class.php:83
 msgid "Send Mail"
-msgstr "Mail absenden"
+msgstr "e-Mail senden"
 
-#: ../../../../ui/class.php:95 ../../../../ui/class.php:149
-#: ../../../../ui/class.php:164
+#: master/ui/class.php:95 master/ui/class.php:149 master/ui/class.php:164
+#: ui/class.php:95 ui/class.php:149 ui/class.php:164
 msgid "Class Name"
 msgstr "Klassenname"
 
-#: ../../../../ui/class.php:95
+#: master/ui/class.php:95 ui/class.php:95
 msgid "Class Admin"
-msgstr "Klassenchef"
+msgstr "Klassen-Administrator"
 
-#: ../../../../ui/class.php:95 ../../../../ui/school.php:62
-#: ../../../../ui/subjects.php:120 ../../../../ui/test.php:52
+#: master/ui/class.php:95 master/ui/school.php:62 master/ui/subjects.php:120
+#: master/ui/test.php:53 ui/class.php:95 ui/school.php:62 ui/subjects.php:120
+#: ui/test.php:53
 msgid "Actions"
 msgstr "Aktionen"
 
-#: ../../../../ui/class.php:121 ../../../../ui/school.php:92
-#: ../../../../ui/subjects.php:155
+#: master/ui/class.php:121 master/ui/school.php:92 master/ui/subjects.php:155
+#: ui/class.php:121 ui/school.php:92 ui/subjects.php:155
 msgid "Join"
 msgstr "Beitreten"
 
-#: ../../../../ui/class.php:123
+#: master/ui/class.php:123 ui/class.php:123
 msgid ""
 "If you leave this class all test and the related grades will be lost for "
 "you! Do you want to continue?"
 msgstr ""
-"Falls du diese Klasse verlässt, werden alle deine Tests und die "
-"dazugehörigen Noten verloren gehen! Willst du fortfahren?"
+"Wenn Sie diese Klasse verlassen, werden alle darin eingetragenen Noten "
+"entfernt! Möchten Sie diese Klasse wirklich verlassen?"
 
-#: ../../../../ui/class.php:125 ../../../../ui/school.php:96
-#: ../../../../ui/subjects.php:159
+#: master/ui/class.php:125 master/ui/school.php:96 master/ui/subjects.php:159
+#: ui/class.php:125 ui/school.php:96 ui/subjects.php:159
 msgid "Leave"
 msgstr "Verlassen"
 
-#: ../../../../ui/class.php:133 ../../../../ui/school.php:104
-#: ../../../../ui/subjects.php:165 ../../../../ui/test.php:87
+#: master/ui/class.php:133 master/ui/school.php:104 master/ui/subjects.php:165
+#: master/ui/test.php:89 ui/class.php:133 ui/school.php:104
+#: ui/subjects.php:165 ui/test.php:89
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../../../../ui/class.php:134
+#: master/ui/class.php:134 ui/class.php:134
 msgid ""
 "Are you sure, that you want to delete your class? This will delete all tests "
 "of this class and also the corresponding grades!"
 msgstr ""
-"Bist du dir sicher, dass du diese Klasse löschen willst? Es würden alle "
-"Prüfungen und die dazugehörigen Noten gelöscht werden!"
+"Wenn Sie diese Klasse löschen, werden alle darin eingetragenen Noten "
+"entfernt! Möchten Sie diese Klasse wirklich löschen?"
 
-#: ../../../../ui/class.php:136 ../../../../ui/school.php:107
-#: ../../../../ui/subjects.php:169 ../../../../ui/test.php:92
+#: master/ui/class.php:136 master/ui/school.php:107 master/ui/subjects.php:169
+#: master/ui/test.php:94 ui/class.php:136 ui/school.php:107
+#: ui/subjects.php:169 ui/test.php:94
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../../../../ui/class.php:144
+#: master/ui/class.php:144 ui/class.php:144
 msgid "First you've to join a school!"
-msgstr "Zuerst musst du einer Schule beitreten!"
+msgstr "Sie müssen zuerst einer Schule beitreten!"
 
-#: ../../../../ui/class.php:148 ../../../../ui/class.php:151
-#: ../../../../ui/class.php:163
+#: master/ui/class.php:148 master/ui/class.php:151 master/ui/class.php:163
+#: ui/class.php:148 ui/class.php:151 ui/class.php:163
 msgid "Create a new class"
-msgstr "Klasse erstellen"
+msgstr "Neue Klasse erstellen"
 
-#: ../../../../ui/class.php:159 ../../../../ui/grade.php:70
-#: ../../../../ui/school.php:128 ../../../../ui/test.php:132
+#: master/ui/class.php:159 master/ui/grade.php:70 master/ui/school.php:128
+#: master/ui/test.php:134 ui/class.php:159 ui/grade.php:70 ui/school.php:128
+#: ui/test.php:134
 msgid "You aren't allowed to see this page!"
-msgstr "Du bist nicht dazu berechtigt diese Seite zu sehen!"
+msgstr "Sie haben keinen Zugriff auf diese Seite."
 
-#: ../../../../ui/class.php:167
+#: master/ui/class.php:167 ui/class.php:167
 msgid "Update class"
 msgstr "Klasse aktualisieren"
 
-#: ../../../../ui/footer.php:11
+#: master/ui/footer.php:11 ui/footer.php:11
 msgid "Action has successfully been completed!"
-msgstr "Die Aktion wurde erfolgreich beendet!"
+msgstr "Aktion erfolgreich abgeschlossen!"
 
-#: ../../../../ui/footer.php:13 ../../../../ui/subjects.php:131
+#: master/ui/footer.php:13 master/ui/subjects.php:131 ui/footer.php:13
+#: ui/subjects.php:131
 msgid "Yes"
 msgstr "Ja"
 
-#: ../../../../ui/footer.php:14
+#: master/ui/footer.php:14 ui/footer.php:14
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../../../../ui/grade.php:16
+#: master/ui/grade.php:16 ui/grade.php:16
 msgid "This isn't your mark!"
-msgstr "Das ist nicht deine Note!"
+msgstr "Dies ist nicht ihre Note!"
 
-#: ../../../../ui/grade.php:23
+#: master/ui/grade.php:23 ui/grade.php:23
 msgid "You have already entered your mark for this test!"
-msgstr "Du hast deine Note für diesen Test bereits eingegeben!"
+msgstr "Sie haben bereits eine Note für diesen Test eingetragen!"
 
-#: ../../../../ui/grade.php:27
+#: master/ui/grade.php:27 ui/grade.php:27
 msgid "Invalid Test!"
 msgstr "Ungültiger Test!"
 
-#: ../../../../ui/grade.php:30 ../../../../ui/test.php:35
+#: master/ui/grade.php:30 master/ui/test.php:36 ui/grade.php:30 ui/test.php:36
 msgid "Please fill in all required fields!"
-msgstr "Bitte fülle alle verlangten Felder aus!"
+msgstr "Bitte füllen Sie alle benötigten Felder aus!"
 
-#: ../../../../ui/grade.php:46 ../../../../ui/grade.php:74
+#: master/ui/grade.php:46 master/ui/grade.php:74 ui/grade.php:46
+#: ui/grade.php:74
 msgid "Add a mark"
 msgstr "Note hinzufügen"
 
-#: ../../../../ui/grade.php:47 ../../../../ui/grade.php:75
+#: master/ui/grade.php:47 master/ui/grade.php:75 ui/grade.php:47
+#: ui/grade.php:75
 msgid "Your Mark (between 1 and 6)"
-msgstr "Deine Note (zwischen 1 und 6)"
+msgstr "Ihre Note (zwischen 1 und 6)"
 
-#: ../../../../ui/grade.php:49 ../../../../ui/grade.php:77
+#: master/ui/grade.php:49 master/ui/grade.php:77 ui/grade.php:49
+#: ui/grade.php:77
 msgid "Corresponding Test"
-msgstr "Dazugehöriger Test"
+msgstr "dazugehöriger Test"
 
-#: ../../../../ui/grade.php:61
+#: master/ui/grade.php:61 ui/grade.php:61
 msgid "Add mark"
 msgstr "Note hinzufügen"
 
-#: ../../../../ui/grade.php:90
+#: master/ui/grade.php:90 ui/grade.php:90
 msgid "Update mark"
-msgstr "Note aktualisieren"
+msgstr "Aktualisierung"
 
-#: ../../../../ui/header.php:25
+#: master/ui/header.php:27 ui/header.php:38
 msgid "Grades"
 msgstr "Noten"
 
-#: ../../../../ui/header.php:26
+#: master/ui/header.php:28 ui/header.php:40
 msgid "Grade List"
 msgstr "Notenliste"
 
-#: ../../../../ui/header.php:27
+#: master/ui/header.php:29 ui/header.php:41
 msgid "Add Mark"
 msgstr "Note hinzufügen"
 
-#: ../../../../ui/header.php:31
+#: master/ui/header.php:33 ui/header.php:42
 msgid "Test List"
-msgstr "Test Liste"
+msgstr "Testliste"
 
-#: ../../../../ui/header.php:32 ../../../../ui/test.php:102
-#: ../../../../ui/test.php:124 ../../../../ui/test.php:137
+#: master/ui/header.php:34 master/ui/test.php:104 master/ui/test.php:126
+#: master/ui/test.php:139 ui/header.php:43 ui/test.php:104 ui/test.php:126
+#: ui/test.php:139
 msgid "Create a test"
-msgstr "Erstelle einen Test"
+msgstr "Test hinzufügen"
 
-#: ../../../../ui/header.php:34
+#: master/ui/header.php:36 ui/header.php:47
 msgid "Subjects"
 msgstr "Fächer"
 
-#: ../../../../ui/header.php:35
+#: master/ui/header.php:37 ui/header.php:49
 msgid "Subject List"
-msgstr "Fächer Liste"
+msgstr "Fächerliste"
 
-#: ../../../../ui/header.php:38
+#: master/ui/header.php:40 ui/header.php:52
 msgid "Create Subject"
-msgstr "Fach erstellen"
+msgstr "Fach hinzufügen"
 
-#: ../../../../ui/header.php:42
+#: master/ui/header.php:44 ui/header.php:58
 msgid "My Class"
 msgstr "Meine Klasse"
 
-#: ../../../../ui/header.php:43
+#: master/ui/header.php:45 ui/header.php:60
 msgid "Go to classroom"
-msgstr "Gehe zum Klassenzimmer"
+msgstr "Zum Klassenzimmer"
 
-#: ../../../../ui/header.php:44
+#: master/ui/header.php:46 ui/header.php:61
 msgid "Class List"
 msgstr "Klassenliste"
 
-#: ../../../../ui/header.php:47
+#: master/ui/header.php:49 ui/header.php:64
 msgid "Create a class"
-msgstr "Erstelle eine Klasse"
+msgstr "Klasse hinzufügen"
 
-#: ../../../../ui/header.php:51
+#: master/ui/header.php:53
 msgid "Schools"
 msgstr "Schulen"
 
-#: ../../../../ui/header.php:52
+#: master/ui/header.php:54 ui/header.php:73
 msgid "School List"
 msgstr "Schulliste"
 
-#: ../../../../ui/header.php:55 ../../../../ui/school.php:115
-#: ../../../../ui/school.php:120 ../../../../ui/school.php:132
+#: master/ui/header.php:57 master/ui/school.php:115 master/ui/school.php:120
+#: master/ui/school.php:132 ui/header.php:76 ui/school.php:115
+#: ui/school.php:120 ui/school.php:132
 msgid "Create a school"
-msgstr "Schule erstellen"
+msgstr "Schule hinzufügen"
 
-#: ../../../../ui/header.php:58
+#: master/ui/header.php:60
 msgid "Profile"
 msgstr "Profil"
 
-#: ../../../../ui/header.php:59
+#: master/ui/header.php:61 ui/header.php:72
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../../../../ui/header.php:60
+#: master/ui/header.php:62 ui/header.php:78
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: ../../../../ui/school.php:19
+#: master/ui/school.php:19 ui/school.php:19
 msgid "This school doesn't exist!"
 msgstr "Diese Schule existiert nicht!"
 
-#: ../../../../ui/school.php:23
+#: master/ui/school.php:23 ui/school.php:23
 msgid "Your school already exists!"
-msgstr "Deine Schule existiert bereits!"
+msgstr "Diese Schule existiert bereits!"
 
-#: ../../../../ui/school.php:30 ../../../../ui/school.php:38
+#: master/ui/school.php:30 master/ui/school.php:38 ui/school.php:30
+#: ui/school.php:38
 msgid "You have already joined a school!"
-msgstr "Du bist bereits ein Mitglied einer Schule!"
+msgstr "Sie sind bereits einer Schule beigetreten!"
 
-#: ../../../../ui/school.php:53
+#: master/ui/school.php:53 ui/school.php:53
 msgid "You can't leave this school, because you're the admin of it!"
-msgstr "Du kannst diese Schule nicht verlassen, da du der Admin von ihr bist!"
+msgstr ""
+"Sie können diese Schule nicht verlassen, da sie der Schul-Administrator sind!"
 
-#: ../../../../ui/school.php:62 ../../../../ui/school.php:116
-#: ../../../../ui/school.php:133
+#: master/ui/school.php:62 master/ui/school.php:116 master/ui/school.php:133
+#: ui/school.php:62 ui/school.php:116 ui/school.php:133
 msgid "School Name"
 msgstr "Schulname"
 
-#: ../../../../ui/school.php:94
+#: master/ui/school.php:94 ui/school.php:94
 msgid ""
 "Do you really want to leave this school? This will wipe all of your data!"
 msgstr ""
-"Willst du wirklich diese Schule verlassen? Dies wird alle deine Daten "
-"löschen!"
+"Möchten Sie diese Schule wirklich verlassen? Dies löscht alle ihre Daten!"
 
-#: ../../../../ui/school.php:105
+#: master/ui/school.php:105 ui/school.php:105
 msgid ""
 "Do you really want to delete this school? This will wipe all of your data!"
 msgstr ""
-"Willst du wirklich diese Schule löschen? Dies wird alle deine Daten löschen!"
+"Möchten Sie diese Schule wirklich löschen? Dies löscht alle ihre Daten!"
 
-#: ../../../../ui/school.php:118 ../../../../ui/school.php:135
+#: master/ui/school.php:118 master/ui/school.php:135 ui/school.php:118
+#: ui/school.php:135
 msgid "School Website URL (without http://)"
-msgstr "Website der Schule (ohne http://)"
+msgstr "Schulwebsite (ohne http://)"
 
-#: ../../../../ui/school.php:138
+#: master/ui/school.php:138 ui/school.php:138
 msgid "Update school"
 msgstr "Schule aktualisieren"
 
-#: ../../../../ui/subjects.php:30
+#: master/ui/subjects.php:30 ui/subjects.php:30
 msgid "You have already joined this subject!"
-msgstr "Du hast dieses Fach bereits ausgewählt!"
+msgstr "Sie haben dieses Fach bereits gewählt."
 
-#: ../../../../ui/subjects.php:35
+#: master/ui/subjects.php:35 ui/subjects.php:35
 msgid "You aren't able to join this subject!"
-msgstr "Du bist nicht in der Lage dieses Fach zu wählen!"
+msgstr "Sie können dieses Fach nicht wählen."
 
-#: ../../../../ui/subjects.php:39
+#: master/ui/subjects.php:39 ui/subjects.php:39
 msgid "Yet you haven't joined this subject!"
-msgstr "Du hast dieses Fach bisher noch nicht gewählt!"
+msgstr "Sie haben dieses Fach noch nicht gewählt."
 
-#: ../../../../ui/subjects.php:52 ../../../../ui/subjects.php:120
-#: ../../../../ui/subjects.php:186 ../../../../ui/subjects.php:208
+#: master/ui/subjects.php:52 master/ui/subjects.php:120
+#: master/ui/subjects.php:186 master/ui/subjects.php:208 ui/subjects.php:52
+#: ui/subjects.php:120 ui/subjects.php:186 ui/subjects.php:208
 msgid "Subject Name"
-msgstr "Fachname"
+msgstr "Name des Faches"
 
-#: ../../../../ui/subjects.php:52 ../../../../ui/subjects.php:54
+#: master/ui/subjects.php:52 master/ui/subjects.php:54 ui/subjects.php:52
+#: ui/subjects.php:54
 msgid "shouldn't be empty!"
-msgstr "sollte nicht leer sein!"
+msgstr "Sollte nicht leer sein."
 
-#: ../../../../ui/subjects.php:54 ../../../../ui/subjects.php:189
-#: ../../../../ui/subjects.php:211
+#: master/ui/subjects.php:54 master/ui/subjects.php:189
+#: master/ui/subjects.php:211 ui/subjects.php:54 ui/subjects.php:189
+#: ui/subjects.php:211
 msgid "Is subject relevant?"
-msgstr "Promotionswirksam?"
+msgstr "Ist dieses Fach Promotionsrelevant?"
 
-#: ../../../../ui/subjects.php:68
+#: master/ui/subjects.php:68 ui/subjects.php:68
 msgid "This subject already exists!"
-msgstr "Dieses Fach existiert bereits!"
+msgstr "Dieser Fach existiert bereits!"
 
-#: ../../../../ui/subjects.php:94 ../../../../ui/test.php:52
+#: master/ui/subjects.php:94 master/ui/test.php:53 ui/subjects.php:94
+#: ui/test.php:53
 msgid "Topic"
 msgstr "Thema"
 
-#: ../../../../ui/subjects.php:95
+#: master/ui/subjects.php:95 ui/subjects.php:95
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ../../../../ui/subjects.php:96
+#: master/ui/subjects.php:96 ui/subjects.php:96
 msgid "Type"
-msgstr "Typ"
+msgstr "Testart"
 
-#: ../../../../ui/subjects.php:97 ../../../../ui/test.php:122
+#: master/ui/subjects.php:97 master/ui/test.php:124 ui/subjects.php:97
+#: ui/test.php:124
 msgid "Test Date"
-msgstr "Test Datum"
+msgstr "Datum"
 
-#: ../../../../ui/subjects.php:98 ../../../../ui/test.php:52
+#: master/ui/subjects.php:98 master/ui/test.php:53 ui/subjects.php:98
+#: ui/test.php:53
 msgid "Mark"
 msgstr "Note"
 
-#: ../../../../ui/subjects.php:114
+#: master/ui/subjects.php:114 ui/subjects.php:114
 msgid "Choose a subject on the main page by clicking on its name."
 msgstr ""
-"Wähle ein Fach auf der Hauptseite indem du auf den jeweiligen Namen klickst."
+"Wählen Sie ein Fach auf der Hauptseite, indem Sie auf dessen Namen klicken."
 
-#: ../../../../ui/subjects.php:120
+#: master/ui/subjects.php:120 ui/subjects.php:120
 msgid "Relevant ?"
-msgstr "Promotionswirksam ?"
+msgstr "Promotionsrelevant"
 
-#: ../../../../ui/subjects.php:131
+#: master/ui/subjects.php:131 ui/subjects.php:131
 msgid "No"
-msgstr "Nein"
+msgstr "nein"
 
-#: ../../../../ui/subjects.php:157
+#: master/ui/subjects.php:157 ui/subjects.php:157
 msgid ""
 "Are you sure, that you want to leave this subject? This will delete all "
 "grades related to this subject!"
 msgstr ""
-"Bist du dir sicher, dass du dieses Fach verlassen willst? Es werden alle "
-"Noten die zu diesem Fach gehören gelöscht!"
+"Möchten Sie dieses Fach wirklich abwählen? Dies löscht alle Noten, die Sie "
+"in diesem Fach eingetragen haben!"
 
-#: ../../../../ui/subjects.php:167
+#: master/ui/subjects.php:167 ui/subjects.php:167
 msgid ""
 "Are you sure, that you want to delete this subject? This will delete all "
 "grades related to this subject!"
 msgstr ""
-"Bist du dir sicher, dass du dieses Fach löschen willst? Es werden alle Noten "
-"die zu diesem Fach gehören gelöscht!"
+"Möchten Sie dieses Fach wirklich löschen? Dies löscht alle Noten, die in "
+"diesem Fach eingetragen wurden!"
 
-#: ../../../../ui/subjects.php:181
+#: master/ui/subjects.php:181 ui/subjects.php:181
 msgid "You aren't allowed to create a subject!"
-msgstr "Du bist nicht dazu berechtigt ein Fach zu erstellen!"
+msgstr ""
+"Sie sind nicht dazu berechtigt, ein Fach zu erstellen! Kontaktieren Sie "
+"ihren Klassen-Administrator."
 
-#: ../../../../ui/subjects.php:185 ../../../../ui/subjects.php:194
+#: master/ui/subjects.php:185 master/ui/subjects.php:194 ui/subjects.php:185
+#: ui/subjects.php:194
 msgid "Create a new subject"
-msgstr "Fach erstellen"
+msgstr "Neues Fach erstellen"
 
-#: ../../../../ui/subjects.php:203
+#: master/ui/subjects.php:203 ui/subjects.php:203
 msgid "You aren't allowed to edit this subject!"
-msgstr "Du bist nicht dazu berechtigt diese Fach zu bearbeiten!"
+msgstr ""
+"Sie sind nicht dazu berechtigt, dieses Fach zu bearbeiten! Kontaktieren Sie "
+"ihren Klassen-Administrator."
 
-#: ../../../../ui/subjects.php:207
+#: master/ui/subjects.php:207 ui/subjects.php:207
 msgid "Edit the subject"
 msgstr "Fach bearbeiten"
 
-#: ../../../../ui/subjects.php:217
+#: master/ui/subjects.php:217 ui/subjects.php:217
 msgid "Update subject"
 msgstr "Fach aktualisieren"
 
-#: ../../../../ui/test.php:24
+#: master/ui/test.php:24 ui/test.php:24
 msgid "Something went wrong, please contact me@tyratox.ch"
-msgstr "Etwas ist schief gelaufen, bitte kontaktiere me@tyratox.ch"
+msgstr "Ups, etwas ist falsch gelaufen! Melden Sie sich bei me@tyratox.ch"
 
-#: ../../../../ui/test.php:52
+#: master/ui/test.php:53 ui/test.php:53
 msgid "Subject"
-msgstr "Fach"
+msgstr "Betreff"
 
-#: ../../../../ui/test.php:52
+#: master/ui/test.php:53 ui/test.php:53
 msgid "Date"
 msgstr "Datum"
 
-#: ../../../../ui/test.php:90
+#: master/ui/test.php:92 ui/test.php:92
 msgid ""
 "Are you sure, that you want to delete this test? This will delete all grades "
 "related to this test!"
 msgstr ""
-"Bist du dir sicher, dass du diesen Test löschen willst? Es werden alle Noten "
-"die zu diesem Test gehören gelöscht!"
+"Möchten Sie diesen Test wirklich löschen? Dies löscht alle Noten, die für "
+"diesen Test eingetragen wurden!"
 
-#: ../../../../ui/test.php:104
+#: master/ui/test.php:106 ui/test.php:106
 msgid "Please check first if this test already exists!"
-msgstr "Bitte überprüfe ob bereits jemand diesen Test erstellt hat!"
+msgstr "Bitte überprüfen Sie, ob dieser Test bereits existiert!"
 
-#: ../../../../ui/test.php:105 ../../../../ui/test.php:138
+#: master/ui/test.php:107 master/ui/test.php:140 ui/test.php:107
+#: ui/test.php:140
 msgid "Test Topic"
-msgstr "Test Thema"
+msgstr "Thema"
 
-#: ../../../../ui/test.php:107 ../../../../ui/test.php:140
+#: master/ui/test.php:109 master/ui/test.php:142 ui/test.php:109
+#: ui/test.php:142
 msgid "Test Type(written, oral, ..)"
-msgstr "Test Typ (geschrieben, mündlich, ..)"
+msgstr "Testart"
 
-#: ../../../../ui/test.php:109 ../../../../ui/test.php:142
+#: master/ui/test.php:111 master/ui/test.php:144 ui/test.php:111
+#: ui/test.php:144
 msgid "Short Test Description"
-msgstr "Kurze Beschreibung des Tests"
+msgstr "Beschreibung"
 
-#: ../../../../ui/test.php:111 ../../../../ui/test.php:144
+#: master/ui/test.php:113 master/ui/test.php:146 ui/test.php:113
+#: ui/test.php:146
 msgid "Test Subject"
-msgstr "Fach des Tests"
+msgstr "Fach"
 
-#: ../../../../ui/test.php:155
+#: master/ui/test.php:157 ui/test.php:157
 msgid "Test Date (dd. mm. yyyy)"
-msgstr "Test Datum (dd. mm. yyyy)"
+msgstr "Datum"
 
-#: ../../../../ui/test.php:158
+#: master/ui/test.php:160 ui/test.php:160
 msgid "Update test"
 msgstr "Test aktualisieren"
 
-#: ../../../../welcome.php:12 ../../../../welcome.php:19
+#: master/welcome.php:12 master/welcome.php:19 welcome.php:12 welcome.php:19
 msgid "User not found!"
 msgstr "Benutzer wurde nicht gefunden!"
 
-#: ../../../../welcome.php:22 ../../../../welcome.php:28
+#: master/welcome.php:22 master/welcome.php:28 welcome.php:22 welcome.php:28
 msgid "Check your mail account."
-msgstr "Bitte überprüfe deinen Mail Account."
+msgstr "Bitte überprüfen Sie ihre e-Mail Adresse!"
 
-#: ../../../../welcome.php:30
+#: master/welcome.php:30 welcome.php:30
 msgid "Your mail or your username is already in use!"
-msgstr "Deine Mail oder dein Benutzername wird bereits benutzt!"
+msgstr "Diese/r Benutzername oder e-Mail ist bereits in Verwendung!"
 
-#: ../../../../welcome.php:33
+#: master/welcome.php:33 welcome.php:33
 msgid "The entered passwords aren't equal!"
 msgstr "Die eingegebenen Passwörter stimmen nicht überein!"
 
-#: ../../../../welcome.php:36 ../../../../welcome.php:48
+#: master/welcome.php:36 master/welcome.php:48 welcome.php:36 welcome.php:48
 msgid "Please fill in all fields!"
-msgstr "Bitte fülle alle Felder aus!"
+msgstr "Bitte füllen Sie alle Felder aus!"
 
-#: ../../../../welcome.php:45
+#: master/welcome.php:45 welcome.php:45
 msgid "Please check your login!"
-msgstr "Bitte überprüfe dein Login!"
+msgstr "Bitte überprüfen Sie ihren Benutzernamen!"
 
-#: ../../../../welcome.php:74
+#: master/welcome.php:74
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: ../../../../welcome.php:75
+#: master/welcome.php:75
 msgid "to"
 msgstr "bei"
 
-#: ../../../../welcome.php:83 ../../../../welcome.php:175
-#: ../../../../welcome.php:186
+#: master/welcome.php:83 master/welcome.php:175 master/welcome.php:186
+#: welcome.php:84 welcome.php:125 welcome.php:136
 msgid "Register"
 msgstr "Registrieren"
 
-#: ../../../../welcome.php:91 ../../../../welcome.php:162
+#: master/welcome.php:91 master/welcome.php:162 welcome.php:92 welcome.php:112
 msgid "Login"
 msgstr "Login"
 
-#: ../../../../welcome.php:99
+#: master/welcome.php:99 welcome.php:100
 msgid "Reset your Password"
 msgstr "Passwort zurücksetzen"
 
-#: ../../../../welcome.php:107
+#: master/welcome.php:107
 msgid "About this Website"
 msgstr "Über diese Website"
 
-#: ../../../../welcome.php:115
+#: master/welcome.php:115
 msgid "Our Team"
 msgstr "Unser Team"
 
-#: ../../../../welcome.php:167 ../../../../welcome.php:180
+#: master/welcome.php:167 master/welcome.php:180 welcome.php:117
+#: welcome.php:130
 msgid "Password"
 msgstr "Passwort"
 
-#: ../../../../welcome.php:169
+#: master/welcome.php:169 welcome.php:119
 msgid "Log In"
-msgstr "Einloggen"
+msgstr "Log In"
 
-#: ../../../../welcome.php:182
+#: master/welcome.php:182 welcome.php:132
 msgid "Verify Password"
-msgstr "Passwort bestätigen"
+msgstr "Passwort verifizieren"
 
-#: ../../../../welcome.php:184
+#: master/welcome.php:184 welcome.php:134
 msgid "Mail"
-msgstr "E-Mail"
+msgstr "Mail"
 
-#: ../../../../welcome.php:192
+#: master/welcome.php:192 welcome.php:142
 msgid "Reset Password"
-msgstr "Setze mein Passwort zurück"
+msgstr "Passwort zurücksetzen"
 
-#: ../../../../welcome.php:195
+#: master/welcome.php:195 welcome.php:145
 msgid "Username or E-Mail"
-msgstr "Benutzername oder E-Mail"
+msgstr "Benutzername oder e-Mail Adresse"
 
-#: ../../../../welcome.php:197
+#: master/welcome.php:197 welcome.php:147
 msgid "Reset your password"
-msgstr "Setze mein Passwort zurück"
-
-#~ msgid "Data succesfully saved!"
-#~ msgstr "Daten wurden erfolgreich gespeichert!"
-
-#~ msgid "Sign In"
-#~ msgstr "Einloggen"
-
-#~ msgid "You aren't a member of this class!"
-#~ msgstr "Du bist kein Mitglied dieser Klasse!"
-
-#~ msgid "written"
-#~ msgstr "geschrieben"
-
-#~ msgid "oral"
-#~ msgstr "mündlich"
-
-#~ msgid "multiple choice"
-#~ msgstr "multiple choice"
-
-#~ msgid "mixed"
-#~ msgstr "gemischt"
-
-#~ msgid "My School"
-#~ msgstr "Meine Schule"
-
-#, fuzzy
-#~ msgid "You don't habe the permission to do this!"
-#~ msgstr "Du bist nicht dazu berechtigt, dies zu tun!"
-
-#~ msgid "is not an integer!"
-#~ msgstr "ist keine Ganzzahl!"
-
-#~ msgid "School Website"
-#~ msgstr "Website der Schule"
-
-#, fuzzy
-#~ msgid "Join Class"
-#~ msgstr "Meine Klasse"
-
-#~ msgid "already exists in database!"
-#~ msgstr "existiert bereits in der Datenbank!"
-
-#~ msgid "TEEEST"
-#~ msgstr "PLEASE :D"
+msgstr "Passwort zurücksetzen"

@@ -59,22 +59,23 @@ if(!empty($_POST['resetPW'])){
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 		<style type="text/css">
 		<?php
-		require_once(CORE_DIR.'styles/welcome.css.php');
+			require_once(CORE_DIR.'styles/welcome.css.php');
+			$color="bg-midnightblue";
 		?>
 		</style>
 	</head>
 	<body>
 	<header>
-		<div id="menuBar">
+		<div id="navbar" class="<?php echo $color; ?> shadow">
 			<ul>
-			</ul>
+				<div id="navbar-left">
+					<a href="#grades"><?php include("img/icon_bar.svg");?></a>
+					<span class="color-white noselect">Grades</span>
+				</div>	
 		</div>
 	</header>
 	
-	<div id="welcome"><?php echo sanitizeOutput(_("Welcome")); ?></div>
-	<div id="to"><?php echo sanitizeOutput(_("to")); ?></div>
-	<div id="title">Grades</div>
-	<div id="page">
+	<div id="page" class="vis">
 		<ul class="nav-menu">
 			<li>
 				<a href="#register">
@@ -100,63 +101,12 @@ if(!empty($_POST['resetPW'])){
             		</div>
         		</a>
 			</li>
-			<li>
-				<a href="http://hexcode.ch">
-					<i class="nav-icon fa fa-question"></i>
-					<div class="nav-content">
-						<h2 class="nav-main"><?php echo sanitizeOutput(_("About this Website")); ?></h2>
-            		</div>
-        		</a>
-			</li>
-			<li>
-				<a href="http://hexcode.ch">
-					<i class="nav-icon fa fa-users"></i>
-					<div class="nav-content">
-						<h2 class="nav-main"><?php echo sanitizeOutput(_("Our Team")); ?></h2>
-            		</div>
-        		</a>
-			</li>
+			
 		</ul>
 		<div class="clear"></div>
 		<div id="error"><?php if(isset($error)&&!empty($error)){echo $error;}?></div>
 	</div>
-	<footer>
-		<?php if(isset($_GET['skip'])||!empty($_POST)||isMobile()){ ?>
-			<script type="text/javascript">
-			$("#welcome").remove();
-			$("#to").remove();
-			$("#welcome").addClass("scaleWel");
-			$("#title").css("-moz-transition","all 0s ease-in-out").css("-webkit-transition","all 0s ease-in-out").css("transition","all 0s ease-in-out").addClass("title_in").addClass("title_fix");
-			$("#menuBar").addClass("vis");
-			$("#title").css("font-weight", "normal");
-			$("#page").addClass("vis");
-		</script>
-		<?php }else{ ?>
-			<script type="text/javascript">
-			$("#welcome").addClass("scaleWel");
-			setTimeout(function() {
-				$("#to").addClass("scaleTo");
-				setTimeout(function() {
-					$("#title").addClass("title_in");
-					setTimeout(function() {
-						$("#welcome").addClass("topOut");
-						$("#to").addClass("topOut");
-						setTimeout(function() {
-							$("#title").addClass("title_fix");
-							setTimeout(function() {
-								$("#menuBar").addClass("vis");
-							}, 750);
-							setTimeout(function() {
-								$("#title").css("font-weight", "normal");
-								$("#page").addClass("vis");
-							}, 1500);
-						}, 750);
-					}, 1250);
-				}, 750);
-			}, 750);
-		</script>
-		<?php } ?>
-	</footer>
+
 	<div id="login" class="window">
 		<div class="windowContent">
 			<h1><?php echo sanitizeOutput(_("Login")); ?></h1>
