@@ -22,7 +22,7 @@ if(!empty($array)){
 				$secondClass = $value[$i] >= 4 ? "" : " negativeMark";
 				echo "<td class='mark".$secondClass."'>".sanitizeOutput($value[$i])."</td>";
 			}else{
-				echo "<td class='mark'></td>";
+				echo "<td class='mark'>-</td>";
 			}
 		}
 		/** Get all marks of subject and calc the average mark of subject **/
@@ -50,6 +50,7 @@ if(!empty($array)){
 			if($average >= 4){
 				$secondClass = "";
 				$p=($average-4);
+				$p = round($p, 1);
 				if($rel){
 					$pointsAV+=$p;
 					$points = " (+" . $p . ")";
@@ -57,6 +58,7 @@ if(!empty($array)){
 			}else{
 				$secondClass = " negativeMark";
 				$p=(2*(4-$average));
+				$p = round($p, 1);
 				if($rel){
 					$pointsAV-=$p;
 					$points = " (-" . $p . ")";
@@ -107,8 +109,14 @@ if(!empty($array)){
 	$subjects = '"'.implode('", "',array_keys($array)).'"';
 	$marks = array();
 	$dates = array();
+	$min="1";
+	$max="6";
+	for($i=1;$i<count($marks);$i++){
+		$min.=", 1";
+		$max.=", 6";
+	}
 	foreach($array as $key => $timestamp){
-		$marks[] = $timestamp[0];
+		$marks[] = str_replace(",", ".", $timestamp[0]);
 		$dates[] = date("d. M",$key);
 	}
 	$marks = implode(",", $marks);
@@ -131,6 +139,24 @@ if(!empty($array)){
 			pointHighlightFill: "<?php echo $color2; ?>",
 			pointHighlightStroke: "<?php echo $color2; ?>",
 			data: [<?php echo $marks; ?>]
+		},{
+			label: "Min Mark",
+			fillColor: "rgba(0,0,0,0)",
+			strokeColor: "rgba(0,0,0,0)",
+			pointColor: "rgba(0,0,0,0)",
+			pointStrokeColor: "rgba(0,0,0,0)",
+			pointHighlightFill: "rgba(0,0,0,0)",
+			pointHighlightStroke: "rgba(0,0,0,0)",
+			data: [<?php echo $min; ?>]
+		},{
+			label: "Max Mark",
+			fillColor: "rgba(0,0,0,0)",
+			strokeColor: "rgba(0,0,0,0)",
+			pointColor: "rgba(0,0,0,0)",
+			pointStrokeColor: "rgba(0,0,0,0)",
+			pointHighlightFill: "rgba(0,0,0,0)",
+			pointHighlightStroke: "rgba(0,0,0,0)",
+			data: [<?php echo $max; ?>]
 		}]
 	};
 	var options =
