@@ -38,8 +38,8 @@ if(!empty($_POST['resetPW'])){
 }else if(isset($_POST['username'])&&!empty($_POST['username'])&&isset($_POST['password'])&&!empty($_POST['password'])){
 	if(tryToLogIn($_POST['username'], $_POST['password'])){
 		$user = getCurrentUser();
-		"#2c3e50" = $user['color1'];
-		"#34495e" = $user['color2'];
+		$user['color1']="#2c3e50";
+		$user['color2']="#34495e";
 		header("Location: /");
 	}else{
 		$error = sanitizeOutput(_("Please check your login!"));
