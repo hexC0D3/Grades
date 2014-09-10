@@ -482,7 +482,7 @@ class NTDB{
 		usort($array, 'compareByTimestamp');
 		$newArray = array();
 		foreach($array as $test){
-			$mark = $this->getAllInformationFrom('grades', 'testID', $test['id'])[0];
+			$mark = $this->getAllInformationFrom('grades', array('testID', 'userID'), array($test['id'], $user['id']))[0];
 			$subject = $this->getAllInformationFrom('subjects', 'id', $test['subjectID'])[0];
 			if(empty($newArray[$subject['name']])||count($newArray[$subject['name']])<=$numberOfGradesPerSubject){
 				$newArray[$subject['name']][] = $mark['mark'];
