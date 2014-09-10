@@ -3,8 +3,8 @@
 if(session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
-$prim = $_SESSION['firstColor'];
-$sec = $_SESSION['secondColor'];
+$prim = "#2c3e50";
+$sec = "#34495e";
 ?>
 *{
 	padding:0;
@@ -59,15 +59,17 @@ input:disabled:-ms-input-placeholder{
 /** end:placeholder **/
 /** start:input[type="text"], input[type="password"] and input[type="number"] **/
 input[type="text"], input[type="number"],input[type="password"]{
-	border: <?php echo $prim; ?> 1px solid;
 	color:<?php echo $prim; ?>;
-	font-size:250%;
+	font-size:150%;
+	height:50px;
 	font-weight:200;
 	width:98%;
 	background-color:#FFF;
+	box-shadow:         inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+	-moz-box-shadow:    inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+	-webkit-box-shadow:         inset 0px 1px 2px 0px rgba(0,0,0,0.50);
 }
 input[type="text"]:hover, input[type="text"]:active, input[type="text"]:focus, input[type="password"]:hover, input[type="password"]:active, input[type="password"]:focus, input[type="number"]:hover, input[type="number"]:active, input[type="number"]:focus{
-	border: <?php echo $sec; ?> 1px solid;
 }
 /** end:input[type="text"], input[type="password"] and input[type="number"] **/
 /** start:input[type="submit"] and input[type="button"] **/
@@ -77,7 +79,8 @@ input[type="submit"], input[type="button"]{
 	background-color:<?php echo $prim; ?>;
 	border:none;
 	color:#fff;
-	font-size:187.5%;
+	font-size:150%;
+	font-weight:200;
 	cursor:pointer;
 }
 input[type="submit"]:hover, input[type="button"]:hover{
@@ -133,8 +136,8 @@ input[type="text"]:disabled{
 /** end:page **/
 /** start:menu **/
 .nav-menu{
-	margin-top:50px;
-	width:80vw;
+	margin-top:100px;
+	width:50vw;
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -148,9 +151,9 @@ input[type="text"]:disabled{
 	background: #fff;
 	margin-right: -3vw;
 	border-radius: 9999px;
-	-moz-transition: all 400ms ease-in-out;
-	-webkit-transition: all 400ms ease-in-out;
-	transition: all 400ms ease-in-out;
+	-moz-transition: all 100ms ease-in-out;
+	-webkit-transition: all 100ms ease-in-out;
+	transition: all 100ms ease-in-out;
 }
 .nav-menu li:hover{
 	border-color:<?php echo $prim; ?>;
@@ -182,7 +185,7 @@ input[type="text"]:disabled{
     top: 55%;
 }
 .nav-main{
-    font-size: 2.2vw;
+    font-size: 2vw;
     color: <?php echo $prim; ?>;
     text-align: center;
     transition: all 400ms linear;
@@ -252,74 +255,35 @@ input[type="text"]:disabled{
 }
 /** end:intro **/
 /** start:menubar **/
-#menuBar{
-	height:3.6vw;
-	width:100%;
+#navbar{
+	position: fixed;
 	top:0;
 	left:0;
 	right:0;
-	position: fixed;
-	background-color:<?php echo $prim; ?>;
+	height:80px;
+	min-width:615px;
+	background-color:#2c3e50;
 	z-index:100;
-	opacity:0;
-	color:#fff;
+}
+#navbar-left{
+	height:60px;
+	width:350px;
+	margin-top:10px;
+	padding-left:10px;
+
+}
+#navbar-left a, #navbar-left a>svg{
+	height:60px;
+	width:60px;
+}
+#navbar-left span{
+	font-size:60px;
+	font-weight:300;
+	position: absolute;
+	top:5px;
 	
-	-moz-transition: all 2s ease-in-out;
-	-webkit-transition: all 2s ease-in-out;
-	transition: all 2s ease-in-out;
-}
-#menuBar > ul{
-	float:right;
-	margin-top:10px;
-}
-#menuBar > ul li.seperator{
-	margin-top: 10px;
-	border-top:#FFF 1px solid;
-}
-#menuBar > ul, #menuBar > ul >li{
-	display:inline;
-}
-#menuBar > ul > li{
-	margin-right:60px;
-}
-#menuBar li{
-	font-size:187.5%;
-}
-#menuBar li a{
-	font-size:85%;
-}
-.drop-down-arrow{
-	cursor:pointer;
-	position: relative;
-}
-.drop-down-arrow:after{
-	width: 0; 
-	height: 0; 
-	margin-top:18px;
-	margin-left:5px;
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-top: 10px solid #fff;
-	content:"";
-	position: absolute;
-}
-.drop-down-arrow > .submenu{
-	position: absolute;
-	background-color:<?php echo $prim; ?>;
-	padding:0px 5px 5px 5px;
-	transition: all .3s ease-in-out;
-	opacity:0;
-	z-index:-1;
-	margin-top:-300px;
-	white-space: nowrap;
-}
-a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
-	border-bottom: #fff 1px solid;
-}
-.drop-down-arrow:focus > .submenu{
-	opacity:1;
-	z-index:1;
-	margin-top:10px;
+	padding-left:5px;
+	color:#fff;
 }
 /** end:menubar **/
 /** start:error **/
@@ -347,7 +311,7 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 }
 .window{
 	position:absolute;
-	top:3vw;left:3vw;right:3vw;
+	top:150px;left:30vw;right:30vw;
 	padding-bottom:3vw;
 	background-color:#fff;
 	z-index:-1;
@@ -356,11 +320,16 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 	-moz-transition: all .4s linear;
 	-webkit-transition: all .4s linear;
 	transition: all .4s linear;
+
+	-moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+	-webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+	
 }
 #close{
 	position: absolute;
-	top:3vw;
-	right:4%;
+	top:150px;
+	right:30.5%;
 	z-index:-1;
 	opacity:0;
 	
@@ -369,8 +338,8 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 	transition: all .4s linear;
 }
 #close a{
-	color:#e74c3c;
-	font-size:2.5vw;
+	color:<?php echo $prim; ?>;
+	font-size:2vw;
 }
 .windowContent{
 	position:relative;
@@ -380,17 +349,7 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 	font-size:3.5vw;
 	margin-left:-1%;
 }
-#overlay{
-	position:fixed;
-	top:0;left:0;right:0;bottom:0;
-	background-color:rgba(0,0,0,0.5);
-	z-index:-1;
-	opacity:0;
-	
-	-moz-transition: all .4s linear;
-	-webkit-transition: all .4s linear;
-	transition: all .4s linear;
-}
+
 /** end:windows **/
 .vis{
 	opacity:1 !important;
@@ -398,6 +357,9 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 .clear{
 	clear:both;
 }
+
+
+
 /** start:media queries **/
 @media screen and (max-device-width: 480px){
 	*{
@@ -460,6 +422,8 @@ a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
 		font-size: 5vw;
 		text-align:left;
 	}
+	
+	
 }
 /**iPhone 3,4**/@media screen and (device-aspect-ratio: 2/3) {
 	

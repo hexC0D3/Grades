@@ -10,7 +10,7 @@ define("MAIL_FROM", "noreply@grades.tyratox.ch");
 if(!file_exists(CORE_DIR.'config.php')&&strpos(curPageURL(), "setup.php")===false){
 	header("Location: /admin/setup.php");
 }
-if(session_status() != PHP_SESSION_ACTIVE) {
+if (session_status() != PHP_SESSION_ACTIVE) {
 	session_start();
 }
 

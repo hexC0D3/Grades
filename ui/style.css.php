@@ -74,82 +74,102 @@ h1 a, h2 a{
 	font-size:100%;
 }
 /** end:title **/
+
 /** start:menubar **/
-#menuBar{
-	height:50px;
-	width:100%;
+#navbar{
+	position: fixed;
 	top:0;
 	left:0;
 	right:0;
-	position: fixed;
-	background-color:<?php echo $prim; ?>;
+	height:80px;
+	min-width:615px;
+	background-color:#2c3e50;
 	z-index:100;
 }
-#menuBar > ul{
-	float:right;
+#navbar-left{
+	height:60px;
+	width:350px;
 	margin-top:10px;
+	padding-left:10px;
+
 }
-#menuBar > ul li.seperator{
-	margin-top: 10px;
-	border-top:#FFF 1px solid;
+#navbar-left a, #navbar-left a>svg{
+	height:60px;
+	width:60px;
 }
-#menuBar > ul, #menuBar > ul >li{
-	display:inline;
-}
-#menuBar > ul > li{
-	margin-right:60px;
-}
-#menuBar li{
-	font-size:187.5%;
-}
-#menuBar li a{
-	font-size:70%;
-}
-.title{
-	font-size:312.5%;
-	margin-left:10px;
-	line-height:100%;
-}
-.title:hover{
-	border:none;
-}
-.drop-down-arrow{
-	cursor:pointer;
-	position: relative;
-}
-.drop-down-arrow:after{
-	width: 0; 
-	height: 0; 
-	margin-top:18px;
-	margin-left:5px;
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-top: 10px solid #fff;
-	content:"";
+#navbar-left span{
+	font-size:60px;
+	font-weight:300;
 	position: absolute;
+	top:5px;
+	
+	padding-left:5px;
 }
-.drop-down-arrow > .submenu{
+
+nav {
+	position:absolute;
+	right:0;
+	top:0;
+}
+nav ul:after {
+    clear: both;
+    content: "";
+    display: block;
+	
+    font-size:0;
+    height:0;
+    visibility: hidden;
+}
+nav ul li {
+    list-style: none;
+    float:left;
+}
+nav ul li a {
+    display: block;
+    color: #fff;
+	font-weight:400;
+	
+	padding:30px 10px 30px 10px;
+}
+nav ul li:hover>a{
+    background-color:rgba(255,255,255,.1);
+}
+nav ul li:hover > ul {
+    visibility: visible;
+}
+nav ul li ul{
+    display:block;
+    visibility:hidden;
+    
 	position: absolute;
-	background-color:<?php echo $prim; ?>;
-	padding:0px 5px 5px 5px;
-	transition: all .3s ease-in-out;
-	opacity:0;
-	z-index:-1;
-	margin-top:-300px;
-	white-space: nowrap;
+	right:0;
+	width:100%;
 }
-a:hover, a:focus, .drop-down-arrow:hover, .drop-down-arrow:focus{
-	border-bottom: #fff 1px solid;
+nav ul li ul li{
+	float: none;
 }
-.drop-down-arrow:focus > .submenu{
-	opacity:1;
-	z-index:1;
-	margin-top:10px;
+nav ul li ul li a {
+	padding:10px 10px 10px 10px;
 }
+nav ul li ul li a:hover{
+	background-color: rgba(255,255,255,.1) !important;
+}
+
+#profileContainer{
+	padding:10px 10px 7px 10px;
+}
+#profileImg{
+	height:56px;
+	
+	border-radius:13px;
+	border:#fff 2px solid;
+}
+
 /** end:menubar **/
+
 /** start:page **/
 #page{
-	margin-top:calc(50px + 2%);
+	margin-top:calc(80px + 2%);
 	margin-left:2%;
 	color:#000;
 	position: relative;
@@ -166,47 +186,75 @@ textarea{
 	color:<?php echo $prim; ?>;
 	font-size:150%;
 	font-weight:200;
-	border:1px solid <?php echo $prim; ?>;
 	max-width:98%;
 	width:98%;
 	min-width:98%;
 	max-height:30vw;
 	height:30vw;
 	min-height:30vw;
+	box-shadow:         inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+	-moz-box-shadow:    inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+	-webkit-box-shadow:         inset 0px 1px 2px 0px rgba(0,0,0,0.50);
 }
 /** end:textarea **/
 /** start:input[type="text"], input[type="password"] and input[type="number"] **/
 input[type="text"], input[type="number"],input[type="password"]{
-	border: <?php echo $prim; ?> 1px solid;
 	color:<?php echo $prim; ?>;
 	font-size:250%;
 	font-weight:200;
 	width:98%;
 	background-color:#FFF;
+	box-shadow:         inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+	-moz-box-shadow:    inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+	-webkit-box-shadow:         inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+}
+
+/** end:input[type="text"], input[type="password"] and input[type="number"] **/
+/** start:input[type="submit"] and input[type="button"] **/
+input:disabled::-webkit-input-placeholder{
+    color:#95a5a6;
+}
+input:disabled:-moz-placeholder{
+    color:#95a5a6;
+    opacity:1;
+}
+input:disabled::-moz-placeholder{
+    color:#95a5a6;
+    opacity:1;
+}
+input:disabled:-ms-input-placeholder{
+    color:#95a5a6;
+}
+/** end:placeholder **/
+/** start:input[type="text"], input[type="password"] and input[type="number"] **/
+input[type="text"], input[type="number"],input[type="password"]{
+	color:<?php echo $prim; ?>;
+	font-size:150%;
+	height:50px;
+	font-weight:200;
+	width:98%;
+	background-color:#FFF;
+	box-shadow:         inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+	-moz-box-shadow:    inset 0px 1px 2px 0px rgba(0,0,0,0.50);
+	-webkit-box-shadow:         inset 0px 1px 2px 0px rgba(0,0,0,0.50);
 }
 input[type="text"]:hover, input[type="text"]:active, input[type="text"]:focus, input[type="password"]:hover, input[type="password"]:active, input[type="password"]:focus, input[type="number"]:hover, input[type="number"]:active, input[type="number"]:focus{
-	border: <?php echo $sec; ?> 1px solid;
 }
 /** end:input[type="text"], input[type="password"] and input[type="number"] **/
 /** start:input[type="submit"] and input[type="button"] **/
 input[type="submit"], input[type="button"]{
-	height:40px;
+	height:3.3vw;
 	width:98%;	
 	background-color:<?php echo $prim; ?>;
 	border:none;
 	color:#fff;
-	font-size:187.5%;
+	font-size:150%;
+	font-weight:200;
 	cursor:pointer;
+	height:50px;
 }
 input[type="submit"]:hover, input[type="button"]:hover{
 	background-color:<?php echo $sec; ?>;
-}
-table input[type="submit"], input[type="button"]{
-	width:calc(25% - 6px);
-	float:left;
-	margin-right:2px;
-	font-size:125%;
-	font-weight:200;
 }
 input[type="submit"].join, input[type="button"].join{
 	background-color:#f1c40f;
@@ -231,6 +279,23 @@ input[type="submit"]:disabled, input[type="button"]:disabled, input[type="submit
 	background-color:#95a5a6;
 	cursor:default;
 }
+/** end:input[type="submit"] **/
+input[type="text"]:disabled{
+	border:#95a5a6 1px solid !important;
+	color:#95a5a6;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover{
+	background-color:<?php echo $sec; ?>;
+}
+table input[type="submit"], input[type="button"]{
+	width:calc(25% - 6px);
+	float:left;
+	margin-right:2px;
+	font-size:125%;
+	font-weight:200;
+}
+
 /** end:input[type="submit"] **/
 input[type="text"]:disabled{
 	border:#95a5a6 1px solid !important;
@@ -271,7 +336,6 @@ input[type="text"]:disabled{
 /** end:flatSelect **/
 /** start:flatCheckbox **/
 .checkboxContainer{
-	border: <?php echo $prim; ?> 1px solid;
 	height:50px;
 	width:98%;
 }
@@ -286,15 +350,16 @@ input[type="text"]:disabled{
 	font-weight:200;
 	padding-right:40px;
 	color:<?php echo $prim; ?>;
+	font-size:150%;
 }
 input[type="checkbox"]{
 	display:none;
 }
 input[type="checkbox"] + label{
 	position:absolute;
-	margin-top:5px;
-	width: 40px;
-	height: 40px;
+	margin-top:4px;
+	width: 25px;
+	height: 25px;
 	background-color: <?php echo $prim; ?>;
 	display: inline-block;
 }
@@ -302,9 +367,9 @@ input[type="checkbox"]:checked + label {
 	background-color: <?php echo $sec; ?>;
 }
 input[type="checkbox"]:checked + label:after {
-	top:4px;
+	top:-4px;
 	position: absolute;
-	padding-left:10px;
+	padding-left:3px;
 	color: #fff;
 	font-size: 156.25%;
 	content: '\2715';
@@ -535,45 +600,45 @@ td{
 	.title{
 		margin-left:10%;
 	}
-	#menuBar > ul li.seperator{
+	#navbar > ul li.seperator{
 		margin-top: 0;
 		border:none;
 	}
-	#menuBar ul, #menuBar li{
+	#navbar ul, #navbar li{
 		margin-top:-50vh;
 	}
-	#menuBar:target ul, #menuBar:target li{
+	#navbar:target ul, #navbar:target li{
 		margin-top:0;
 	}
-	#menuBar{
+	#navbar{
 		height:8.5vw;
 	}
-	#menuBar:target{
+	#navbar:target{
 		position: absolute;
 		height: auto;
 	}
-	#menuBar:target ul .submenu{
+	#navbar:target ul .submenu{
 		opacity:1 !important;
 		position:relative;
 	}
-	#menuBar:target ul{
+	#navbar:target ul{
 		display:block;
 		float:none;
 	}
-	#menuBar:target > ul{
+	#navbar:target > ul{
 		margin-top:5vw;
 	}
-	#menuBar:target li{
+	#navbar:target li{
 		display:block !important;	
 		font-size:10vw;
 		display: block;
 		border: none;
 	}
-	#menuBar:target li a{
+	#navbar:target li a{
 		font-size:7vw;
 		display:block;
 	}
-	#menuBar > ul > li{
+	#navbar > ul > li{
 		margin-right:0;
 	}
 	.drop-down-arrow:after{
@@ -613,4 +678,142 @@ td{
 		height:7vw;
 	}
 	/** mobile menu **/
+}
+
+/* COLORS START */
+.color-white{
+	color:#fff;
+}
+.color-turqoise{
+	color:#1abc9c;
+}
+.color-greensea{
+	color:#16a085;
+}
+.color-emerald{
+	color:#2ecc71;
+}
+.color-nephritis{
+	color:#27ae60;
+}
+.color-peterriver{
+	color:#3498db;
+}
+.color-belizehole{
+	color:#2980b9;
+}
+.color-amethyst{
+	color:#9b59b6;
+}
+.color-wisteria{
+	color:#8e44ad;
+}
+.color-wetasphalt{
+	color:#34495e;
+}
+.color-midnightblue{
+	color:#2c3e50;
+}
+.color-sunflower{
+	color:#f1c40f;
+}
+.color-orange{
+	color:#f39c12;
+}
+.color-carrot{
+	color:#e67e22;
+}
+.color-pumpkin{
+	color:#d35400;
+}
+.color-alizarin{
+	color:#e74c3c;
+}
+.color-pomegranate{
+	color:#c0392b;
+}
+.color-clouds{
+	color:#ecf0f1;
+}
+.color-silver{
+	color:#bdc3c7;
+}
+.color-concrete{
+	color:#95a5a6;
+}
+.color-asbestos{
+	color:#7f8c8d;
+}
+
+.bg-white{
+	background-color:#fff;
+}
+.bg-turqoise{
+	background-color:#1abc9c;
+}
+.bg-greensea{
+	background-color:#16a085;
+}
+.bg-emerald{
+	background-color:#2ecc71;
+}
+.bg-nephritis{
+	background-color:#27ae60;
+}
+.bg-peterriver{
+	background-color:#3498db;
+}
+.bg-belizehole{
+	background-color:#2980b9;
+}
+.bg-amethyst{
+	background-color:#9b59b6;
+}
+.bg-wisteria{
+	background-color:#8e44ad;
+}
+.bg-wetasphalt{
+	background-color:#34495e;
+}
+.bg-midnightblue{
+	background-color:#2c3e50;
+}
+.bg-sunflower{
+	background-color:#f1c40f;
+}
+.bg-orange{
+	background-color:#f39c12;
+}
+.bg-carrot{
+	background-color:#e67e22;
+}
+.bg-pumpkin{
+	background-color:#d35400;
+}
+.bg-alizarin{
+	background-color:#e74c3c;
+}
+.bg-pomegranate{
+	background-color:#c0392b;
+}
+.bg-clouds{
+	background-color:#ecf0f1;
+}
+.bg-silver{
+	background-color:#bdc3c7;
+}
+.bg-concrete{
+	background-color:#95a5a6;
+}
+.bg-asbestos{
+	background-color:#7f8c8d;
+}
+/* COLORS END */
+
+/* SHADOWS */
+
+.shadow{
+	-moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+	-webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
 }
