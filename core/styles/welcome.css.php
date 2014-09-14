@@ -370,11 +370,27 @@ input[type="text"]:disabled{
 	.window h1{
 		font-size:10vw !important;
 	}
+	#close{
+		top:80px;
+		right:5px;
+	}
+	#page{
+		top:10vh;
+	}
 	#close a{
 		font-size:6vw;
 	}
-	#menuBar{
-		height:10vw;
+	#navbar{
+		height:10vh;
+	}
+	#navbar-left span{
+		font-size:7vh;
+	}
+	.nav-menu{
+		margin-top:0 !important;
+	}
+	.window{
+		top:80px;left:0;right:0;
 	}
 	.title_fix{
 		font-size:9vw !important;

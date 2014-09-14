@@ -60,13 +60,12 @@ if(!empty($_POST['resetPW'])){
 		<style type="text/css">
 		<?php
 			require_once(CORE_DIR.'styles/welcome.css.php');
-			$color="bg-midnightblue";
 		?>
 		</style>
 	</head>
 	<body>
 	<header>
-		<div id="navbar" class="<?php echo $color; ?> shadow">
+		<div id="navbar" class="shadow">
 			<ul>
 				<div id="navbar-left">
 					<a href="#grades"><?php include("img/icon_bar.svg");?></a>

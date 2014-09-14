@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>Grades</title>
-	<meta name="viewport" content="user-scalable=no" />
+	<meta name="viewport" content="" /><!-- user-scalable=no -->
 	<link rel="icon" type="image/png" href="/img/favicon.png">
 	<style type="text/css">
 	<?php require_once('style.css.php'); ?>
@@ -16,7 +16,7 @@
 </head>
 <body>
 	<header>
-		<div id="navbar" class="<?php echo $color; ?> shadow">
+		<div id="navbar" class="shadow">
 			<ul>
 				<?php 
 				global $ntdb;
@@ -25,7 +25,7 @@
 				$school = $ntdb->getAllInformationFrom('schools', 'id', $user['schoolID'])[0];
 				?>
 				<div id="navbar-left">
-					<a href="#grades"><div id="mobileMenuTrigger" class="fa fa-bars bg-midnightblue"></div><?php include("img/icon_bar.svg");?></a>
+					<a href="#grades"><div id="mobileMenuTrigger" class="fa fa-bars"></div><?php include("img/icon_bar.svg");?></a>
 					<a href="#menuBar"><div id="mobileMenuTrigger" class="fa fa-bars"></div></a>
 					<span class="color-white noselect">Grades</span>
 				</div>
