@@ -139,6 +139,24 @@ if(!empty($array)){
 			pointHighlightFill: "<?php echo $color2; ?>",
 			pointHighlightStroke: "<?php echo $color2; ?>",
 			data: [<?php echo $marks; ?>]
+		},{
+			label: "Min Mark",
+			fillColor: "rgba(0,0,0,0)",
+			strokeColor: "rgba(0,0,0,0)",
+			pointColor: "rgba(0,0,0,0)",
+			pointStrokeColor: "rgba(0,0,0,0)",
+			pointHighlightFill: "rgba(0,0,0,0)",
+			pointHighlightStroke: "rgba(0,0,0,0)",
+			data: [<?php echo $min; ?>]
+		},{
+			label: "Max Mark",
+			fillColor: "rgba(0,0,0,0)",
+			strokeColor: "rgba(0,0,0,0)",
+			pointColor: "rgba(0,0,0,0)",
+			pointStrokeColor: "rgba(0,0,0,0)",
+			pointHighlightFill: "rgba(0,0,0,0)",
+			pointHighlightStroke: "rgba(0,0,0,0)",
+			data: [<?php echo $max; ?>]
 		}]
 	};
 	var options =
