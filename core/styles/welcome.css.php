@@ -3,8 +3,9 @@
 if(session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
-$prim = "#2c3e50";
-$sec = "#34495e";
+
+$prim = $_SESSION['firstColor'];
+$sec = $_SESSION['secondColor'];
 ?>
 *{
 	padding:0;
@@ -262,7 +263,7 @@ input[type="text"]:disabled{
 	right:0;
 	height:80px;
 	min-width:615px;
-	background-color:#2c3e50;
+	background-color:<?php echo $prim; ?>;
 	z-index:100;
 }
 #navbar-left{

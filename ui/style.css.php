@@ -83,7 +83,7 @@ h1 a, h2 a{
 	right:0;
 	height:80px;
 	min-width:615px;
-	background-color:#2c3e50;
+	background-color:<?php echo $prim; ?>;
 	z-index:100;
 }
 #navbar-left{
@@ -123,6 +123,9 @@ h1 a, h2 a{
 #navbar nav ul li {
     list-style: none;
     float:left;
+}
+#navbar nav ul li {
+	background-color:<?php echo $prim; ?>;
 }
 #navbar nav ul li a {
     display: block;

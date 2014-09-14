@@ -532,29 +532,9 @@ function hashPassword($pw){
 function verifyPassword($pw, $hash){
 	return password_verify($pw, $hash);
 }
-/** Gets random flat UI color **/
-function randFlatColor(){
-	global $ntdb;
-
-	$flatColors = array(array("#1abc9c", "#16a085"), array("#2ecc71", "#27ae60"), array("#3498db", "#2980b9"), array("#9b59b6", "#8e44ad"), array("#34495e", "#2c3e50"), array("#f1c40f", "#f39c12"), array("#e67e22", "#d35400"), array("#e74c3c", "#c0392b"));
-	$rKey = array_rand($flatColors, 1);
-	$rand = $flatColors[$rKey];
-	
-	if(isset($ntdb)&&isUserLoggedIn()){
-		$user = getCurrentUser();
-		$ntdb->updateInDatabase('users', array("color1", "color2"), array($rand[0], $rand[1]), 'id', $user['id']);
-	}
-
-	$_SESSION['firstColor'] = $rand[0];
-	$_SESSION['secondColor'] = $rand[1];
-	return $rand;
-}
 /** Check if color is set, otherwise use default ones **/
-if(!isset($_SESSION['firstColor'])){
-	randFlatColor();
-}
-$_SESSION['firstColor'] = (isset($_SESSION['firstColor'])&&!empty($_SESSION['firstColor'])) ? $_SESSION['firstColor'] : "#1abc9c";
-$_SESSION['secondColor'] = (isset($_SESSION['secondColor'])&&!empty($_SESSION['secondColor'])) ? $_SESSION['secondColor'] : "#16a085";
+$_SESSION['firstColor'] = (isset($_SESSION['firstColor'])&&!empty($_SESSION['firstColor'])) ? $_SESSION['firstColor'] : "#2c3e50";
+$_SESSION['secondColor'] = (isset($_SESSION['secondColor'])&&!empty($_SESSION['secondColor'])) ? $_SESSION['secondColor'] : "#34495e";
 
 function setupTables(){
 	#create needed tables

@@ -23,8 +23,6 @@
 				$user = getCurrentUser();
 				$class = $ntdb->getAllInformationFrom('classes', 'id', $user['classID'])[0];
 				$school = $ntdb->getAllInformationFrom('schools', 'id', $user['schoolID'])[0];
-				
-				$color="bg-midnightblue"
 				?>
 				<div id="navbar-left">
 					<a href="#grades"><div id="mobileMenuTrigger" class="fa fa-bars bg-midnightblue"></div><?php include("img/icon_bar.svg");?></a>
@@ -36,16 +34,16 @@
 					<ul>
 						<li class = "cat1">
 							<a href="#"><?php echo sanitizeOutput(_("Grades")); ?></a>
-							<ul class="<?php echo $color; ?>">
+							<ul>
 								<li><a href='#grades'><?php echo sanitizeOutput(_("Grade List")); ?></a></li>
 								<li><a href='#page:/ui/grade.php?p=add'><?php echo sanitizeOutput(_("Add Mark")); ?></a></li>
 								<li><a href="#page:/ui/test.php?p=list"><?php echo sanitizeOutput(_("Test List")); ?></a></li>
 								<li><a href='#page:/ui/test.php?p=create'><?php echo sanitizeOutput(_("Create a test")); ?></a></li>
 				            </ul>
 						</li>
-						<li class = "cat2">
+						<li>
 							<a href="#"><?php echo sanitizeOutput(_("Subjects")); ?></a>
-								<ul class="<?php echo $color; ?>">
+								<ul>
 									<li><a href='#page:/ui/subjects.php?p=list'><?php echo sanitizeOutput(_("Subject List")); ?></a></li>
 									<?php
 									if($user['id']==$school['adminID']){
@@ -54,9 +52,9 @@
 									?>
 					            </ul>
 						</li>
-						<li class = "cat3">
+						<li>
 							<a href="#"><?php echo sanitizeOutput(_("My Class")); ?></a>
-								<ul class="<?php echo $color; ?>">
+								<ul>
 									<li><a href='#page:/ui/class.php?p=classroom'><?php echo sanitizeOutput(_("Go to classroom")); ?></a></li>
 					                <li><a href='#page:/ui/class.php?p=list'><?php echo sanitizeOutput(_("Class List")); ?></a></li>
 									<?php
@@ -66,9 +64,9 @@
 									?>
 					            </ul>
 						</li>
-						<li class = "cat4">
+						<li>
 					    	<a href="#" id="--profileContainer"><!--<img src="/img/profile.png" title="Dario" id="profileImg">--><?php echo $user["username"]; ?></a>
-					        	<ul class="<?php echo $color; ?>">
+					        	<ul>
 					            	<li><a href='#page:/admin/profile.php'><?php echo sanitizeOutput(_("Settings")); ?></a></li>
 					                <li><a href='#page:/ui/school.php?p=list'><?php echo sanitizeOutput(_("School List")); ?></a></li>
 									<?php
