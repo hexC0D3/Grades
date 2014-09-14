@@ -106,12 +106,12 @@ h1 a, h2 a{
 	padding-left:5px;
 }
 
-nav {
+#navbar nav {
 	position:absolute;
 	right:0;
 	top:0;
 }
-nav ul:after {
+#navbar nav ul:after {
     clear: both;
     content: "";
     display: block;
@@ -120,24 +120,24 @@ nav ul:after {
     height:0;
     visibility: hidden;
 }
-nav ul li {
+#navbar nav ul li {
     list-style: none;
     float:left;
 }
-nav ul li a {
+#navbar nav ul li a {
     display: block;
     color: #fff;
 	font-weight:400;
 	
 	padding:30px 10px 30px 10px;
 }
-nav ul li:hover>a{
+#navbar nav ul li:hover>a{
     background-color:rgba(255,255,255,.1);
 }
-nav ul li:hover > ul {
+#navbar nav ul li:hover > ul {
     visibility: visible;
 }
-nav ul li ul{
+#navbar nav ul li ul{
     display:block;
     visibility:hidden;
     
@@ -145,13 +145,13 @@ nav ul li ul{
 	right:0;
 	width:100%;
 }
-nav ul li ul li{
+#navbar nav ul li ul li{
 	float: none;
 }
-nav ul li ul li a {
+#navbar nav ul li ul li a {
 	padding:10px 10px 10px 10px;
 }
-nav ul li ul li a:hover{
+#navbar nav ul li ul li a:hover{
 	background-color: rgba(255,255,255,.1) !important;
 }
 

@@ -50,7 +50,7 @@ if(!empty($array)){
 			if($average >= 4){
 				$secondClass = "";
 				$p=($average-4);
-				$p = round($p, 1);
+				$p = round($p*2)/2;
 				if($rel){
 					$pointsAV+=$p;
 					$points = " (+" . $p . ")";
@@ -105,10 +105,12 @@ if(!empty($array)){
 		$secondClass="";
 	}
 	/** Generate data for graph.js **/
-	$array = $ntdb->getLastGradesOfCurrentUserWithTimeStamp(7);
+	$array = $ntdb->getLastGradesOfCurrentUserWithTimeStamp($num);
 	$subjects = '"'.implode('", "',array_keys($array)).'"';
 	$marks = array();
 	$dates = array();
+	$dates_js=array();
+	$realDates=array();
 	$min="1";
 	$max="6";
 	for($i=1;$i<count($marks);$i++){
@@ -117,19 +119,21 @@ if(!empty($array)){
 	}
 	foreach($array as $key => $timestamp){
 		$marks[] = str_replace(",", ".", $timestamp[0]);
-		$dates[] = date("d. M",$key);
+		$dates[] = date("d. m. Y",$key);
+		$dates_js[] = date("Y, m, d",$key);
 	}
 	$marks = implode(",", $marks);
-	$dates = '"'.implode('", "', $dates).'"';
 	$color1 = $user['color1'];
 	$color2 = $user['color2'];
-	
+	$labels="'".$dates[0]."','".$dates[count($dates)-1]."'";
 	?>
-	<div id="averageMark"> <?php echo _("Average Mark") ." : <span ".$secondClass.">". $x .$pointsAV. "</span>"; ?></div>
+	<div id="averageMark"> <?php echo _("Average Mark")." : <span ".$secondClass.">". $x .$pointsAV. "</span>"; ?></div>
 	<script>
 	var data =
 	{
-		labels: [<?php echo $dates; ?>],
+		labels: [<?php echo $labels; ?>],
+		xBegin : new Date(<?php echo $dates_js[0]; ?>),
+	    xEnd : new Date(<?php echo $dates_js[count($dates_js)-1]; ?>),
 		datasets: [{
 			label: "Grades",
 			fillColor: "<?php echo "rgba(".hex2rgb($color2).", 0.1)"; ?>",
@@ -138,25 +142,8 @@ if(!empty($array)){
 			pointStrokeColor: "<?php echo $color2; ?>",
 			pointHighlightFill: "<?php echo $color2; ?>",
 			pointHighlightStroke: "<?php echo $color2; ?>",
-			data: [<?php echo $marks; ?>]
-		},{
-			label: "Min Mark",
-			fillColor: "rgba(0,0,0,0)",
-			strokeColor: "rgba(0,0,0,0)",
-			pointColor: "rgba(0,0,0,0)",
-			pointStrokeColor: "rgba(0,0,0,0)",
-			pointHighlightFill: "rgba(0,0,0,0)",
-			pointHighlightStroke: "rgba(0,0,0,0)",
-			data: [<?php echo $min; ?>]
-		},{
-			label: "Max Mark",
-			fillColor: "rgba(0,0,0,0)",
-			strokeColor: "rgba(0,0,0,0)",
-			pointColor: "rgba(0,0,0,0)",
-			pointStrokeColor: "rgba(0,0,0,0)",
-			pointHighlightFill: "rgba(0,0,0,0)",
-			pointHighlightStroke: "rgba(0,0,0,0)",
-			data: [<?php echo $max; ?>]
+			data: [<?php echo $marks; ?>],
+			xPos : [<?php echo "new Date(".implode("), new Date(", $dates_js).")"; ?>],
 		}]
 	};
 	var options =
@@ -173,6 +160,14 @@ if(!empty($array)){
 		datasetStroke : true,
 		datasetStrokeWidth : 2,
 		datasetFill : true,
+		graphMin:1,
+	    graphMax:6,
+	    scaleOverride : true,
+	    scaleStartValue : 1,
+	    scaleSteps : 10,
+	    scaleStepWidth : 0.5,
+	    inGraphDataShow : false,
+	    inGraphDataTmpl : "<%=v3%>",
 	};
 	$( document ).ready(function() {
 		var ctx = document.getElementById("theChart").getContext("2d");

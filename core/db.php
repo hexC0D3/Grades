@@ -456,7 +456,7 @@ class NTDB{
 		$user = getCurrentUser();
 		$array = $this->getAllInformationFrom('tests', 'classID', $user['classID']);
 		if(empty($array)){return array();};
-		usort($array, 'compareByTimestamp');
+		usort($array, 'compareReversedByTimestamp');
 		if(count($array)<$numberOfGrades){
 			$numberOfGrades=0;
 		}else{
@@ -479,7 +479,7 @@ class NTDB{
 			$array[] = $this->getAllInformationFrom('tests', array('id'), array($grade['testID']))[0];
 		}
 		if(empty($array)){return array();};
-		usort($array, 'compareByTimestamp');
+		usort($array, 'compareReversedByTimestamp');
 		$newArray = array();
 		foreach($array as $test){
 			$mark = $this->getAllInformationFrom('grades', array('testID', 'userID'), array($test['id'], $user['id']))[0];

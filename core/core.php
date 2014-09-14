@@ -73,6 +73,10 @@ function compareByName($a, $b) {
 function compareByTimestamp($a, $b) {
 	return (strtotime($a["timestamp"]) < strtotime($b["timestamp"]));
 }
+/** Sorts an array by Timestamp [reversed] **/
+function compareReversedByTimestamp($a, $b) {
+	return (strtotime($a["timestamp"]) > strtotime($b["timestamp"]));
+}
 /** Converts hex to rgb **/
 function hex2rgb($hex) {
 	$hex = str_replace("#", "", $hex);
