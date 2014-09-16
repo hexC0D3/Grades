@@ -22,7 +22,7 @@ if(!empty($array)){
 				$secondClass = $value[$i] >= 4 ? "" : " negativeMark";
 				echo "<td class='mark".$secondClass."'>".sanitizeOutput($value[$i])."</td>";
 			}else{
-				echo "<td class='mark'>-</td>";
+				echo "<td class='mark'></td>";
 			}
 		}
 		/** Get all marks of subject and calc the average mark of subject **/
