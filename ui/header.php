@@ -25,7 +25,7 @@
 				$school = $ntdb->getAllInformationFrom('schools', 'id', $user['schoolID'])[0];
 				?>
 				<div id="navbar-left">
-					<a href="#grades"><div id="mobileMenuTrigger" class="fa fa-bars"></div><?php include("img/icon_bar.svg");?></a>
+					<a href="#grades"><div id="mobileMenuTrigger" class="fa fa-bars"></div><?php include(ROOT_DIR."img/icon_bar.svg");?></a>
 					<a href="#menuBar"><div id="mobileMenuTrigger" class="fa fa-bars"></div></a>
 					<span class="color-white noselect">Grades</span>
 				</div>

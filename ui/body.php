@@ -58,7 +58,7 @@ if(!empty($array)){
 			}else{
 				$secondClass = " negativeMark";
 				$p=(2*(4-$average));
-				$p = round($p, 1);
+				$p = round($p*2)/2;
 				if($rel){
 					$pointsAV-=$p;
 					$points = " (-" . $p . ")";
