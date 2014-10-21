@@ -103,7 +103,7 @@ function showMySubjects($get){
 					$tests=$ntdb->getAllInformationFrom('tests', array('subjectID', 'classID'), array($get['id'],$user['classID']));
 					usort($tests, 'compareByTimestamp');
 					foreach($tests as $test){
-						$grade=$ntdb->getAllInformationFrom('grades', array('testID', 'userID'), array($test['id']), $user['id'])[0];
+						$grade=$ntdb->getAllInformationFrom('grades', array('testID', 'userID'), array($test['id'], $user['id']))[0];
 						$test['timestamp'] = date("d. m. Y", strtotime($test['timestamp']));
 						echo "<tr><td>".$test['topic']."</td><td>".$test['description']."</td><td>".$test['type']."</td><td>".$test['timestamp']."</td><td><a href='#page:/ui/grade.php?p=edit&id=".sanitizeOutput($grade['id'])."'>".$grade['mark']."</a> [".$ntdb->getAverageMark($test['id'])."]</td></tr>";
 					}
