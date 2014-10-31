@@ -49,16 +49,16 @@ if(!empty($array)){
 		if($average>0){
 			if($average >= 4){
 				$secondClass = "";
-				$p=($average-4);
-				$p = round($p*2)/2;
+				$p=round($average*2)/2;
+				$p = ($p-4);
 				if($rel){
 					$pointsAV+=$p;
 					$points = " (+" . $p . ")";
 				}
 			}else{
 				$secondClass = " negativeMark";
-				$p=(2*(4-$average));
-				$p = round($p*2)/2;
+				$p=round($average*2)/2;
+				$p = 2*(4-$p);
 				if($rel){
 					$pointsAV-=$p;
 					$points = " (-" . $p . ")";
